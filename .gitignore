@@ -1,0 +1,5 @@
+# External modules
+node_modules
+
+# Env variables
+.env

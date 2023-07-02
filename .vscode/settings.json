@@ -1,0 +1,6 @@
+{
+  "editor.tabSize": 2,
+  "prettier.prettierPath": "./node_modules/prettier",
+  "cSpell.ignorePaths": ["package-lock.json", "node_modules", "vscode-extension", ".git/objects", ".vscode", ".vscode-insiders", "tsconfig.json", ".eslint*", "package*", "yarn.lock"],
+  "cSpell.words": ["Понг", "cooldown", "cooldowns", "MONGOURL", "thecatapi"]
+}
