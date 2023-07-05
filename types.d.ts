@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { AutocompleteInteraction, ButtonBuilder, ButtonInteraction, ChatInputCommandInteraction, Collection, CommandInteraction, ContextMenuCommandBuilder, SlashCommandBuilder } from 'discord.js'
+import { AutocompleteInteraction, ButtonBuilder, ButtonInteraction, ChatInputCommandInteraction, Collection, ContextMenuCommandBuilder, SlashCommandBuilder } from 'discord.js'
 
 export interface BotEvent {
   name: string
@@ -44,13 +44,10 @@ declare module 'discord.js' {
   }
 }
 
-import type en from './src/locales/en.json'
-
+import resources from './src/locales/resources'
 declare module 'i18next' {
   interface CustomTypeOptions {
     defaultNS: 'common'
-    resources: {
-      common: typeof en
-    }
+    resources: typeof resources
   }
 }

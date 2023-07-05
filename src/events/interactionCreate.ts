@@ -1,5 +1,6 @@
 import { Interaction } from 'discord.js'
 import { BotEvent } from '../../types'
+import { t } from 'i18next'
 
 const event: BotEvent = {
   name: 'interactionCreate',
@@ -12,7 +13,7 @@ const event: BotEvent = {
       if (!command) return
       if (command.cooldown && cooldown) {
         if (Date.now() < cooldown) {
-          interaction.reply({ content: `You have to wait ${Math.floor(Math.abs(Date.now() - cooldown) / 1000)} second(s) to use this command again.`, ephemeral: true })
+          interaction.reply({ content: t('cooldown', { count: Math.floor(Math.abs(Date.now() - cooldown) / 1000), lng: interaction.locale }), ephemeral: true })
           setTimeout(() => interaction.deleteReply(), 5000)
           return
         }

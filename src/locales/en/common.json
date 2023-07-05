@@ -1,0 +1,14 @@
+{
+  "ping": "Pong!",
+
+  "cooldown_one": "You have to wait {{count}} second to use this command again.",
+  "cooldown_other": "You have to wait {{count}} seconds to use this command again.",
+
+  "dog_success": "Random dog!",
+  "cat_success": "Random cat!",
+
+  "animal_warning": "Image from {{url}}. We are not responsible for the content!",
+  "animal_error": "Couldn't fetch image from the API",
+
+  "avatar_noavatar": "This user has no avatar!"
+}

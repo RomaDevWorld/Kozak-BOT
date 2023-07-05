@@ -29,4 +29,4 @@ const ModulesSchema = new Schema<ModulesI>({
   },
 })
 
-export default model('modules', ModulesSchema)
+export default model<ModulesI>('modules', ModulesSchema)
