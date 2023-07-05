@@ -9,5 +9,8 @@
   "animal_warning": "Зображення взято з сайту {{url}}. Ми не відповідаємо за вміст",
   "animal_error": "Не вдалося отримати зображення від API",
 
-  "avatar_noavatar": "Цей користувач не має аватару!"
+  "avatar_noavatar": "Цей користувач не має аватару!",
+
+  "purge_success_title": "Успішно очищено!",
+  "purge_success_description": "Очищено: {{messages}}\nОчікує очищення: {{agedMessages}}"
 }

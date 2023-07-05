@@ -10,5 +10,8 @@
   "animal_warning": "Image from {{url}}. We are not responsible for the content!",
   "animal_error": "Couldn't fetch image from the API",
 
-  "avatar_noavatar": "This user has no avatar!"
+  "avatar_noavatar": "This user has no avatar!",
+
+  "purge_success_title": "Successfully purged!",
+  "purge_success_description": "Deleted: {{messages}}\nPending: {{agedMessages}}"
 }
