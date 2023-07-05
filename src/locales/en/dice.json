@@ -1,0 +1,12 @@
+{
+  "embed_author": "Let's play dice!",
+  "embed_footer": "Click a button to throw",
+
+  "button_label": "Throw dice",
+
+  "no_one_played": "No one threw the dice",
+
+  "win_author": "The winner is {{member}} with the result of {{value}}",
+
+  "already_played": "You already threw the dice"
+}

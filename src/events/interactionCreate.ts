@@ -13,7 +13,12 @@ const event: BotEvent = {
       if (!command) return
       if (command.cooldown && cooldown) {
         if (Date.now() < cooldown) {
-          interaction.reply({ content: t('cooldown', { count: Math.floor(Math.abs(Date.now() - cooldown) / 1000), lng: interaction.locale }), ephemeral: true })
+          interaction
+            .reply({
+              content: t('cooldown', { count: Math.floor(Math.abs(Date.now() - cooldown) / 1000), lng: interaction.locale }),
+              ephemeral: true,
+            })
+            .catch((err) => console.error(err))
           setTimeout(() => interaction.deleteReply(), 5000)
           return
         }
@@ -40,7 +45,7 @@ const event: BotEvent = {
       // Handle buttons
 
       const button = interaction.client.buttons.get(interaction.customId)
-      if (!button) return console.error(`No button matching ${interaction.customId} was found.`)
+      if (!button) return
       button.execute(interaction)
     } else if (interaction.isContextMenuCommand()) {
       // Handle context menu commands

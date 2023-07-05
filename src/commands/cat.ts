@@ -9,7 +9,7 @@ const command: SlashCommand = {
   }),
   cooldown: 10,
   execute: async (interaction) => {
-    await interaction.deferReply()
+    await interaction.deferReply().catch((err) => console.error(err))
 
     const response = await axios.get('https://api.thecatapi.com/v1/images/search')
     if (!response) {
@@ -25,7 +25,7 @@ const command: SlashCommand = {
       .setFooter({
         text: t('animal_warning', { lng: interaction.locale, url: 'thecatapi.com' }),
       })
-    await interaction.editReply({ embeds: [embed] })
+    await interaction.editReply({ embeds: [embed] }).catch((err) => console.error(err))
   },
 }
 
