@@ -1,6 +1,6 @@
 import { Client, Collection, GatewayIntentBits } from 'discord.js'
 import { config } from 'dotenv'
-import { Button, ContextMenuCommand, SlashCommand } from '../../types'
+import { SlashCommand, Button, ContextMenuCommand } from '../@types/discord'
 config()
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })

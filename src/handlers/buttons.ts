@@ -1,7 +1,7 @@
 import { ButtonBuilder, Client } from 'discord.js'
 import { join } from 'path'
 import { readdirSync } from 'fs'
-import { Button } from '../../types'
+import { Button } from '../@types/discord'
 
 module.exports = (client: Client) => {
   const buttons: ButtonBuilder[] = []

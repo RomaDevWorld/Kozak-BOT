@@ -1,5 +1,5 @@
 import { SchemaTypes, Schema, model } from 'mongoose'
-import { ModulesI } from '../../types'
+import { ModulesI } from '../@types/schemas'
 
 const ModulesSchema = new Schema<ModulesI>({
   guildId: {

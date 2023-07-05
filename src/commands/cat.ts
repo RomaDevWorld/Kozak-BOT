@@ -1,7 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js'
-import { SlashCommand } from '../../types'
 import axios from 'axios'
 import { t } from 'i18next'
+import { SlashCommand } from '../@types/discord'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder().setName('cat').setDescription('Show random cat').setDescriptionLocalizations({
@@ -9,7 +9,7 @@ const command: SlashCommand = {
   }),
   cooldown: 10,
   execute: async (interaction) => {
-    await interaction.deferReply().catch((err) => console.error(err))
+    await interaction.deferReply().catch((err: Error) => console.error(err))
 
     const response = await axios.get('https://api.thecatapi.com/v1/images/search')
     if (!response) {
@@ -25,7 +25,7 @@ const command: SlashCommand = {
       .setFooter({
         text: t('animal_warning', { lng: interaction.locale, url: 'thecatapi.com' }),
       })
-    await interaction.editReply({ embeds: [embed] }).catch((err) => console.error(err))
+    await interaction.editReply({ embeds: [embed] }).catch((err: Error) => console.error(err))
   },
 }
 

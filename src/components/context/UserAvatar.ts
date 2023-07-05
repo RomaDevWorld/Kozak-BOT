@@ -1,6 +1,6 @@
 import { ApplicationCommandType, ContextMenuCommandBuilder, EmbedBuilder } from 'discord.js'
-import { ContextMenuCommand } from '../../../types'
 import { t } from 'i18next'
+import { ContextMenuCommand } from '../../@types/discord'
 
 const command: ContextMenuCommand = {
   command: new ContextMenuCommandBuilder()

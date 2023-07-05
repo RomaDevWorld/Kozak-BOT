@@ -1,7 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js'
-import { SlashCommand } from '../../types'
 import { t } from 'i18next'
 import timers from 'node:timers/promises'
+import { SlashCommand } from '../@types/discord'
 
 const ClearCommand: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -14,7 +14,7 @@ const ClearCommand: SlashCommand = {
       uk: 'Поставте запитання і ми начаклуємо відповідь',
     }),
   execute: async (interaction) => {
-    await interaction.deferReply().catch((err) => console.error(err))
+    await interaction.deferReply().catch((err: Error) => console.error(err))
 
     await timers.setTimeout(5000)
 
@@ -29,7 +29,7 @@ const ClearCommand: SlashCommand = {
       .setColor('DarkButNotBlack')
       .setFooter({ text: "Вживання магії шкодить Вашому здоров'ю" })
 
-    await interaction.editReply({ embeds: [embed] }).catch((err) => console.error(err))
+    await interaction.editReply({ embeds: [embed] }).catch((err: Error) => console.error(err))
   },
   cooldown: 10,
 }

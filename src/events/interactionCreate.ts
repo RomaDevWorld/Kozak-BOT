@@ -1,6 +1,6 @@
 import { Interaction } from 'discord.js'
-import { BotEvent } from '../../types'
 import { t } from 'i18next'
+import { BotEvent } from '../@types/discord'
 
 const event: BotEvent = {
   name: 'interactionCreate',

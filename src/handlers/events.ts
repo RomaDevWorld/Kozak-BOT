@@ -1,7 +1,7 @@
 import { Client } from 'discord.js'
 import { readdirSync } from 'fs'
 import { join } from 'path'
-import { BotEvent } from '../../types'
+import { BotEvent } from '../@types/discord'
 
 module.exports = (client: Client) => {
   const eventsDir = join(__dirname, '../events')

@@ -1,5 +1,5 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import { Button } from '../../../types'
+import { Button } from '../../@types/discord'
 
 const button: Button = {
   button: new ButtonBuilder().setCustomId('hello').setLabel('Hello').setStyle(ButtonStyle.Secondary),

@@ -1,7 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, ComponentType, EmbedBuilder, SlashCommandBuilder } from 'discord.js'
-import { SlashCommand } from '../../types'
 import { t } from 'i18next'
 import createRandomString from '../functions/createRandomString'
+import { SlashCommand } from '../@types/discord'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()

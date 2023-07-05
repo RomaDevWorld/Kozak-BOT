@@ -1,5 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { AutocompleteInteraction, ButtonBuilder, ButtonInteraction, ChatInputCommandInteraction, Collection, ContextMenuCommandBuilder, SlashCommandBuilder } from 'discord.js'
+import {
+  AutocompleteInteraction,
+  ButtonBuilder,
+  ButtonInteraction,
+  ChatInputCommandInteraction,
+  Collection,
+  ContextMenuCommandBuilder,
+  SlashCommandBuilder,
+} from 'discord.js'
 
 export interface BotEvent {
   name: string
@@ -25,29 +33,11 @@ export interface ContextMenuCommand {
   execute: (interaction: ContextMenuCommandInteraction) => void
 }
 
-export interface ModulesI {
-  guildId: string
-  logChannel: string
-  owner: string
-  lobby: {
-    channel: string
-    category: string
-  }
-}
-
 declare module 'discord.js' {
   export interface Client {
     slashCommands: Collection<string, SlashCommand>
     buttons: Collection<string, Button>
     cooldowns: Collection<string, number>
     contextCommands: Collection<string, ContextMenuCommand>
-  }
-}
-
-import resources from './src/locales/resources'
-declare module 'i18next' {
-  interface CustomTypeOptions {
-    defaultNS: 'common'
-    resources: typeof resources
   }
 }

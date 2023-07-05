@@ -1,6 +1,6 @@
 import { ChannelType, EmbedBuilder, Message, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js'
-import { SlashCommand } from '../../types'
 import { t } from 'i18next'
+import { SlashCommand } from '../@types/discord'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()

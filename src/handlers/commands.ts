@@ -2,7 +2,7 @@ import { Client, Routes } from 'discord.js'
 import { REST } from '@discordjs/rest'
 import { readdirSync } from 'fs'
 import { join } from 'path'
-import { ContextMenuCommand, SlashCommand } from '../../types'
+import { SlashCommand, ContextMenuCommand } from '../@types/discord'
 
 import { config } from 'dotenv'
 config()
