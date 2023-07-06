@@ -32,6 +32,7 @@ src/
 ├── locales/ - Resourses for localization
 │   ├── en/
 │   ├── uk/
+│   ├── fr/
 │   └── resourses.ts - File to specify avaible resourses
 ├── schemas/ - Mongoose schemas
 └── index.ts - File to run an application
