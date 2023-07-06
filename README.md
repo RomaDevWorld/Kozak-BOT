@@ -14,6 +14,29 @@
   <li>Easy configuration through Web UI</li>
 </ul>
 
+## Folder structure explanation
+```
+.env.example - Envoirment variables example
+src/
+├── commands/ - Discord slash commands
+├── components/
+│   ├── buttons/ - Button message component
+│   └── context/ - Context menu commands
+├── events/ - Discord events
+├── functions/ - Reusable code
+├── handlers/ - Handlers for commands/buttons/events/etc
+├── lib/ - Initialize different services
+│   ├── client.ts - Discord client
+│   ├── i18next.ts - i18next
+│   └── mongodb.ts - MongoDB
+├── locales/ - Resourses for localization
+│   ├── en/
+│   ├── uk/
+│   └── resourses.ts - File to specify avaible resourses
+├── schemas/ - Mongoose schemas
+└── index.ts - File to run an application
+```
+
 ## How to run it?
 
 ### Locally with Node.JS
