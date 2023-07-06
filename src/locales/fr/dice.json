@@ -1,0 +1,12 @@
+{
+  "embed_author": "Jouons au dé!",
+  "embed_footer": "Clique le button pour jeter",
+
+  "button_label": "Jeter le dé",
+
+  "no_one_played": "Personne n'a jeté le dé!",
+
+  "win_author": "Le gagnant est {{member}} avec un résultat de **{{value}}**!",
+
+  "already_played": "Vous avez déjà jeté le dé!"
+}
