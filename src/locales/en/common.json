@@ -13,5 +13,8 @@
   "avatar_noavatar": "This user has no avatar!",
 
   "purge_success_title": "Successfully purged!",
-  "purge_success_description": "Deleted: {{messages}}\nPending: {{agedMessages}}"
+  "purge_success_description": "Deleted: {{messages}}\nPending: {{agedMessages}}",
+
+  "vote_closebutton": "Close poll",
+  "vote_notauthor": "Only poll authors can close them"
 }

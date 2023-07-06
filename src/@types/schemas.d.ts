@@ -16,5 +16,4 @@ export interface VotesI {
         name: string
         value: string[] | []
       }[]
-    | []
 }

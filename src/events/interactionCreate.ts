@@ -44,9 +44,11 @@ const event: BotEvent = {
     } else if (interaction.isButton()) {
       // Handle buttons
 
-      const button = interaction.client.buttons.get(interaction.customId)
-      if (!button) return
-      button.execute(interaction)
+      const allButtons = Array.from(interaction.client.buttons.values())
+
+      for (const i in allButtons) {
+        if (interaction.customId.startsWith(allButtons[i].button.data.custom_id)) return allButtons[i].execute(interaction)
+      }
     } else if (interaction.isContextMenuCommand()) {
       // Handle context menu commands
 
