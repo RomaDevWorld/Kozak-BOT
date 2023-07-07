@@ -8,6 +8,7 @@ const command: SlashCommand = {
     .setDescription('Delete large amount of messages')
     .setDescriptionLocalizations({
       uk: 'Видалення великої кількості повідомлень',
+      fr: 'Supprime un groupe large de messages du salon' 
     })
     .addIntegerOption((option) =>
       option
@@ -18,11 +19,13 @@ const command: SlashCommand = {
         .setDescription('Max amount of messages')
         .setDescriptionLocalizations({
           uk: 'Максимальна кількість повідомлень',
+          fr: 'Nombre maximum de messages'
         })
     )
     .addUserOption((option) =>
       option.setName('user').setDescription('Delete messages from a specific user').setDescriptionLocalizations({
         uk: 'Видалення повідомлень від вказаного користувача',
+        fr: 'Supprimer les messages d'un utilisateur spécifique'
       })
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
