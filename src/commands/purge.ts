@@ -25,7 +25,7 @@ const command: SlashCommand = {
     .addUserOption((option) =>
       option.setName('user').setDescription('Delete messages from a specific user').setDescriptionLocalizations({
         uk: 'Видалення повідомлень від вказаного користувача',
-        fr: 'Supprimer les messages d'un utilisateur spécifique'
+        fr: 'Supprimer les messages d\'un utilisateur spécifique'
       })
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
