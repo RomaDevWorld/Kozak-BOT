@@ -5,25 +5,32 @@ import VoteButton from '../components/buttons/Vote'
 import CloseVote from '../components/buttons/CloseVote'
 import { t } from 'i18next'
 
-cmd = new SlashCommandBuilder()
-    .setName('poll')
-    .setDescription('Create a vote in chat')
+const cmd = new SlashCommandBuilder().setName('poll').setDescription('Create a vote in chat').setDescriptionLocalizations({
+  uk: 'Створити опитування в чаті',
+  fr: 'Créer un sondage dans le chat',
+})
+cmd.addStringOption((option) =>
+  option
+    .setName('label')
+    .setDescription('Vote label')
     .setDescriptionLocalizations({
-      uk: 'Створити опитування в чаті',
-      fr: "Créer un sondage dans le chat"
+      uk: 'Текст опитування',
+      fr: 'Titre du sondage',
     })
-    .addStringOption((option) =>
-      option.setName('label').setDescription('Vote label').setDescriptionLocalizations({
-        uk: 'Текст опитування',
-        fr: "Titre du sondage"
-      }).setRequired(true).setMaxLength(256)
-    );
-for(let i of [1,2,3,4,5]){
-  cmd.addStringOption(option => option.setName('option'+i).setDescription('Option '+i)
-    .setDescriptionLocalizations({
-      uk: 'Опція '+i,
-      fr: 'Choix N°'+i
-    }).setRequired(i == 1).setMaxLength(800)
+    .setRequired(true)
+    .setMaxLength(256)
+)
+for (const i of [1, 2, 3, 4, 5]) {
+  cmd.addStringOption((option) =>
+    option
+      .setName('option' + i)
+      .setDescription('Option ' + i)
+      .setDescriptionLocalizations({
+        uk: 'Опція ' + i,
+        fr: 'Choix N°' + i,
+      })
+      .setRequired(i == 1)
+      .setMaxLength(800)
   )
 }
 const command: SlashCommand = {
@@ -45,7 +52,7 @@ const command: SlashCommand = {
     const optionsRow = new ActionRowBuilder<ButtonBuilder>()
 
     const list = []
-    for (let i in options) {
+    for (const i in options) {
       list.push(`**${i + 1}.** ${options[i].name} (0%)`)
 
       const dynamicButton = new ButtonBuilder(VoteButton.button.data)
