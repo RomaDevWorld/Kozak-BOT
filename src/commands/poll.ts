@@ -5,25 +5,29 @@ import VoteButton from '../components/buttons/Vote'
 import CloseVote from '../components/buttons/CloseVote'
 import { t } from 'i18next'
 
-const command: SlashCommand = {
-  command: new SlashCommandBuilder()
+cmd = new SlashCommandBuilder()
     .setName('poll')
-    .addStringOption((option) =>
-      option.setName('label').setDescription('Vote label').setDescriptionLocalizations({ uk: 'Текст опитування' }).setRequired(true).setMaxLength(256)
-    )
-    .addStringOption((option) =>
-      option.setName('option1').setDescription('Option 1').setDescriptionLocalizations({ uk: 'Опція 1' }).setRequired(true).setMaxLength(800)
-    )
-    .addStringOption((option) =>
-      option.setName('option2').setDescription('Option 2').setDescriptionLocalizations({ uk: 'Опція 2' }).setRequired(true).setMaxLength(800)
-    )
-    .addStringOption((option) => option.setName('option3').setDescription('3').setMaxLength(800))
-    .addStringOption((option) => option.setName('option4').setDescription('4').setMaxLength(800))
-    .addStringOption((option) => option.setName('option5').setDescription('5').setMaxLength(800))
     .setDescription('Create a vote in chat')
     .setDescriptionLocalizations({
       uk: 'Створити опитування в чаті',
-    }),
+      fr: "Créer un sondage dans le chat"
+    })
+    .addStringOption((option) =>
+      option.setName('label').setDescription('Vote label').setDescriptionLocalizations({
+        uk: 'Текст опитування',
+        fr: "Titre du sondage"
+      }).setRequired(true).setMaxLength(256)
+    );
+for(let i of [1,2,3,4,5]){
+  cmd.addStringOption(option => option.setName('option'+i).setDescription('Option '+i)
+    .setDescriptionLocalizations({
+      uk: 'Опція '+i,
+      fr: 'Choix N°'+i
+    }).setRequired(i == 1).setMaxLength(800)
+  )
+}
+const command: SlashCommand = {
+  command: cmd,
   cooldown: 10,
   execute: async (interaction) => {
     const value = await Vote.create({
@@ -41,7 +45,7 @@ const command: SlashCommand = {
     const optionsRow = new ActionRowBuilder<ButtonBuilder>()
 
     const list = []
-    for (let i = 0; i < options.length; i++) {
+    for (let i in options) {
       list.push(`**${i + 1}.** ${options[i].name} (0%)`)
 
       const dynamicButton = new ButtonBuilder(VoteButton.button.data)
