@@ -22,7 +22,8 @@ const command: SlashCommand = {
   cooldown: 10,
   execute: async (interaction) => {
     const member = interaction.guild?.members.cache.get(interaction.options.getUser('member')?.id as string)
-    if (!member) return interaction.reply({ content: t('mute:member_notFound', { lng: interaction.locale }), ephemeral: true })
+    if (!member) return interaction.reply({ content: t('memberNotFound', { lng: interaction.locale }), ephemeral: true })
+    if (member.user.bot) return interaction.reply({ content: t('memberBot', { lng: interaction.locale }), ephemeral: true })
 
     if (!interaction.guild?.members.me?.permissions.has(PermissionFlagsBits.MuteMembers)) {
       return interaction.reply({ content: t('mute:bot_noPermission', { lng: interaction.locale }), ephemeral: true })
@@ -46,7 +47,7 @@ const command: SlashCommand = {
       member.timeout(
         time,
         `${interaction.user.username}: ${
-          interaction.options.getString('reason') || t('mute:defaultReason', { lng: interaction.guild?.preferredLocale })
+          interaction.options.getString('reason') || t('reasonNotSpecified', { lng: interaction.guild?.preferredLocale })
         }`
       )
 

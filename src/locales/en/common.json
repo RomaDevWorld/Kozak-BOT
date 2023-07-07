@@ -18,5 +18,8 @@
   "vote_closebutton": "Close poll",
   "vote_notauthor": "Only poll authors can close them",
 
-  "error": "Error"
+  "error": "Error",
+  "reasonNotSpecified": "Reason not specified",
+  "memberNotFound": "This member is not on this server",
+  "memberBot": "This action cannot be applied to bots"
 }

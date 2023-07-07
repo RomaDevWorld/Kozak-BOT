@@ -1,8 +1,6 @@
 {
-  "member_notFound": "This member is not on this server",
   "bot_noPermission": "I have no permission to timeout members on this server",
   "member_greater": "This user is above or you have the same highest role or this member has `Administrator` permission",
   "time_incorrect": "Specified value `{{value}}` is not a correct time\nTime cannot be less than 1 seconds or greater than 28 days.\nTime should end with s/m/h/d to specify seconds, minutes, hours or days accordingly",
-  "defaultReason": "Reason not specified",
   "success": "**{{member}}** is muted until `{{date}}`"
 }
