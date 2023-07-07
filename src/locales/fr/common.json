@@ -1,0 +1,20 @@
+{
+  "ping": "Pong!",
+
+  "cooldown_one": "Vous devez attendre {{count}} seconde pour réutiliser cette commande.",
+  "cooldown_other": "Vous devez attendre {{count}} secondes pour réutiliser cette commande.",
+
+  "dog_success": "Chien aléatoire!",
+  "cat_success": "Chat aléatoire!",
+
+  "animal_warning": "Image de {{url}}. Nous ne sommes pas résponsables du contenu!",
+  "animal_error": "Impossible de récupérer l'image de l'API..",
+
+  "avatar_noavatar": "Cette utilisateur n'a pas une photo de profil!",
+
+  "purge_success_title": "Purge faite!",
+  "purge_success_description": "Supprimé(s): {{messages}}\nEn cours: {{agedMessages}}",
+
+  "vote_closebutton": "Fermer",
+  "vote_notauthor": "Seuls les auteurs du sondage peuvent le fermer."
+}

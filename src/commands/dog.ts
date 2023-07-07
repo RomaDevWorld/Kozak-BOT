@@ -6,6 +6,7 @@ import { SlashCommand } from '../@types/discord'
 const command: SlashCommand = {
   command: new SlashCommandBuilder().setName('dog').setDescription('Show random dog').setDescriptionLocalizations({
     uk: 'Показати випадкову собаку',
+    fr: "Faire apparaitre un chien aléatoire"
   }),
   cooldown: 10,
   execute: async (interaction) => {

@@ -5,6 +5,7 @@ import { SlashCommand } from '../@types/discord'
 const command: SlashCommand = {
   command: new SlashCommandBuilder().setName('ping').setDescription("Shows the bot's ping").setDescriptionLocalizations({
     uk: 'Показати затримку бота',
+    fr:"Tester la latence du bot"
   }),
   cooldown: 10,
   execute: async (interaction) => {

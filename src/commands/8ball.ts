@@ -7,11 +7,16 @@ const ClearCommand: SlashCommand = {
   command: new SlashCommandBuilder()
     .setName('8ball')
     .addStringOption((option) =>
-      option.setName('question').setDescription('Your question').setDescriptionLocalizations({ uk: 'Ваше запитання' }).setRequired(true)
+      option.setName('question').setDescription('Your question').setRequired(true)
+        .setDescriptionLocalizations({ 
+          uk: 'Ваше запитання',
+          fr: 'Votre question'
+        })
     )
     .setDescription('Ask a question to the Magic 8 Ball')
     .setDescriptionLocalizations({
       uk: 'Поставте запитання і ми начаклуємо відповідь',
+      fr: "Poser une question à la 8 boule magique"
     }),
   execute: async (interaction) => {
     await interaction.deferReply().catch((err: Error) => console.error(err))

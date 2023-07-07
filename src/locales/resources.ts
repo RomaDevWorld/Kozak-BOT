@@ -1,11 +1,14 @@
 import common_en from '../locales/en/common.json'
 import common_uk from '../locales/uk/common.json'
+import common_fr from '../locales/fr/common.json'
 
 import eightball_en from '../locales/en/8ball.json'
 import eightball_uk from '../locales/uk/8ball.json'
+import eightball_fr from '../locales/fr/8ball.json'
 
 import dice_en from '../locales/en/dice.json'
 import dice_uk from '../locales/uk/dice.json'
+import dice_fr from '../locales/fr/dice.json'
 
 import mute_en from '../locales/en/mute.json'
 import mute_uk from '../locales/uk/mute.json'
@@ -27,6 +30,11 @@ const resources = {
     dice: dice_uk,
     mute: mute_uk,
     warn: warn_uk,
+  },
+  fr: {
+    common: common_fr,
+    '8ball': eightball_fr,
+    dice: dice_fr,
   },
 }
 
