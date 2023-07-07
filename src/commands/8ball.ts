@@ -27,12 +27,15 @@ const ClearCommand: SlashCommand = {
 
     const embed = new EmbedBuilder()
       .setAuthor({
-        name: 'Магічний шар каже..',
+        name: t('8ball:embed_author', { lng: interaction.locale }),
         iconURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/8-Ball_Pool.svg/1024px-8-Ball_Pool.svg.png',
       })
-      .setDescription(`**Запитання:** "${question}"\n\n` + `${t(`8ball:${Math.floor(Math.random() * 8)}`, { lng: interaction.locale })}`)
+      .setDescription(
+        `**${t('8ball:embed_description', { lng: interaction.locale })}** "${question}"\n\n` +
+          `${t(`8ball:${Math.floor(Math.random() * 8)}`, { lng: interaction.locale })}`
+      )
       .setColor('DarkButNotBlack')
-      .setFooter({ text: "Вживання магії шкодить Вашому здоров'ю" })
+      .setFooter({ text: t('8ball:embed_footer', { lng: interaction.locale }) })
 
     await interaction.editReply({ embeds: [embed] }).catch((err: Error) => console.error(err))
   },
