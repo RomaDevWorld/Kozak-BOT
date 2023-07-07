@@ -14,7 +14,7 @@ module.exports = {
     'no-var-requires': [0],
     'no-unused-vars': ['warn'],
     'linebreak-style': ['error', 'unix'],
-    indent: ['error', 2],
+    indent: ['error', 2, { SwitchCase: 1 }],
     semi: ['warn', 'never'],
     'no-multiple-empty-lines': ['warn', { max: 1 }],
   },
