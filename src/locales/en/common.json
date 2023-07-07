@@ -8,7 +8,7 @@
   "cat_success": "Random cat!",
 
   "animal_warning": "Image from {{url}}. We are not responsible for the content!",
-  "animal_error": "Couldn't fetch image from the API",
+  "animal_error": "Couldn't fetch the image from the API",
 
   "avatar_noavatar": "This user has no avatar!",
 
@@ -16,5 +16,7 @@
   "purge_success_description": "Deleted: {{messages}}\nPending: {{agedMessages}}",
 
   "vote_closebutton": "Close poll",
-  "vote_notauthor": "Only poll authors can close them"
+  "vote_notauthor": "Only poll authors can close them",
+
+  "error": "Error"
 }

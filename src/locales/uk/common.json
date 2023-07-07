@@ -15,5 +15,7 @@
   "purge_success_description": "Очищено: {{messages}}\nОчікує очищення: {{agedMessages}}",
 
   "vote_closebutton": "Зупинити опитування",
-  "vote_notauthor": "Тільки творці опитувань можуть їх зупиняти"
+  "vote_notauthor": "Тільки творці опитувань можуть їх зупиняти",
+
+  "error": "Помилка"
 }
