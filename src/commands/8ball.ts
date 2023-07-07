@@ -8,10 +8,10 @@ const ClearCommand: SlashCommand = {
     .setName('8ball')
     .addStringOption((option) =>
       option.setName('question').setDescription('Your question').setRequired(true)
-      .setDescriptionLocalizations({ 
-        uk: 'Ваше запитання',
-        fr: 'Votre question'
-      })
+        .setDescriptionLocalizations({ 
+          uk: 'Ваше запитання',
+          fr: 'Votre question'
+        })
     )
     .setDescription('Ask a question to the Magic 8 Ball')
     .setDescriptionLocalizations({
