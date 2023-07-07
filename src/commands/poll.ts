@@ -29,7 +29,7 @@ for (const i of [1, 2, 3, 4, 5]) {
         uk: 'Опція ' + i,
         fr: 'Choix N°' + i,
       })
-      .setRequired(i == 1)
+      .setRequired([1, 2].includes(i))
       .setMaxLength(800)
   )
 }
