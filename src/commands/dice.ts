@@ -7,7 +7,10 @@ const command: SlashCommand = {
   command: new SlashCommandBuilder()
     .setName('dice')
     .setDescription('Create a table for dice')
-    .setDescriptionLocalizations({ uk: 'Створити стіл для гральних кубиків' }),
+    .setDescriptionLocalizations({
+      uk: 'Створити стіл для гральних кубиків',
+      fr:"Crée une table de dés"
+    }),
   cooldown: 10,
   execute: async (interaction) => {
     const embed = new EmbedBuilder()
