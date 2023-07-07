@@ -18,6 +18,7 @@
     "dotenv": "^16.3.1",
     "i18next": "^23.2.3",
     "i18next-fs-backend": "^2.1.5",
+    "moment": "^2.29.4",
     "mongoose": "^7.3.1"
   },
   "devDependencies": {

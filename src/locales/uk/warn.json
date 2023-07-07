@@ -1,0 +1,9 @@
+{
+  "list_embed_author": "Список попереджень {{member}}",
+  "list_embed_footer": "Усього: {{value}}",
+
+  "push_embed_author": "Попередження відправлено!",
+  "push_embed_description": "**Причина:** {{reason}}",
+
+  "clear_success": "Успішно очищено усі попередження {{member}}"
+}

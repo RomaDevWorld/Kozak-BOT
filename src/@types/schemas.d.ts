@@ -17,3 +17,9 @@ export interface VotesI {
         value: string[] | []
       }[]
 }
+
+interface WarnsI {
+  guildId: string
+  userId: string
+  warns: { modId: string; reason: string | null; dateTimestamp: number }[]
+}

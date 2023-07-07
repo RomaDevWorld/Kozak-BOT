@@ -15,8 +15,9 @@
 </ul>
 
 ## Folder structure explanation
+
 ```
-.env.example - Envoirment variables example
+.env.example - Environment variables example
 src/
 ├── commands/ - Discord slash commands
 ├── components/
@@ -29,7 +30,7 @@ src/
 │   ├── client.ts - Discord client
 │   ├── i18next.ts - i18next
 │   └── mongodb.ts - MongoDB
-├── locales/ - Resourses for localization
+├── locales/ - Resources for localization
 │   ├── en/
 │   ├── uk/
 │   ├── fr/
