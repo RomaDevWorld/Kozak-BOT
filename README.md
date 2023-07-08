@@ -11,7 +11,6 @@
   <li>Reaction roles</li>
   <li>Private voice channels on your server</li>
   <li>Online member counter</li>
-  <li>Easy configuration through Web UI</li>
 </ul>
 
 ## Folder structure explanation
@@ -21,6 +20,9 @@
 src/
 ├── commands/ - Discord slash commands
 ├── components/
+│   ├── subcommandGroups/ - Extracted subcommand groups to increase modularity
+│   ├── subcommands/ - Extracted subcommands
+│   ├── logs/ - Log messages (So called "Audit log messages")
 │   ├── buttons/ - Button message component
 │   └── context/ - Context menu commands
 ├── events/ - Discord events
@@ -34,7 +36,7 @@ src/
 │   ├── en/
 │   ├── uk/
 │   ├── fr/
-│   └── resourses.ts - File to specify avaible resourses
+│   └── resources.ts - File to specify available resources
 ├── schemas/ - Mongoose schemas
 └── index.ts - File to run an application
 ```
@@ -48,25 +50,25 @@ src/
     <a href="https://nodejs.org/en">Install NodeJS runtime</a>
   </li>
   <li>
-    <a>Install Yarn `npm i -g yarn`</a>
+    <a>Install Yarn <code>npm i -g yarn<code></a>
   </li>
   <li>
     <a href="https://git-scm.com/">Install Git (Optional)</a>
   </li>
   <li>
-    Clone source code with `git clone git@github.com:RomaDevWorld/Cossack-BOT.git` or however you like it
+    Clone source code with <code>git clone git@github.com:RomaDevWorld/Cossack-BOT.git<code> or however you like it
   </li>
   <li>
-    Open cloned directory in terminal, and run `yarn install` to install the dependencies 
+    Open cloned directory in terminal, and run <code>yarn install<code> to install the dependencies 
   </li>
   <li>
-    Rename `.env.example` to `.env` and specify all the necessary values (Like Discord Token or MongoDB url)
+    Rename <code>.env.example<code> to <code>.env<code> and specify all the necessary values (Like Discord Token or MongoDB url)
   </li>
   <li>
-    Build source code with `yarn build`
+    Build source code with <code>yarn build<code>
   </li>
   <li>
-    Run the app `yarn start`
+    Run the app <code>yarn start<code>
   </li>
 </ol>
 
