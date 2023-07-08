@@ -5,6 +5,7 @@ import { t } from 'i18next'
 const MessageDeleteLog = async (message: Message) => {
   if (message.author.bot) return
   const channel = await validateLog(message.guild, 'messageDelete')
+  if (!channel) return
 
   const embed = new EmbedBuilder()
     .setAuthor({
@@ -22,7 +23,7 @@ const MessageDeleteLog = async (message: Message) => {
     .setColor('Red')
     .setTimestamp()
 
-  channel?.send({ embeds: [embed] })
+  channel.send({ embeds: [embed] })
 }
 
 export default MessageDeleteLog

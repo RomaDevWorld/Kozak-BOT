@@ -5,6 +5,7 @@ import { t } from 'i18next'
 const MessageUpdateLog = async (oldMessage: Message, newMessage: Message) => {
   if (newMessage.author.bot) return
   const channel = await validateLog(newMessage.guild, 'messageUpdate')
+  if (!channel) return
 
   const embed = new EmbedBuilder()
     .setAuthor({
@@ -23,7 +24,7 @@ const MessageUpdateLog = async (oldMessage: Message, newMessage: Message) => {
     .setColor('Blue')
     .setTimestamp()
 
-  channel?.send({ embeds: [embed] })
+  channel.send({ embeds: [embed] })
 }
 
 export default MessageUpdateLog
