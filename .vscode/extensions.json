@@ -1,6 +1,10 @@
 {
   "recommendations": [
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-french",
+    "streetsidesoftware.code-spell-checker-ukrainian",
+    "ms-azuretools.vscode-docker"
   ]
 }
