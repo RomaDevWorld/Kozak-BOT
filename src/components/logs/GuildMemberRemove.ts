@@ -2,7 +2,7 @@ import { EmbedBuilder, GuildMember } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 
-const guildMemberRemove = async (member: GuildMember) => {
+const GuildMemberRemoveLog = async (member: GuildMember) => {
   const channel = await validateLog(member.guild, 'guildMemberRemove')
   if (!channel) return
 
@@ -19,4 +19,4 @@ const guildMemberRemove = async (member: GuildMember) => {
   channel.send({ embeds: [embed] })
 }
 
-export default guildMemberRemove
+export default GuildMemberRemoveLog

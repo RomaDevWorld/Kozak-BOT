@@ -3,7 +3,7 @@ import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 import moment from 'moment'
 
-const guildMemberAdd = async (member: GuildMember) => {
+const GuildMemberAddLog = async (member: GuildMember) => {
   const channel = await validateLog(member.guild, 'guildMemberAdd')
   if (!channel) return
 
@@ -24,4 +24,4 @@ const guildMemberAdd = async (member: GuildMember) => {
   channel.send({ embeds: [embed] })
 }
 
-export default guildMemberAdd
+export default GuildMemberAddLog
