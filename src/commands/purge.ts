@@ -29,7 +29,7 @@ const command: SlashCommand = {
       })
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
-  cooldown: 10,
+  cooldown: 30,
   execute: async (interaction) => {
     const amount = interaction.options.getInteger('amount') as number
     const user = interaction.options.getUser('user')
