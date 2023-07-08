@@ -3,7 +3,9 @@ import { config } from 'dotenv'
 import { SlashCommand, Button, ContextMenuCommand } from '../@types/discord'
 config()
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] })
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers],
+})
 
 client.slashCommands = new Collection<string, SlashCommand>()
 client.cooldowns = new Collection<string, number>()

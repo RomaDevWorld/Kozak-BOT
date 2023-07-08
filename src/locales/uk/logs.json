@@ -5,5 +5,10 @@
   "messageUpdate_author": "Повідомлення оновлено | {{user}}",
   "messageUpdate_title": "Перейти до повідомлення",
   "messageUpdate_field1": "Раніше:",
-  "messageUpdate_field2": "Зараз:"
+  "messageUpdate_field2": "Зараз:",
+
+  "guildMemberRemove_embed_author": "Учасник вийшов / був вигнаний",
+
+  "guildMemberAdd_embed_author": "Учасник приєднався",
+  "guildMemberAdd_embed_description": "Обліковий запис створено:"
 }

@@ -22,6 +22,14 @@ const ModulesSchema = new Schema<ModulesI>({
         type: SchemaTypes.Boolean,
         default: false,
       },
+      guildMemberAdd: {
+        type: SchemaTypes.Boolean,
+        default: false,
+      },
+      guildMemberRemove: {
+        type: SchemaTypes.Boolean,
+        default: false,
+      },
     },
   },
   lobby: {

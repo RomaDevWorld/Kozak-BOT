@@ -5,5 +5,10 @@
   "messageUpdate_author": "Message updated | {{user}}",
   "messageUpdate_title": "Go to message",
   "messageUpdate_field1": "Before:",
-  "messageUpdate_field2": "Now:"
+  "messageUpdate_field2": "Now:",
+
+  "guildMemberRemove_embed_author": "Member left / was kicked",
+
+  "guildMemberAdd_embed_author": "Member joined",
+  "guildMemberAdd_embed_description": "Account created:"
 }

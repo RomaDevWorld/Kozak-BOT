@@ -6,6 +6,8 @@ export interface ModulesI {
     types: {
       messageUpdate: boolean
       messageDelete: boolean
+      guildMemberAdd: boolean
+      guildMemberRemove: boolean
     }
   }
   owner: string
