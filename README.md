@@ -50,25 +50,25 @@ src/
     <a href="https://nodejs.org/en">Install NodeJS runtime</a>
   </li>
   <li>
-    <a>Install Yarn <code>npm i -g yarn<code></a>
+    <a>Install Yarn npm i -g yarn</a>
   </li>
   <li>
     <a href="https://git-scm.com/">Install Git (Optional)</a>
   </li>
   <li>
-    Clone source code with <code>git clone git@github.com:RomaDevWorld/Cossack-BOT.git<code> or however you like it
+    Clone source code with git clone git@github.com:RomaDevWorld/Cossack-BOT.git or however you like it
   </li>
   <li>
-    Open cloned directory in terminal, and run <code>yarn install<code> to install the dependencies 
+    Open cloned directory in terminal, and run yarn install to install the dependencies 
   </li>
   <li>
-    Rename <code>.env.example<code> to <code>.env<code> and specify all the necessary values (Like Discord Token or MongoDB url)
+    Rename .env.example to .env and specify all the necessary values (Like Discord Token or MongoDB url)
   </li>
   <li>
-    Build source code with <code>yarn build<code>
+    Build source code with yarn build
   </li>
   <li>
-    Run the app <code>yarn start<code>
+    Run the app yarn start
   </li>
 </ol>
 
