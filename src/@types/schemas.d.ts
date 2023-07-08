@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
 export interface ModulesI {
   guildId: string
-  logChannel: string
+  log: {
+    channel: string | null
+    types: {
+      messageUpdate: boolean
+      messageDelete: boolean
+    }
+  }
   owner: string
   lobby: {
-    channel: string
-    category: string
+    channel: string | null
+    category: string | null
   }
 }
 

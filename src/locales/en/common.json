@@ -21,5 +21,9 @@
   "error": "Error",
   "reasonNotSpecified": "Reason not specified",
   "memberNotFound": "This member is not on this server",
-  "memberBot": "This action cannot be applied to bots"
+  "memberBot": "This action cannot be applied to bots",
+
+  "channel": "Channel",
+  "author": "Author",
+  "moderator": "Moderator"
 }

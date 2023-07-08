@@ -7,22 +7,31 @@ const ModulesSchema = new Schema<ModulesI>({
     required: true,
     unique: true,
   },
-  logChannel: {
-    type: SchemaTypes.String,
-    required: true,
-    unique: true,
-    default: null,
+  log: {
+    channel: {
+      type: SchemaTypes.String,
+      unique: true,
+      default: null,
+    },
+    types: {
+      messageDelete: {
+        type: SchemaTypes.Boolean,
+        default: false,
+      },
+      messageUpdate: {
+        type: SchemaTypes.Boolean,
+        default: false,
+      },
+    },
   },
   lobby: {
     channel: {
       type: SchemaTypes.String,
-      required: true,
       unique: true,
       default: null,
     },
     category: {
       type: SchemaTypes.String,
-      required: true,
       unique: true,
       default: null,
     },

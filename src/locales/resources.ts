@@ -16,6 +16,9 @@ import mute_uk from '../locales/uk/mute.json'
 import warn_en from '../locales/en/warn.json'
 import warn_uk from '../locales/uk/warn.json'
 
+import logs_en from '../locales/en/logs.json'
+import logs_uk from '../locales/uk/logs.json'
+
 const resources = {
   en: {
     common: common_en,
@@ -23,6 +26,7 @@ const resources = {
     dice: dice_en,
     mute: mute_en,
     warn: warn_en,
+    logs: logs_en,
   },
   uk: {
     common: common_uk,
@@ -30,6 +34,7 @@ const resources = {
     dice: dice_uk,
     mute: mute_uk,
     warn: warn_uk,
+    logs: logs_uk,
   },
   fr: {
     common: common_fr,

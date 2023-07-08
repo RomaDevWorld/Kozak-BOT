@@ -7,12 +7,22 @@ import {
   Collection,
   ContextMenuCommandBuilder,
   SlashCommandBuilder,
+  SlashCommandSubcommandGroupBuilder,
 } from 'discord.js'
 
 export interface BotEvent {
   name: string
   once?: boolean | false
   execute: (...args) => void
+}
+
+export interface SubCommandGroup {
+  data: SlashCommandSubcommandGroupBuilder
+  execute: (interaction: ChatInputCommandInteraction) => void
+}
+export interface SubCommand {
+  data: SlashCommandSubcommandBuilder
+  execute: (interaction: ChatInputCommandInteraction) => void
 }
 
 export interface SlashCommand {
