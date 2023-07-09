@@ -9,7 +9,7 @@ const validateLog = async (guild: Guild | null, type: LogTypes) => {
 
   if (!data.log.types[type]) return
 
-  const channel = guild?.channels.cache.get(data.log.channel as string)
+  const channel = guild?.channels.cache.get(data.log.channel)
   if (!channel) return
 
   if (!channel.permissionsFor(guild?.members.me as GuildMember).has(['SendMessages', 'ViewChannel']) || channel.type !== ChannelType.GuildText) return
