@@ -4,11 +4,17 @@
 
   "messageUpdate_author": "Повідомлення оновлено | {{user}}",
   "messageUpdate_title": "Перейти до повідомлення",
-  "messageUpdate_field1": "Раніше:",
-  "messageUpdate_field2": "Зараз:",
 
   "guildMemberRemove_embed_author": "Учасник вийшов / був вигнаний",
 
   "guildMemberAdd_embed_author": "Учасник приєднався",
-  "guildMemberAdd_embed_description": "Обліковий запис створено:"
+  "guildMemberAdd_embed_description": "Обліковий запис створено:",
+
+  "guildMemberTimeout_unmute_author": "Учасника увімкнено | {{user}}",
+  "guildMemberTimeout_mute_author": "Учасника вимкнено | {{user}}",
+  "guildMemberNicknameUpdate_author": "Нікнейм змінено | {{user}}",
+
+  "guildMemberRolesUpdate_author": "Ролі оновлено | {{user}}",
+  "guildMemberRolesUpdate_field1": "Додані ролі:",
+  "guildMemberRolesUpdate_field2": "Вилучені ролі:"
 }

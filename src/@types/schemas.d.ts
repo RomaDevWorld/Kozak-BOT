@@ -8,6 +8,9 @@ export interface ModulesI {
       messageDelete: boolean
       guildMemberAdd: boolean
       guildMemberRemove: boolean
+      guildMemberNicknameUpdate: boolean
+      guildMemberRolesUpdate: boolean
+      guildMemberTimeout: boolean
     }
   }
   owner: string

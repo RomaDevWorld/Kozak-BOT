@@ -25,5 +25,9 @@
 
   "channel": "Channel",
   "author": "Author",
-  "moderator": "Moderator"
+  "moderator": "Moderator",
+  "member": "Member",
+  "time": "Time",
+  "before": "Before:",
+  "now": "Now:"
 }

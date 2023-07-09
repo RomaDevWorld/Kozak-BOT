@@ -14,5 +14,18 @@
     "yarn.lock",
     ".github"
   ],
-  "cSpell.words": ["Понг", "closebutton", "cooldown", "cooldowns", "cossackbot", "MONGOURL", "noavatar", "notauthor", "romadevworld", "thecatapi"]
+  "cSpell.words": [
+    "Понг",
+    "closebutton",
+    "cooldown",
+    "cooldowns",
+    "cossackbot",
+    "MONGOURL",
+    "noavatar",
+    "notauthor",
+    "romadevworld",
+    "thecatapi",
+    "unmute",
+    "unmuted"
+  ]
 }

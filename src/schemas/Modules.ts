@@ -30,6 +30,18 @@ const ModulesSchema = new Schema<ModulesI>({
         type: SchemaTypes.Boolean,
         default: false,
       },
+      guildMemberNicknameUpdate: {
+        type: SchemaTypes.Boolean,
+        default: false,
+      },
+      guildMemberRolesUpdate: {
+        type: SchemaTypes.Boolean,
+        default: false,
+      },
+      guildMemberTimeout: {
+        type: SchemaTypes.Boolean,
+        default: false,
+      },
     },
   },
   lobby: {
