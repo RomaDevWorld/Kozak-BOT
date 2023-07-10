@@ -22,10 +22,11 @@
   "reasonNotSpecified": "Reason not specified",
   "memberNotFound": "This member is not on this server",
   "memberBot": "This action cannot be applied to bots",
-
+  "reason": "Reason",
   "channel": "Channel",
   "author": "Author",
   "moderator": "Moderator",
+  "executor": "Executor",
   "member": "Member",
   "time": "Time",
   "before": "Before:",
