@@ -41,7 +41,7 @@ const GuildMemberNicknameUpdateLog = async (oldMember: GuildMember, newMember: G
   const audit = await fetchAuditLog(newMember.guild, AuditLogEvent.MemberUpdate)
   if (audit && audit.targetId === newMember.id) {
     embed.addFields({ name: t('executor', { lng }), value: audit.executor?.toString() || 'N/A' })
-    if (audit.reason) embed.addFields({ inline: true, name: t('reason', { lng }), value: audit.reason || 'N/A' })
+    if (audit.reason) embed.addFields({ inline: true, name: t('reason', { lng }), value: audit.reason })
   }
 
   channel.send({ embeds: [embed] })
