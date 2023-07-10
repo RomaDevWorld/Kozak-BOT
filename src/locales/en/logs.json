@@ -5,7 +5,9 @@
   "messageUpdate_author": "Message updated | {{user}}",
   "messageUpdate_title": "Go to message",
 
-  "guildMemberRemove_embed_author": "Member left / was kicked",
+  "guildMemberRemove_undefined_author": "Member left / was kicked",
+  "guildMemberRemove_kick_author": "Member was kicked",
+  "guildMemberRemove_left_author": "Member left",
 
   "guildMemberAdd_embed_author": "Member joined",
   "guildMemberAdd_embed_description": "Account created:",
