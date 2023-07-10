@@ -1,6 +1,7 @@
-import { EmbedBuilder, GuildMember } from 'discord.js'
+import { AuditLogEvent, EmbedBuilder, GuildMember } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
+import fetchAuditLog from '../../functions/fetchAuditLog'
 
 const GuildMemberRolesUpdateLog = async (oldMember: GuildMember, newMember: GuildMember) => {
   if (newMember.user.bot) return
@@ -16,9 +17,11 @@ const GuildMemberRolesUpdateLog = async (oldMember: GuildMember, newMember: Guil
   const channel = await validateLog(newMember.guild, 'guildMemberRolesUpdate')
   if (!channel) return
 
+  const lng = newMember.guild.preferredLocale
+
   const embed = new EmbedBuilder()
     .setAuthor({
-      name: t('logs:guildMemberRolesUpdate_author', { lng: newMember.guild.preferredLocale, user: newMember.user.username }),
+      name: t('logs:guildMemberRolesUpdate_author', { lng, user: newMember.user.username }),
       iconURL: newMember.user.displayAvatarURL(),
     })
     .setColor('Yellow')
@@ -27,14 +30,20 @@ const GuildMemberRolesUpdateLog = async (oldMember: GuildMember, newMember: Guil
 
   if (addedRoles.size > 0)
     embed.addFields({
-      name: t('logs:guildMemberRolesUpdate_field1', { lng: newMember.guild.preferredLocale }),
+      name: t('logs:guildMemberRolesUpdate_field1', { lng }),
       value: addedRoles.map((role) => role.toString()).join('\n'),
     })
   if (removedRoles.size > 0)
     embed.addFields({
-      name: t('logs:guildMemberRolesUpdate_field2', { lng: newMember.guild.preferredLocale }),
+      name: t('logs:guildMemberRolesUpdate_field2', { lng }),
       value: removedRoles.map((role) => role.toString()).join('\n'),
     })
+
+  const audit = await fetchAuditLog(newMember.guild, AuditLogEvent.MemberRoleUpdate)
+  if (audit && audit.targetId === newMember.id) {
+    embed.addFields({ name: t('executor', { lng }), value: audit.executor?.toString() || 'N/A' })
+    if (audit.reason) embed.addFields({ inline: true, name: t('reason', { lng }), value: audit.reason })
+  }
 
   channel.send({ embeds: [embed] })
 }
