@@ -4,12 +4,17 @@ import { t } from 'i18next'
 import fetchAuditLog from '../../functions/fetchAuditLog'
 
 const GuildMemberRemoveLog = async (member: GuildMember) => {
+  const isBanned = member.guild.bans.cache.find((ban) => ban.user.id === member.id)
+  if (isBanned) return
+
   const channel = await validateLog(member.guild, 'guildMemberRemove')
   if (!channel) return
 
+  const lng = member.guild.preferredLocale
+
   const embed = new EmbedBuilder()
     .setAuthor({
-      name: t('logs:guildMemberRemove_undefined_author', { lng: member.guild.preferredLocale, user: member.user.username }),
+      name: t('logs:guildMemberRemove_undefined_author', { lng, user: member.user.username }),
       iconURL: member.displayAvatarURL(),
     })
     .setDescription(`${member} (${member.user.username})`)
@@ -21,16 +26,16 @@ const GuildMemberRemoveLog = async (member: GuildMember) => {
 
   if (audit?.executorId && audit.targetId === member.id) {
     embed.addFields(
-      { name: t('moderator', { lng: member.guild.preferredLocale }), value: audit.executor?.toString() || 'N/A' },
+      { name: t('moderator', { lng }), value: audit.executor?.toString() || 'N/A' },
       {
-        name: t('reason', { lng: member.guild.preferredLocale }),
-        value: audit.reason || t('reasonNotSpecified', { lng: member.guild.preferredLocale }),
+        name: t('reason', { lng }),
+        value: audit.reason || t('reasonNotSpecified', { lng }),
       }
     )
     embed.setColor('Red')
-    embed.setAuthor({ name: t('logs:guildMemberRemove_kick_author', { lng: member.guild.preferredLocale }), iconURL: member.displayAvatarURL() })
+    embed.setAuthor({ name: t('logs:guildMemberRemove_kick_author', { lng }), iconURL: member.displayAvatarURL() })
   } else {
-    embed.setAuthor({ name: t('logs:guildMemberRemove_left_author', { lng: member.guild.preferredLocale }), iconURL: member.displayAvatarURL() })
+    embed.setAuthor({ name: t('logs:guildMemberRemove_left_author', { lng }), iconURL: member.displayAvatarURL() })
   }
 
   channel.send({ embeds: [embed] })
