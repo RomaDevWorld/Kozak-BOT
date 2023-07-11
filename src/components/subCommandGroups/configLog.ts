@@ -1,6 +1,7 @@
 import { ChannelType, SlashCommandSubcommandGroupBuilder } from 'discord.js'
 import { SubCommandGroup } from '../../@types/discord'
 import Modules from '../../schemas/Modules'
+import { t } from 'i18next'
 
 const ConfigLogSubcommandGroup: SubCommandGroup = {
   data: new SlashCommandSubcommandGroupBuilder()
@@ -26,10 +27,14 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
 
     switch (interaction.options.getSubcommand()) {
       case 'channel': {
-        data.log.channel = interaction.options.getChannel('channel')?.id as string
+        const channel = interaction.options.getChannel('channel')
+        data.log.channel = channel?.id as string
         data.save()
 
-        return interaction.reply({ content: 'Log channel set', ephemeral: true })
+        return interaction.reply({
+          content: t('config:logChannelSet', { lng: interaction.locale, channel: channel?.toString() }),
+          ephemeral: true,
+        })
       }
     }
   },
