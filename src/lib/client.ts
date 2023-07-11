@@ -4,7 +4,13 @@ import { SlashCommand, Button, ContextMenuCommand } from '../@types/discord'
 config()
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildVoiceStates,
+  ],
 })
 
 client.slashCommands = new Collection<string, SlashCommand>()

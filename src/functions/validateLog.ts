@@ -9,6 +9,7 @@ type LogTypes =
   | 'guildMemberNicknameUpdate'
   | 'guildMemberRolesUpdate'
   | 'guildMemberTimeout'
+  | 'voiceStateUpdate'
 
 const validateLog = async (guild: Guild | null, type: LogTypes) => {
   const data = await Modules.findOne({ guildId: guild?.id })

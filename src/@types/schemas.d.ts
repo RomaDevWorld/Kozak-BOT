@@ -11,6 +11,7 @@ export interface ModulesI {
       guildMemberNicknameUpdate: boolean
       guildMemberRolesUpdate: boolean
       guildMemberTimeout: boolean
+      voiceStateUpdate: boolean
     }
   }
   owner: string

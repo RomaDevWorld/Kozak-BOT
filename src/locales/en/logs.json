@@ -18,5 +18,10 @@
 
   "guildMemberRolesUpdate_author": "Roles updated | {{user}}",
   "guildMemberRolesUpdate_field1": "Added roles:",
-  "guildMemberRolesUpdate_field2": "Removed roles:"
+  "guildMemberRolesUpdate_field2": "Removed roles:",
+
+  "voiceChannelJoin": "Joined #{{channel}}",
+  "voiceChannelLeave": "Left from #{{channel}}",
+  "voiceChannelLeaveTime": "Left from #{{channel}}\nSession lasted: {{time}}",
+  "voiceChannelLost": "Previous activity were lost.."
 }

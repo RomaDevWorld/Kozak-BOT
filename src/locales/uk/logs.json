@@ -18,5 +18,10 @@
 
   "guildMemberRolesUpdate_author": "Ролі оновлено | {{user}}",
   "guildMemberRolesUpdate_field1": "Додані ролі:",
-  "guildMemberRolesUpdate_field2": "Вилучені ролі:"
+  "guildMemberRolesUpdate_field2": "Вилучені ролі:",
+
+  "voiceChannelJoin": "Приєднався до #{{channel}}",
+  "voiceChannelLeave": "Від'єднався від #{{channel}}",
+  "voiceChannelLeaveTime": "Від'єднався від #{{channel}}\nСесія тривала: {{time}}",
+  "voiceChannelLost": "Попередня активність була втрачена.."
 }

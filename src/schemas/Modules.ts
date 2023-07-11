@@ -42,6 +42,10 @@ const ModulesSchema = new Schema<ModulesI>({
         type: SchemaTypes.Boolean,
         default: false,
       },
+      voiceStateUpdate: {
+        type: SchemaTypes.Boolean,
+        default: false,
+      },
     },
   },
   lobby: {
