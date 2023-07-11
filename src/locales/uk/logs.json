@@ -6,7 +6,7 @@
   "messageUpdate_title": "Перейти до повідомлення",
 
   "guildMemberRemove_undefined_author": "Учасник вийшов / був вигнаний",
-  "guildMemberRemove_kicked_author": "Учасник був вигнаний",
+  "guildMemberRemove_kick_author": "Учасник був вигнаний",
   "guildMemberRemove_left_author": "Учасник вийшов",
 
   "guildMemberAdd_embed_author": "Учасник приєднався",
