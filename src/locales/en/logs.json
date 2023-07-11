@@ -23,5 +23,8 @@
   "voiceChannelJoin": "Joined #{{channel}}",
   "voiceChannelLeave": "Left from #{{channel}}",
   "voiceChannelLeaveTime": "Left from #{{channel}}\nSession lasted: {{time}}",
-  "voiceChannelLost": "Previous activity were lost.."
+  "voiceChannelLost": "Previous activity were lost..",
+
+  "guildBanAdd_author": "User banned | {{user}}",
+  "guildBanRemove_author": "User unbanned | {{user}}"
 }

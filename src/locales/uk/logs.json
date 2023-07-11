@@ -23,5 +23,8 @@
   "voiceChannelJoin": "Приєднався до #{{channel}}",
   "voiceChannelLeave": "Від'єднався від #{{channel}}",
   "voiceChannelLeaveTime": "Від'єднався від #{{channel}}\nСесія тривала: {{time}}",
-  "voiceChannelLost": "Попередня активність була втрачена.."
+  "voiceChannelLost": "Попередня активність була втрачена..",
+
+  "guildBanAdd_author": "Користувача заблоковано | {{user}}",
+  "guildBanRemove_author": "Користувача розблоковано | {{user}}"
 }

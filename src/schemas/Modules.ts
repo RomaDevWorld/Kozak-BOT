@@ -14,38 +14,16 @@ const ModulesSchema = new Schema<ModulesI>({
       default: null,
     },
     types: {
-      messageDelete: {
-        type: SchemaTypes.Boolean,
-        default: false,
-      },
-      messageUpdate: {
-        type: SchemaTypes.Boolean,
-        default: false,
-      },
-      guildMemberAdd: {
-        type: SchemaTypes.Boolean,
-        default: false,
-      },
-      guildMemberRemove: {
-        type: SchemaTypes.Boolean,
-        default: false,
-      },
-      guildMemberNicknameUpdate: {
-        type: SchemaTypes.Boolean,
-        default: false,
-      },
-      guildMemberRolesUpdate: {
-        type: SchemaTypes.Boolean,
-        default: false,
-      },
-      guildMemberTimeout: {
-        type: SchemaTypes.Boolean,
-        default: false,
-      },
-      voiceStateUpdate: {
-        type: SchemaTypes.Boolean,
-        default: false,
-      },
+      messageDelete: { type: SchemaTypes.Boolean, default: false },
+      messageUpdate: { type: SchemaTypes.Boolean, default: false },
+      guildMemberAdd: { type: SchemaTypes.Boolean, default: false },
+      guildMemberRemove: { type: SchemaTypes.Boolean, default: false },
+      guildMemberNicknameUpdate: { type: SchemaTypes.Boolean, default: false },
+      guildMemberRolesUpdate: { type: SchemaTypes.Boolean, default: false },
+      guildMemberTimeout: { type: SchemaTypes.Boolean, default: false },
+      voiceStateUpdate: { type: SchemaTypes.Boolean, default: false },
+      guildBanRemove: { type: SchemaTypes.Boolean, default: false },
+      guildBanAdd: { type: SchemaTypes.Boolean, default: false },
     },
   },
   lobby: {
