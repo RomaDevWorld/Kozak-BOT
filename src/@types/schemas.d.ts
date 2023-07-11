@@ -19,7 +19,6 @@ export interface ModulesI {
   owner: string
   lobby: {
     channel: string | null
-    category: string | null
   }
 }
 

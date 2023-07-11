@@ -32,11 +32,6 @@ const ModulesSchema = new Schema<ModulesI>({
       unique: true,
       default: null,
     },
-    category: {
-      type: SchemaTypes.String,
-      unique: true,
-      default: null,
-    },
   },
 })
 

@@ -1,3 +1,5 @@
 {
-  "logChannelSet": "Log messages will now be sent to {{channel}}"
+  "logChannelSet": "Log messages will now be sent to {{channel}}",
+  "lobbyChannelSet": "Private channels lobby has been set to {{channel}}",
+  "lobbyChannelOff": "Private channels lobby has been removed"
 }
