@@ -1,0 +1,10 @@
+{
+  "moduleOff": "Privates are not enabled on this server",
+  "channelCreated": "Your private channel was created: {{channel}}",
+  "publicUpdated": "Your channel permissions updated",
+  "limitUpdated": "Your private channel member limit updated: {{limit}}",
+  "channelDeleted": "Your private channel was deleted",
+  "noChannel": "Your don't have private channel created",
+  "inviteSuccess": "{{member}} now has access to your private channel",
+  "kickSuccess": "{{member}} no longer has access to your private channel"
+}

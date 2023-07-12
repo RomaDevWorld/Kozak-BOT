@@ -52,3 +52,10 @@ export const getPrivateChannel = (member: GuildMember) => {
 
   return member.guild.channels.cache.get(value.channel.id) as VoiceChannel
 }
+
+export const removePrivateChannel = (member: GuildMember) => {
+  const existingChannel = getPrivateChannel(member)
+  if (existingChannel) existingChannel.delete().catch((err) => console.error(err))
+
+  privateChannels.delete(member.id)
+}

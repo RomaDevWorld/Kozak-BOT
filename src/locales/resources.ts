@@ -22,6 +22,9 @@ import logs_uk from '../locales/uk/logs.json'
 import config_en from '../locales/en/config.json'
 import config_uk from '../locales/uk/config.json'
 
+import private_en from '../locales/en/private.json'
+import private_uk from '../locales/uk/private.json'
+
 const resources = {
   en: {
     common: common_en,
@@ -31,6 +34,7 @@ const resources = {
     warn: warn_en,
     logs: logs_en,
     config: config_en,
+    private: private_en,
   },
   uk: {
     common: common_uk,
@@ -40,6 +44,7 @@ const resources = {
     warn: warn_uk,
     logs: logs_uk,
     config: config_uk,
+    private: private_uk,
   },
   fr: {
     common: common_fr,
