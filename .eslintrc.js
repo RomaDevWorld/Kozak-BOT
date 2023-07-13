@@ -12,7 +12,8 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     'no-var-requires': [0],
-    'no-unused-vars': ['warn'],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'linebreak-style': ['error', 'unix'],
     indent: ['error', 2, { SwitchCase: 1 }],
     semi: ['warn', 'never'],
