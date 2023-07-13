@@ -1,4 +1,4 @@
-import { ApplicationCommandType, ContextMenuCommandBuilder, EmbedBuilder } from 'discord.js'
+import { ApplicationCommandType, ContextMenuCommandBuilder, EmbedBuilder, ImageURLOptions, UserContextMenuCommandInteraction } from 'discord.js'
 import { t } from 'i18next'
 import { ContextMenuCommand } from '../../@types/discord'
 
@@ -9,14 +9,14 @@ const command: ContextMenuCommand = {
       uk: 'Отримати аватар учасника',
     })
     .setType(ApplicationCommandType.User),
-  execute: async (interaction) => {
+  execute: async (interaction: UserContextMenuCommandInteraction) => {
     try {
-      const target = await interaction.targetUser
+      const target = interaction.targetUser
       const embed = new EmbedBuilder()
         .setAuthor({
           name: `${target.username}`,
         })
-        .setImage(target.displayAvatarURL({ dynamic: true, size: 2048 }))
+        .setImage(target.avatarURL({ dynamic: true, size: 2048 } as ImageURLOptions))
         .setColor('Green')
       await interaction.reply({ embeds: [embed], ephemeral: true })
     } catch (error) {
