@@ -39,11 +39,14 @@ const command: SlashCommand = {
     .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers),
   cooldown: 10,
   execute: async (interaction) => {
+    const lng = interaction.locale
+
     const member = interaction.guild?.members.cache.get(interaction.options.getUser('member')?.id as string)
     const reason = interaction.options.getString('reason')
 
-    if (!member) return interaction.reply({ content: t('memberNotFound', { lng: interaction.locale }), ephemeral: true })
-    if (member.user.bot) return interaction.reply({ content: t('memberBot', { lng: interaction.locale }), ephemeral: true })
+    if (!member) return interaction.reply({ content: t('memberNotFound', { lng }), ephemeral: true })
+    if (member.user.bot) return interaction.reply({ content: t('memberBot', { lng }), ephemeral: true })
+    if (member.user.id === interaction.user.id) return interaction.reply({ content: t('memberSelf', { lng }), ephemeral: true })
 
     const data = await Warns.findOne({ guildId: interaction.guildId, userId: member.id })
 
@@ -53,12 +56,12 @@ const command: SlashCommand = {
 
         const embed = new EmbedBuilder()
           .setAuthor({
-            name: t('warn:list_embed_author', { lng: interaction.locale, member: member.user.username }),
+            name: t('warn:list_embed_author', { lng, member: member.user.username }),
             iconURL: member.user.displayAvatarURL(),
           })
           .setDescription(warnList?.join('\n') || ' ')
           .setFooter({
-            text: t('warn:list_embed_footer', { lng: interaction.locale, value: warnList?.length || 0 }),
+            text: t('warn:list_embed_footer', { lng, value: warnList?.length || 0 }),
             iconURL: interaction.guild?.iconURL() || ' ',
           })
           .setColor('Orange')
@@ -74,14 +77,12 @@ const command: SlashCommand = {
         )
 
         const embed = new EmbedBuilder()
-          .setAuthor({ name: t('warn:push_embed_author', { lng: interaction.locale }) })
-          .setDescription(
-            t('warn:push_embed_description', { lng: interaction.locale, reason: reason || t('reasonNotSpecified', { lng: interaction.locale }) })
-          )
+          .setAuthor({ name: t('warn:push_embed_author', { lng }) })
+          .setDescription(t('warn:push_embed_description', { lng, reason: reason || t('reasonNotSpecified', { lng }) }))
           .setColor('Green')
           .setFooter({
             text: t('warn:list_embed_footer', {
-              lng: interaction.locale,
+              lng,
               value: data?.warns.length || 0,
             }),
           })
@@ -92,7 +93,7 @@ const command: SlashCommand = {
       case 'clear': {
         await Warns.findOneAndDelete({ guildId: interaction.guildId, userId: member.id })
 
-        return interaction.reply({ content: t('warn:clear_success', { lng: interaction.locale, member: member.user.username }), ephemeral: true })
+        return interaction.reply({ content: t('warn:clear_success', { lng, member: member.user.username }), ephemeral: true })
       }
     }
   },

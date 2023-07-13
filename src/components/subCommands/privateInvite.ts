@@ -18,6 +18,7 @@ const InvitePrivateSubcommand: SubCommand = {
 
     const member = interaction.options.getMember('member') as GuildMember
     if (!member) return interaction.reply({ content: t('memberNotFound', { lng }), ephemeral: true })
+    if (member.user.id === interaction.user.id) return interaction.reply({ content: t('memberSelf', { lng }), ephemeral: true })
 
     channel?.permissionOverwrites.edit(member.id, {
       ViewChannel: true,

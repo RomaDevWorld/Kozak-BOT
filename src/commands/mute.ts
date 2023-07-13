@@ -21,26 +21,29 @@ const command: SlashCommand = {
     .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers),
   cooldown: 10,
   execute: async (interaction) => {
+    const lng = interaction.locale
+
     const member = interaction.guild?.members.cache.get(interaction.options.getUser('member')?.id as string)
-    if (!member) return interaction.reply({ content: t('memberNotFound', { lng: interaction.locale }), ephemeral: true })
-    if (member.user.bot) return interaction.reply({ content: t('memberBot', { lng: interaction.locale }), ephemeral: true })
+    if (!member) return interaction.reply({ content: t('memberNotFound', { lng }), ephemeral: true })
+    if (member.user.bot) return interaction.reply({ content: t('memberBot', { lng }), ephemeral: true })
+    if (member.id === interaction.user.id) return interaction.reply({ content: t('memberSelf', { lng }), ephemeral: true })
 
     if (!interaction.guild?.members.me?.permissions.has(PermissionFlagsBits.MuteMembers)) {
-      return interaction.reply({ content: t('mute:bot_noPermission', { lng: interaction.locale }), ephemeral: true })
+      return interaction.reply({ content: t('mute:bot_noPermission', { lng }), ephemeral: true })
     }
 
     if (
       member.permissions.has(PermissionFlagsBits.Administrator) ||
       member.roles.highest.position >= (interaction.member?.roles as GuildMemberRoleManager).highest.position
     ) {
-      return interaction.reply({ content: t('mute:member_greater', { lng: interaction.locale }), ephemeral: true })
+      return interaction.reply({ content: t('mute:member_greater', { lng }), ephemeral: true })
     }
 
     const rawTime = interaction.options.getString('time')?.toLowerCase() as string
     const time = parseTime(rawTime)
 
     if (isNaN(time) || time < 1 || time > 2419200 * 1000) {
-      return interaction.reply({ content: t('mute:time_incorrect', { lng: interaction.locale, value: rawTime }), ephemeral: true })
+      return interaction.reply({ content: t('mute:time_incorrect', { lng, value: rawTime }), ephemeral: true })
     }
 
     try {
@@ -53,7 +56,7 @@ const command: SlashCommand = {
 
       return await interaction.reply({
         content: t('mute:success', {
-          lng: interaction.locale,
+          lng,
           member: member.user.username,
           date: moment(Date.now() + time).format('HH:mm:ss DD.MM.YYYY'),
         }),
@@ -61,7 +64,7 @@ const command: SlashCommand = {
       })
     } catch (error) {
       console.error(error)
-      return interaction.reply({ content: t('common:error', { lng: interaction.locale }), ephemeral: true })
+      return interaction.reply({ content: t('common:error', { lng }), ephemeral: true })
     }
   },
 }

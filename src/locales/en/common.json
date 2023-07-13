@@ -22,6 +22,7 @@
   "reasonNotSpecified": "Reason not specified",
   "memberNotFound": "This member is not on this server",
   "memberBot": "This action cannot be applied to bots",
+  "memberSelf": "You can't perform this action on yourself",
   "reason": "Reason",
   "channel": "Channel",
   "author": "Author",
