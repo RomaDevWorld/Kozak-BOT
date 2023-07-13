@@ -20,9 +20,9 @@
   "guildMemberRolesUpdate_field1": "Added roles:",
   "guildMemberRolesUpdate_field2": "Removed roles:",
 
-  "voiceChannelJoin": "Joined #{{channel}}",
-  "voiceChannelLeave": "Left from #{{channel}}",
-  "voiceChannelLeaveTime": "Left from #{{channel}}\nSession lasted: {{time}}",
+  "voiceChannelJoin": "Member joined #{{channel}}",
+  "voiceChannelLeave": "Member left from #{{channel}}",
+  "voiceChannelLeaveTime": "Member left from #{{channel}}\nSession lasted: {{time}}",
   "voiceChannelLost": "Previous activity were lost..",
 
   "guildBanAdd_author": "User banned | {{user}}",

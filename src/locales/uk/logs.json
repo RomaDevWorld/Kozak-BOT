@@ -20,9 +20,9 @@
   "guildMemberRolesUpdate_field1": "Додані ролі:",
   "guildMemberRolesUpdate_field2": "Вилучені ролі:",
 
-  "voiceChannelJoin": "Приєднався до #{{channel}}",
-  "voiceChannelLeave": "Від'єднався від #{{channel}}",
-  "voiceChannelLeaveTime": "Від'єднався від #{{channel}}\nСесія тривала: {{time}}",
+  "voiceChannelJoin": "Учасник приєднався до #{{channel}}",
+  "voiceChannelLeave": "Учасник від'єднався від #{{channel}}",
+  "voiceChannelLeaveTime": "Учасник від'єднався від #{{channel}}\nСесія тривала: {{time}}",
   "voiceChannelLost": "Попередня активність була втрачена..",
 
   "guildBanAdd_author": "Користувача заблоковано | {{user}}",
