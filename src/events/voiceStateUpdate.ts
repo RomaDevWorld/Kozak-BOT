@@ -1,7 +1,7 @@
 import { VoiceState } from 'discord.js'
 import { BotEvent } from '../@types/discord'
 import voiceStateLog from '../functions/voiceStateLog'
-import { handleLobbyJoin } from '../functions/usePrivateChannel'
+import { handleLobbyJoin, handlePrivateChannelTimeout } from '../functions/usePrivateChannel'
 
 const event: BotEvent = {
   name: 'voiceStateUpdate',
@@ -9,6 +9,7 @@ const event: BotEvent = {
   execute: (oldVoiceState: VoiceState, newVoiceState: VoiceState) => {
     voiceStateLog(oldVoiceState, newVoiceState)
     handleLobbyJoin(newVoiceState)
+    handlePrivateChannelTimeout(oldVoiceState, newVoiceState)
   },
 }
 

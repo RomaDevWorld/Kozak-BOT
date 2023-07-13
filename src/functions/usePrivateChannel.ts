@@ -59,3 +59,30 @@ export const removePrivateChannel = (member: GuildMember) => {
 
   privateChannels.delete(member.id)
 }
+
+interface TimeoutsI {
+  [key: string]: NodeJS.Timeout
+}
+const timeouts: TimeoutsI = {}
+
+export const handlePrivateChannelTimeout = async (oldVoiceState: VoiceState, newVoiceState: VoiceState) => {
+  if (!oldVoiceState.member || !newVoiceState.member) return
+  if (oldVoiceState.channelId === newVoiceState.channelId) return
+
+  privateChannels.forEach((i) => {
+    if (oldVoiceState.channel?.id === i.channel.id) {
+      if (oldVoiceState.channel.members.size > 0) return
+
+      timeouts[i.channel.id] = setTimeout(() => {
+        removePrivateChannel(oldVoiceState.member as GuildMember)
+        clearTimeout(timeouts[i.channel.id])
+        delete timeouts[i.channel.id]
+      }, 60000)
+    } else if (newVoiceState.channel?.id === i.channel.id) {
+      const timeout = timeouts[i.channel.id]
+      if (!timeout) return
+      clearTimeout(timeouts[i.channel.id])
+      delete timeouts[i.channel.id]
+    }
+  })
+}
