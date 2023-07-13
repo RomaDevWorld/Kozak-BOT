@@ -1,19 +1,8 @@
 import { ChannelType, Guild, GuildMember } from 'discord.js'
 import Modules from '../schemas/Modules'
+import { ModulesI } from '../@types/schemas'
 
-type LogTypes =
-  | 'messageDelete'
-  | 'messageUpdate'
-  | 'guildMemberAdd'
-  | 'guildMemberRemove'
-  | 'guildMemberNicknameUpdate'
-  | 'guildMemberRolesUpdate'
-  | 'guildMemberTimeout'
-  | 'voiceStateUpdate'
-  | 'guildBanAdd'
-  | 'guildBanRemove'
-
-const validateLog = async (guild: Guild | null, type: LogTypes) => {
+const validateLog = async (guild: Guild | null, type: keyof ModulesI['log']['types']) => {
   const data = await Modules.findOne({ guildId: guild?.id })
   if (!data || !data.log.channel) return
 
