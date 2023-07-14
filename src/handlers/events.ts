@@ -10,6 +10,7 @@ module.exports = (client: Client) => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const event: BotEvent = require(`${eventsDir}/${file}`).default
     event.once ? client.once(event.name, (...args) => event.execute(...args)) : client.on(event.name, (...args) => event.execute(...args))
+    // eslint-disable-next-line no-console
     console.log(`[Events] Event loaded: ${event.name}`)
   })
 }

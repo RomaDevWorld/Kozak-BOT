@@ -13,6 +13,7 @@ module.exports = {
   rules: {
     'no-var-requires': [0],
     'no-unused-vars': 'off',
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     '@typescript-eslint/no-unused-vars': 'warn',
     'linebreak-style': ['error', 'unix'],
     indent: ['error', 2, { SwitchCase: 1 }],

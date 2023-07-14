@@ -36,6 +36,7 @@ module.exports = (client: Client) => {
     })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .then((data: any) => {
+      // eslint-disable-next-line no-console
       console.log(`[Commands] Successfully loaded ${data.length} commands`)
     })
     .catch((e) => {
