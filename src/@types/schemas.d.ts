@@ -14,6 +14,7 @@ export interface ModulesI {
       voiceStateUpdate: boolean
       guildBanAdd: boolean
       guildBanRemove: boolean
+      guildMemberReport: boolean
     }
   }
   owner: string

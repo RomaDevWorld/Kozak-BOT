@@ -20,6 +20,8 @@
   "guildMemberRolesUpdate_field1": "Додані ролі:",
   "guildMemberRolesUpdate_field2": "Вилучені ролі:",
 
+  "guildMemberReport_author": "Скарга на учасника | {{author}} ({{value}})",
+
   "voiceChannelJoin": "Учасник приєднався до #{{channel}}",
   "voiceChannelLeave": "Учасник від'єднався від #{{channel}}",
   "voiceChannelLeaveTime": "Учасник від'єднався від #{{channel}}\nСесія тривала: {{time}}",

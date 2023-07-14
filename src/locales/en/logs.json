@@ -20,6 +20,8 @@
   "guildMemberRolesUpdate_field1": "Added roles:",
   "guildMemberRolesUpdate_field2": "Removed roles:",
 
+  "guildMemberReport_author": "Member reported | {{author}} ({{value}})",
+
   "voiceChannelJoin": "Member joined #{{channel}}",
   "voiceChannelLeave": "Member left from #{{channel}}",
   "voiceChannelLeaveTime": "Member left from #{{channel}}\nSession lasted: {{time}}",

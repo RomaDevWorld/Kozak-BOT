@@ -18,6 +18,9 @@
   "vote_closebutton": "Close poll",
   "vote_notauthor": "Only poll authors can close them",
 
+  "report_success": "Report successfully sent!",
+  "report_already": "You already reported this member",
+
   "error": "Error",
   "reasonNotSpecified": "Reason not specified",
   "memberNotFound": "This member is not on this server",

@@ -24,6 +24,7 @@ const ModulesSchema = new Schema<ModulesI>({
       voiceStateUpdate: { type: SchemaTypes.Boolean, default: false },
       guildBanRemove: { type: SchemaTypes.Boolean, default: false },
       guildBanAdd: { type: SchemaTypes.Boolean, default: false },
+      guildMemberReport: { type: SchemaTypes.Boolean, default: false },
     },
   },
   lobby: {
