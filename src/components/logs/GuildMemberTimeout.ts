@@ -16,8 +16,6 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
 
   const lng = newMember.guild.preferredLocale
 
-  console.log(audit)
-
   if (oldMember.communicationDisabledUntil && !newMember.communicationDisabledUntil) {
     const embed = new EmbedBuilder()
       .setColor('Green')
