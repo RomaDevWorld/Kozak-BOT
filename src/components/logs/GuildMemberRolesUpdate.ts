@@ -1,4 +1,4 @@
-import { AuditLogEvent, EmbedBuilder, GuildMember } from 'discord.js'
+import { AuditLogEvent, EmbedBuilder, GuildMember, ImageURLOptions } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 import fetchAuditLog from '../../functions/fetchAuditLog'
@@ -22,7 +22,7 @@ const GuildMemberRolesUpdateLog = async (oldMember: GuildMember, newMember: Guil
   const embed = new EmbedBuilder()
     .setAuthor({
       name: t('logs:guildMemberRolesUpdate_author', { lng, user: newMember.user.username }),
-      iconURL: newMember.user.displayAvatarURL(),
+      iconURL: newMember.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setColor('Yellow')
     .setFooter({ text: `ID: ${newMember.id}` })

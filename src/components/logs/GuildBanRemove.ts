@@ -1,4 +1,4 @@
-import { AuditLogEvent, EmbedBuilder, GuildBan } from 'discord.js'
+import { AuditLogEvent, EmbedBuilder, GuildBan, ImageURLOptions } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 import fetchAuditLog from '../../functions/fetchAuditLog'
@@ -12,7 +12,7 @@ const GuildBanRemoveLog = async (guildBan: GuildBan) => {
   const embed = new EmbedBuilder()
     .setAuthor({
       name: t('logs:guildBanRemove_author', { lng, user: guildBan.user.username }),
-      iconURL: guildBan.user.displayAvatarURL(),
+      iconURL: guildBan.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setDescription(`${guildBan.user} (${guildBan.user.username})`)
     .setFooter({ text: `ID: ${guildBan.user.id}` })

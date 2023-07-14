@@ -1,4 +1,4 @@
-import { EmbedBuilder, Message } from 'discord.js'
+import { EmbedBuilder, ImageURLOptions, Message } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 
@@ -10,7 +10,7 @@ const MessageUpdateLog = async (oldMessage: Message, newMessage: Message) => {
   const embed = new EmbedBuilder()
     .setAuthor({
       name: t('logs:messageUpdate_author', { lng: newMessage.guild?.preferredLocale, user: newMessage.author.username }),
-      iconURL: newMessage.author.displayAvatarURL(),
+      iconURL: newMessage.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setTitle(t('logs:messageUpdate_title', { lng: newMessage.guild?.preferredLocale }))
     .setURL(newMessage.url)

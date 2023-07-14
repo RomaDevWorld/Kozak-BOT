@@ -1,4 +1,4 @@
-import { EmbedBuilder, VoiceState } from 'discord.js'
+import { EmbedBuilder, ImageURLOptions, VoiceState } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { getFollowUp, saveFollowUp } from '../../functions/voiceLogFollowUp'
 import { t } from 'i18next'
@@ -11,7 +11,10 @@ const VoiceChannelMove = async (oldVoiceState: VoiceState, newVoiceState: VoiceS
   if (followUp && followUp.embeds.length > 0) {
     // Extend existing message
     const embed = new EmbedBuilder()
-      .setAuthor({ name: followUp.embeds[0].author?.name as string, iconURL: newVoiceState.member?.user.displayAvatarURL() })
+      .setAuthor({
+        name: followUp.embeds[0].author?.name as string,
+        iconURL: newVoiceState.member?.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
+      })
       .setDescription(followUp.embeds[0].description + '\n' + `=> #${newVoiceState.channel?.name}`)
       .setTimestamp()
       .setFooter({ text: `ID: ${newVoiceState.id}` })
@@ -21,7 +24,7 @@ const VoiceChannelMove = async (oldVoiceState: VoiceState, newVoiceState: VoiceS
     const embed = new EmbedBuilder()
       .setAuthor({
         name: newVoiceState.member?.user.username as string,
-        iconURL: newVoiceState.member?.user.displayAvatarURL(),
+        iconURL: newVoiceState.member?.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
       })
       .setDescription(
         `**${t('logs:voiceChannelLost', { lng: newVoiceState.guild.preferredLocale })}**` +

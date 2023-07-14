@@ -1,4 +1,4 @@
-import { EmbedBuilder, Message } from 'discord.js'
+import { EmbedBuilder, ImageURLOptions, Message } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 
@@ -10,7 +10,7 @@ const MessageDeleteLog = async (message: Message) => {
   const embed = new EmbedBuilder()
     .setAuthor({
       name: t('logs:messageDelete_author', { lng: message.guild?.preferredLocale, user: message.author.username }),
-      iconURL: message.author.displayAvatarURL(),
+      iconURL: message.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setTitle(t('logs:messageDelete_title', { lng: message.guild?.preferredLocale }))
     .setURL(message.url)

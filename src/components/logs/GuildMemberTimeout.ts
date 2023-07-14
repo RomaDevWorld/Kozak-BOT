@@ -1,4 +1,4 @@
-import { AuditLogEvent, EmbedBuilder, GuildMember } from 'discord.js'
+import { AuditLogEvent, EmbedBuilder, GuildMember, ImageURLOptions } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 import fetchAuditLog from '../../functions/fetchAuditLog'
@@ -21,7 +21,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
       .setColor('Green')
       .setAuthor({
         name: t('logs:guildMemberTimeout_unmute_author', { lng, user: newMember.user.username }),
-        iconURL: newMember.user.displayAvatarURL(),
+        iconURL: newMember.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
       })
       .setFooter({ text: newMember.id })
       .addFields({ name: t('member', { lng }), value: newMember.toString() })
@@ -38,7 +38,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
       .setColor('Red')
       .setAuthor({
         name: t('logs:guildMemberTimeout_mute_author', { lng, user: newMember.user.username }),
-        iconURL: newMember.user.displayAvatarURL(),
+        iconURL: newMember.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
       })
       .setFooter({ text: newMember.id })
       .addFields(

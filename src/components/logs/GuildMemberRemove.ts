@@ -1,4 +1,4 @@
-import { AuditLogEvent, EmbedBuilder, GuildMember } from 'discord.js'
+import { AuditLogEvent, EmbedBuilder, GuildMember, ImageURLOptions } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 import fetchAuditLog from '../../functions/fetchAuditLog'
@@ -15,7 +15,7 @@ const GuildMemberRemoveLog = async (member: GuildMember) => {
   const embed = new EmbedBuilder()
     .setAuthor({
       name: t('logs:guildMemberRemove_undefined_author', { lng, user: member.user.username }),
-      iconURL: member.displayAvatarURL(),
+      iconURL: member.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setDescription(`${member} (${member.user.username})`)
     .setFooter({ text: `ID: ${member.id}` })
