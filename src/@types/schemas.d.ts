@@ -17,9 +17,12 @@ export interface ModulesI {
       guildMemberReport: boolean
     }
   }
-  owner: string
   lobby: {
     channel: string | null
+  }
+  counter: {
+    channelId: string | null
+    label: string | null
   }
 }
 

@@ -1,5 +1,8 @@
 {
   "logChannelSet": "Повідомлення журналу аудиту відтепер будуть відправлятись в {{channel}}",
   "lobbyChannelSet": "Лобі для особистих каналів встановлено: {{channel}}",
-  "lobbyChannelOff": "Лобі для особистих каналів було видалено"
+  "lobbyChannelOff": "Лобі для особистих каналів було видалено",
+
+  "defaultCounterName": "Онлайн: ONLINE/MEMBERS",
+  "counterChannelSet": "Канал лічильника **{{channel}}** тепер буде відображати **{{label}}**"
 }

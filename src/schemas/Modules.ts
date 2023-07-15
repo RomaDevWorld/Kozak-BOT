@@ -34,6 +34,17 @@ const ModulesSchema = new Schema<ModulesI>({
       default: null,
     },
   },
+  counter: {
+    channelId: {
+      type: SchemaTypes.String,
+      unique: true,
+      default: null,
+    },
+    label: {
+      type: SchemaTypes.String,
+      default: null,
+    },
+  },
 })
 
 export default model<ModulesI>('modules', ModulesSchema)

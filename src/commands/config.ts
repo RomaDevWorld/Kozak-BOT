@@ -2,6 +2,7 @@ import { SlashCommandBuilder } from 'discord.js'
 import { SlashCommand } from '../@types/discord'
 import ConfigLogSubcommandGroup from '../components/subCommandGroups/configLog'
 import PrivateSubcommandGroup from '../components/subCommandGroups/configPrivate'
+import CounterSubcommandGroup from '../components/subCommandGroups/configCounters'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -9,6 +10,7 @@ const command: SlashCommand = {
     .setDescription('Configure bot behavior')
     .addSubcommandGroup(ConfigLogSubcommandGroup.data)
     .addSubcommandGroup(PrivateSubcommandGroup.data)
+    .addSubcommandGroup(CounterSubcommandGroup.data)
     .setDescriptionLocalizations({
       uk: 'Налаштувати бота',
     }),
@@ -20,6 +22,9 @@ const command: SlashCommand = {
       }
       case 'private': {
         return PrivateSubcommandGroup.execute(interaction)
+      }
+      case 'counter': {
+        return CounterSubcommandGroup.execute(interaction)
       }
     }
   },
