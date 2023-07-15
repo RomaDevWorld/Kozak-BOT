@@ -18,6 +18,7 @@
 ```
 .env.example - Environment variables example
 src/
+├── @types/ - TypeScript declaration files
 ├── commands/ - Discord slash commands
 ├── components/
 │   ├── subcommandGroups/ - Extracted subcommand groups to increase modularity
@@ -41,6 +42,18 @@ src/
 └── index.ts - File to run an application
 ```
 
+## Understanding env variables
+
+`DISCORD_TOKEN` - Discord application secret token from Discord Developers dashboard | https://discord.com/developers/applications
+
+`DISCORD_CLIENT_ID` - Discord application ID (Aka. Discord bot id) | https://discord.com/developers/applications
+
+`DB_HOST` - MongoDB connect url without `mongodb://` | So if running MongoDB on your local machine you type `localhost`
+
+`DB_NAME` - MongoDB database name that will store the data | Just type something like `DiscordBotDB` and mongoose will create it
+
+`DEBUG` - Used in dev mode, prints some additional information at runtime
+
 ## How to run it?
 
 ### Locally with Node.JS
@@ -53,7 +66,7 @@ src/
     <a>Install Yarn <code>npm i -g yarn</code></a>
   </li>
   <li>
-    <a href="https://git-scm.com/">Install Git (Optional)</a>
+    <a href="https://git-scm.com/">Install Git</a>
   </li>
   <li>
     Clone source code with <code>git clone git@github.com:RomaDevWorld/Cossack-BOT.git</code> or however you like it
@@ -74,10 +87,16 @@ src/
 
 ### Using Docker
 
+<ol>
+  <li>Install <a href="https://docs.docker.com/engine/install/">Docker engine</a> on your system</li>
+  <li>
+    Run command below after  all the env variables <code>-e</code>:
+  </li>
+</ol>
+
 ```
-docker run \
+sudo docker run \
 --name bot \
--d \
 --restart unless-stopped \
 -e DISCORD_TOKEN='Your discord bot token' \
 -e DISCORD_CLIENT_ID='Your discord bot client id' \
