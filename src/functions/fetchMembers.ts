@@ -4,7 +4,7 @@ export const getOnline = async (guild: Guild, status?: PresenceStatus[]) => {
   if (!status) status = ['online']
 
   const members = await guild.members.fetch()
-  return members.filter((mem) => !status?.includes(mem.presence?.status as PresenceStatus) && !mem.user.bot).size
+  return members.filter((mem) => status?.includes(mem.presence?.status as PresenceStatus) && !mem.user.bot).size
 }
 export const getHumans = async (guild: Guild) => {
   const members = await guild.members.fetch()
