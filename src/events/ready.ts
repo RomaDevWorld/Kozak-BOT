@@ -1,6 +1,7 @@
 import { Client } from 'discord.js'
 import { BotEvent } from '../@types/discord'
 import useCounters from '../functions/useCounters'
+import { cacheAllInvites } from '../functions/trackInvites'
 
 const event: BotEvent = {
   name: 'ready',
@@ -10,6 +11,7 @@ const event: BotEvent = {
     console.log(`[Discord Ready] Logged in as ${client.user?.tag}`)
 
     useCounters(client)
+    cacheAllInvites(client)
   },
 }
 

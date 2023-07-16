@@ -34,5 +34,8 @@
   "member": "Member",
   "time": "Time",
   "before": "Before:",
-  "now": "Now:"
+  "now": "Now:",
+  "invite": "Invite",
+  "code": "Code",
+  "uses": "Uses"
 }
