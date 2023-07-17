@@ -42,7 +42,7 @@ const command: SlashCommand = {
     const rawTime = interaction.options.getString('time')?.toLowerCase() as string
     const time = parseTime(rawTime)
 
-    if (isNaN(time) || time < 1 || time > 2419200 * 1000) {
+    if (!time || time < 1 || time > 2419200 * 1000) {
       return interaction.reply({ content: t('mute:time_incorrect', { lng, value: rawTime }), ephemeral: true })
     }
 

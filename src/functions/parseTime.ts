@@ -1,4 +1,4 @@
-export default function (time: string): number {
+export default function (time: string) {
   const units: { [key: string]: number } = {
     s: 1000,
     m: 60000,
@@ -10,12 +10,12 @@ export default function (time: string): number {
 
   const match = time.match(regex)
 
-  if (!match) return NaN
+  if (!match) return
 
   const [, value, unit] = match
   const multiplier = units[unit]
 
-  if (!multiplier) return NaN
+  if (!multiplier) return
 
   return parseInt(value) * multiplier
 }
