@@ -51,8 +51,11 @@ const ModulesSchema = new Schema<ModulesI>({
       default: null,
     },
     restore: {
-      type: SchemaTypes.Boolean,
-      default: false,
+      status: { type: SchemaTypes.Boolean, default: false },
+      expireTime: {
+        type: SchemaTypes.Number,
+        default: 86400000 * 7, // 7 days
+      },
     },
   },
 })

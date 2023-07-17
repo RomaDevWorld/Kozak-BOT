@@ -26,7 +26,10 @@ export interface ModulesI {
   }
   roles: {
     autorole: string | null
-    restore: boolean
+    restore: {
+      status: boolean
+      expireTime: number
+    }
   }
 }
 
