@@ -24,6 +24,10 @@ export interface ModulesI {
     channelId: string | null
     label: string | null
   }
+  roles: {
+    autorole: string | null
+    restore: boolean
+  }
 }
 
 export interface VotesI {

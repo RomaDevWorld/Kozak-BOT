@@ -45,6 +45,16 @@ const ModulesSchema = new Schema<ModulesI>({
       default: null,
     },
   },
+  roles: {
+    autorole: {
+      type: SchemaTypes.String,
+      default: null,
+    },
+    restore: {
+      type: SchemaTypes.Boolean,
+      default: false,
+    },
+  },
 })
 
 export default model<ModulesI>('modules', ModulesSchema)

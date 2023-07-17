@@ -4,5 +4,10 @@
   "lobbyChannelOff": "Лобі для особистих каналів було видалено",
 
   "defaultCounterName": "Онлайн: ONLINE/MEMBERS",
-  "counterChannelSet": "Канал лічильника **{{channel}}** тепер буде відображати **{{label}}**"
+  "counterChannelSet": "Канал лічильника **{{channel}}** тепер буде відображати **{{label}}**",
+
+  "autoRoleSet": "Авто-роль встановлено: {{role}}",
+  "autoRoleOff": "Авто-роль вимкнено",
+  "autoRolePosition": "Ви не можете встановити авто-роль в якості ролі що вища за вашу або є нею",
+  "roleRestore": "Статус відновлення ролей: {{status}}"
 }

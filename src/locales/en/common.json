@@ -37,5 +37,7 @@
   "now": "Now:",
   "invite": "Invite",
   "code": "Code",
-  "uses": "Uses"
+  "uses": "Uses",
+  "enabled": "Enabled",
+  "disabled": "Disabled"
 }

@@ -4,5 +4,10 @@
   "lobbyChannelOff": "Private channels lobby has been removed",
 
   "defaultCounterName": "Online: ONLINE/MEMBERS",
-  "counterChannelSet": "Counter channel **{{channel}}** will now display **{{label}}**"
+  "counterChannelSet": "Counter channel **{{channel}}** will now display **{{label}}**",
+
+  "autoRoleSet": "Autorole is now: {{role}}",
+  "autoRoleOff": "Autorole assignment is now off",
+  "autoRolePosition": "Your can't set an autorole that is higher on the same as yours",
+  "roleRestore": "Role restore status: {{status}}"
 }
