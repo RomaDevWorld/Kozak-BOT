@@ -31,6 +31,10 @@ export interface ModulesI {
       expireTime: number
     }
   }
+  tickets: {
+    channelId: string | null
+    messageId: string | null
+  }[]
 }
 
 export interface VotesI {
