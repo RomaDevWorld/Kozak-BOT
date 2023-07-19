@@ -58,6 +58,17 @@ const ModulesSchema = new Schema<ModulesI>({
       },
     },
   },
+  tickets: [
+    {
+      channelId: {
+        type: SchemaTypes.String,
+      },
+      messageId: {
+        type: SchemaTypes.String,
+      },
+      allowedRoles: [String],
+    },
+  ],
 })
 
 export default model<ModulesI>('modules', ModulesSchema)

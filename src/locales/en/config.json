@@ -9,5 +9,9 @@
   "autoRoleSet": "Autorole is now: {{role}}",
   "autoRoleOff": "Autorole assignment is now off",
   "autoRolePosition": "Your can't set an autorole that is higher on the same as yours",
-  "roleRestore": "Role restore status: {{status}}"
+  "roleRestore": "Role restore status: {{status}}",
+
+  "ticketDefaultButtonText": "Create new ticket",
+  "ticketDefaultDesc": "Press a button below to create new ticket",
+  "ticketInitCreated": "Ticket initial message was successfully created!"
 }
