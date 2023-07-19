@@ -66,6 +66,7 @@ const ModulesSchema = new Schema<ModulesI>({
       messageId: {
         type: SchemaTypes.String,
       },
+      allowedRoles: [String],
     },
   ],
 })

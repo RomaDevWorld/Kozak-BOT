@@ -39,5 +39,9 @@
   "code": "Code",
   "uses": "Uses",
   "enabled": "Enabled",
-  "disabled": "Disabled"
+  "disabled": "Disabled",
+
+  "ticketCreated": "Ticket created!",
+  "ticketDescription": "**Soon authorized people will fully answer your question.**\nYou can start describing your problem while you waiting",
+  "ticketChannelTopic": "Ticket requested by {{member}} (ID: {{memberId}})"
 }

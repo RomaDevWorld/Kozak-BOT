@@ -60,10 +60,19 @@ const CreateTicketSubcommand: SubCommand = {
 
     await Modules.findOneAndUpdate(
       { guildId: interaction.guildId },
-      { $push: { tickets: { messageId: msg.id, channelId: interaction.options.getChannel('channel')?.id } } }
+      {
+        $push: {
+          tickets: {
+            messageId: msg.id,
+            channelId: interaction.options.getChannel('channel')?.id,
+            allowedRoles: interaction.options.resolved?.roles?.map((role) => role?.id),
+          },
+        },
+      },
+      { upsert: true }
     )
 
-    interaction.reply({ content: t('config:ticketCreated', { lng: interaction.locale }) })
+    interaction.reply({ content: t('config:ticketInitCreated', { lng: interaction.locale }) })
   },
 }
 

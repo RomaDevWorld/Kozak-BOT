@@ -34,6 +34,7 @@ export interface ModulesI {
   tickets: {
     channelId: string | null
     messageId: string | null
+    allowedRoles: string[]
   }[]
 }
 

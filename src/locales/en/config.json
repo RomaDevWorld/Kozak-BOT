@@ -13,5 +13,5 @@
 
   "ticketDefaultButtonText": "Create new ticket",
   "ticketDefaultDesc": "Press a button below to create new ticket",
-  "ticketCreated": "Ticket initial message was successfully created!"
+  "ticketInitCreated": "Ticket initial message was successfully created!"
 }
