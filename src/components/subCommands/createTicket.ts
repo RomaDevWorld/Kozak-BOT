@@ -72,7 +72,7 @@ const CreateTicketSubcommand: SubCommand = {
       { upsert: true }
     )
 
-    interaction.reply({ content: t('config:ticketInitCreated', { lng: interaction.locale }) })
+    interaction.reply({ content: t('config:ticketInitCreated', { lng: interaction.locale }), ephemeral: true })
   },
 }
 
