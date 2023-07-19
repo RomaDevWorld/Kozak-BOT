@@ -25,11 +25,19 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
     )
     .addSubcommand((sub) =>
       sub
+        .setName('channel-remove')
+        .setDescription('Remove data about log channel')
+        .setDescriptionLocalizations({ uk: 'Вилучити дані про канал журналу аудиту' })
+    )
+    .addSubcommand((sub) =>
+      sub
         .setName('switch')
         .setDescription('Switch state of different log events')
         .setDescriptionLocalizations({ uk: 'Перемикачі різних типів подій' })
     ),
   execute: async function (interaction) {
+    // Move those subcommand to different files
+
     const data = await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { guildId: interaction.guildId }, { new: true, upsert: true })
     const lng = interaction.locale
 
@@ -40,7 +48,16 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
         data.save()
 
         return interaction.reply({
-          content: t('config:logChannelSet', { lng: interaction.locale, channel: channel?.toString() }),
+          content: t('config:logChannelSet', { lng, channel: channel?.toString() }),
+          ephemeral: true,
+        })
+      }
+      case 'channel-remove': {
+        data.log.channel = null
+        data.save()
+
+        return interaction.reply({
+          content: t('config:logChannelRemove', { lng }),
           ephemeral: true,
         })
       }
