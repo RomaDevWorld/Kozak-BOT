@@ -1,5 +1,9 @@
 {
   "logChannelSet": "Log messages will now be sent to {{channel}}",
+  "logSwitches_author": "Log types switches",
+  "logSwitches_desc": "Green button color - log type is **active**\nRed button color - log type is **active**",
+  "logSwitches_footer": "Click the button to toggle ON or OFF the log type",
+
   "lobbyChannelSet": "Private channels lobby has been set to {{channel}}",
   "lobbyChannelOff": "Private channels lobby has been removed",
 
