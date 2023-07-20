@@ -53,11 +53,13 @@ const command: SlashCommand = {
 
     const list = []
     for (const i in options) {
-      list.push(`**${i + 1}.** ${options[i].name} (0%)`)
+      const index = parseInt(i)
+
+      list.push(`**${index + 1}.** ${options[i].name} (0%)`)
 
       const dynamicButton = new ButtonBuilder(VoteButton.button.data)
 
-      dynamicButton.setCustomId(`vote_${i + 1}`).setLabel(`${i + 1}`)
+      dynamicButton.setCustomId(`vote_${index + 1}`).setLabel(`${index + 1}`)
 
       optionsRow.addComponents(dynamicButton)
     }
