@@ -1,8 +1,7 @@
 import { AttachmentBuilder, ButtonBuilder, ButtonStyle, TextChannel } from 'discord.js'
 import { Button } from '../../@types/discord'
 import { t } from 'i18next'
-import { createWriteStream, existsSync, mkdirSync, unlink } from 'fs'
-import moment from 'moment'
+import { existsSync, mkdirSync, readFileSync, unlink, writeFileSync } from 'fs'
 
 const CloseTicket: Button = {
   button: new ButtonBuilder().setCustomId('close_ticket').setEmoji('🔒').setStyle(ButtonStyle.Danger),
@@ -34,19 +33,15 @@ const CloseTicket: Button = {
 
     if (messageHistory.length <= 0) return
 
-    const cacheDir = './.cache'
+    const cacheDir = __dirname + `/../../.cache`
     if (!existsSync(cacheDir)) mkdirSync(cacheDir)
+    const filePath = `${cacheDir}/${Date.now()}.log`
 
-    const filePath = `./.cache/${Date.now()}.log`
+    writeFileSync(filePath, `start\n` + messageHistory + `finish`)
 
-    const stream = createWriteStream(filePath)
+    const file = readFileSync(filePath, 'utf8')
 
-    stream.write(`[Start ${moment(ticketCreatedAt).format(`DD.MM.YYYY HH:mm`)}]\n`)
-    stream.write(messageHistory)
-    stream.write(`\n[Close ${moment(Date.now()).format(`DD.MM.YYYY HH:mm`)} by user ${interaction.user.username} (ID: ${interaction.user.id})]`)
-    stream.end()
-
-    const attachment = new AttachmentBuilder(stream.path, { name: `ticket.log` })
+    const attachment = new AttachmentBuilder(file, { name: `ticket.log` })
 
     interaction.reply({
       content: t('ticketClosed', { lng: interaction.guild?.preferredLocale, member: interaction.user.toString() }),
