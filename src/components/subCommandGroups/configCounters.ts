@@ -25,18 +25,13 @@ const CounterSubcommandGroup: SubCommandGroup = {
     )
     .setDescriptionLocalizations({ uk: 'Налаштувати модуль журналу аудиту' }),
   execute: async function (interaction) {
-    const data = await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { guildId: interaction.guildId }, { new: true, upsert: true })
-
     switch (interaction.options.getSubcommand()) {
       case 'set': {
         const channel = interaction.options.getChannel('channel') as VoiceChannel | CategoryChannel
         let label = interaction.options.getString('label')
         if (!label) label = t('config:defaultCounterName', { lng: interaction.guild?.preferredLocale })
 
-        data.counter.channelId = channel.id
-        data.counter.label = label
-
-        data.save()
+        await Modules.updateOne({ guildId: interaction.guildId }, { counter: { channelId: channel.id, label } }, { upsert: true })
 
         return interaction.reply({
           content: t('config:counterChannelSet', { channel: channel.toString(), label, lng: interaction.locale }),

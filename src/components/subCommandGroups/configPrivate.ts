@@ -29,13 +29,12 @@ const PrivateSubcommandGroup: SubCommandGroup = {
     switch (interaction.options.getSubcommand()) {
       case 'set': {
         const channel = interaction.options.getChannel('channel') as TextChannel
-        data.lobby.channel = channel.id
-        data.save()
+        await Modules.updateOne({ guildId: interaction.guildId }, { lobby: { channel: channel.id } }, { upsert: true })
         interaction.reply({ content: t('config:lobbyChannelSet', { lng: interaction.locale, channel: channel.toString() }), ephemeral: true })
         break
       }
       case 'off': {
-        data.lobby.channel = null
+        await Modules.updateOne({ guildId: interaction.guildId }, { lobby: { channel: null } }, { upsert: true })
         data.save()
         interaction.reply({ content: t('config:lobbyChannelOff', { lng: interaction.locale }), ephemeral: true })
         break

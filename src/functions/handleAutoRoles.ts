@@ -6,11 +6,11 @@ import moment from 'moment'
 export const handleAutoRoles = async (member: GuildMember) => {
   const data = await Modules.findOne({ guildId: member.guild.id })
 
-  const autoRole = member.guild.roles.cache.get(data?.roles.autorole as string)
+  const autoRole = member.guild.roles.cache.get(data?.roles?.autorole as string)
   if (autoRole && !autoRole.managed && !autoRole.permissions.has(PermissionFlagsBits.Administrator))
     member.roles.add(autoRole).catch((err) => console.error(err))
 
-  if (!data?.roles.restore.status) return
+  if (!data?.roles?.restore?.status) return
   const restore = await RestoreRoles.findOne({ guildId: member.guild.id, userId: member.id })
   await RestoreRoles.deleteOne({ guildId: member.guild.id, userId: member.id })
 

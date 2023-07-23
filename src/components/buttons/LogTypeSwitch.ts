@@ -6,45 +6,49 @@ const LogTypeSwitch: Button = {
   button: new ButtonBuilder().setCustomId('switch_'),
   execute: async (interaction) => {
     const data = await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { guildId: interaction.guildId }, { new: true, upsert: true })
-    const types = data.log.types
+    const types = data.log?.types
     const clicked = interaction.customId.split('_')[1]
     const active = interaction.component.style === ButtonStyle.Success ? true : false
+    const guildId = interaction.guildId
 
     switch (clicked) {
       case 'messages': {
-        types['messageDelete'] = !active
-        types['messageUpdate'] = !active
-        data.save()
+        await Modules.updateOne({ guildId }, { $set: { 'log.types': { messageDelete: !active, messageUpdate: !active } } }, { upsert: true })
         flipButtonStyle(interaction)
         break
       }
       case 'members': {
-        types['guildMemberAdd'] = !active
-        types['guildMemberRemove'] = !active
-        data.save()
+        await Modules.updateOne({ guildId }, { $set: { 'log.types': { guildMemberAdd: !active, guildMemberRemove: !active } } }, { upsert: true })
         flipButtonStyle(interaction)
         break
       }
       case 'voices': {
-        types['voiceStateUpdate'] = !active
-        data.save()
+        await Modules.updateOne({ guildId }, { $set: { 'log.types': { voiceStateUpdate: !active } } }, { upsert: true })
         flipButtonStyle(interaction)
         break
       }
       case 'mods': {
-        types['guildMemberTimeout'] = !active
-        types['guildBanAdd'] = !active
-        types['guildBanRemove'] = !active
-        types['guildMemberNicknameUpdate'] = !active
-        types['guildMemberRolesUpdate'] = !active
+        await Modules.updateOne(
+          { guildId },
+          {
+            $set: {
+              'log.types': {
+                guildMemberTimeout: !active,
+                guildBanAdd: !active,
+                guildBanRemove: !active,
+                guildMemberNicknameUpdate: !active,
+                guildMemberRolesUpdate: !active,
+              },
+            },
+          },
+          { upsert: true }
+        )
 
-        data.save()
         flipButtonStyle(interaction)
         break
       }
       case 'reports': {
-        types['guildMemberReport'] = !active
-        data.save()
+        await Modules.updateOne({ guildId }, { $set: { 'log.types': { guildMemberReport: !active } } }, { upsert: true })
         flipButtonStyle(interaction)
         break
       }

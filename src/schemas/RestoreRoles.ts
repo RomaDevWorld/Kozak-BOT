@@ -8,7 +8,7 @@ interface RRSchemaI {
   updatedAt: Date
 }
 
-const RRSchema = new Schema<RRSchemaI>(
+const RRSchema = new Schema(
   {
     guildId: {
       type: SchemaTypes.String,
