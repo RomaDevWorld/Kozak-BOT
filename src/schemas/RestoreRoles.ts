@@ -1,13 +1,5 @@
 import { Schema, SchemaTypes, model } from 'mongoose'
 
-interface RRSchemaI {
-  guildId: string
-  userId: string
-  nickname: string | null
-  roles: string[]
-  updatedAt: Date
-}
-
 const RRSchema = new Schema(
   {
     guildId: {
