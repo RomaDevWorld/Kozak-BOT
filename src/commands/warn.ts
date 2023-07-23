@@ -83,7 +83,7 @@ const command: SlashCommand = {
           .setFooter({
             text: t('warn:list_embed_footer', {
               lng,
-              value: data?.warns.length || 0,
+              value: (data?.warns.length as number) + 1 || 1,
             }),
           })
 
