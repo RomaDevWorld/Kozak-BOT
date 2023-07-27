@@ -31,7 +31,7 @@ const useCounters = (client: Client) => {
         console.error(error)
       }
     })
-  }, 60000 * 0.25)
+  }, 60000 * 0.5)
 }
 
 export default useCounters
