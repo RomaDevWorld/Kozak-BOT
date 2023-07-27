@@ -1,7 +1,7 @@
 import { AttachmentBuilder, ButtonBuilder, ButtonStyle, TextChannel } from 'discord.js'
 import { Button } from '../../@types/discord'
 import { t } from 'i18next'
-import { existsSync, mkdirSync, readFileSync, unlink, writeFileSync } from 'fs'
+import { existsSync } from 'fs'
 
 const CloseTicket: Button = {
   button: new ButtonBuilder().setCustomId('close_ticket').setEmoji('🔒').setStyle(ButtonStyle.Danger),
@@ -19,7 +19,6 @@ const CloseTicket: Button = {
     // interaction.message.edit({ components: [] })
 
     const messages = await channel.messages.fetch()
-    const ticketCreatedAt = messages.last()?.createdTimestamp
 
     const messageHistory = messages
       .reverse()
@@ -31,24 +30,12 @@ const CloseTicket: Button = {
       })
       .join('\n')
 
-    if (messageHistory.length <= 0) return
-
-    const cacheDir = __dirname + `/../../.cache`
-    if (!existsSync(cacheDir)) mkdirSync(cacheDir)
-    const filePath = `${cacheDir}/${Date.now()}.log`
-
-    writeFileSync(filePath, `start\n` + messageHistory + `finish`)
-
-    const file = readFileSync(filePath, 'utf8')
-
-    const attachment = new AttachmentBuilder(file, { name: `ticket.log` })
+    const attach = new AttachmentBuilder(Buffer.from(messageHistory), { name: 'script.txt' })
 
     interaction.reply({
       content: t('ticketClosed', { lng: interaction.guild?.preferredLocale, member: interaction.user.toString() }),
-      files: [attachment],
+      files: [attach],
     })
-
-    unlink(filePath, (err) => console.error(err))
   },
 }
 
