@@ -1,4 +1,4 @@
-import { CategoryChannel, SlashCommandSubcommandGroupBuilder, VoiceChannel } from 'discord.js'
+import { CategoryChannel, ChannelType, SlashCommandSubcommandGroupBuilder, VoiceChannel } from 'discord.js'
 import { SubCommandGroup } from '../../@types/discord'
 import Modules from '../../schemas/Modules'
 import { t } from 'i18next'
@@ -18,6 +18,7 @@ const CounterSubcommandGroup: SubCommandGroup = {
             .setDescription('Voice channel or category')
             .setDescriptionLocalizations({ uk: 'Голосовий канал або категорія' })
             .setRequired(true)
+            .addChannelTypes(ChannelType.GuildVoice, ChannelType.GuildCategory)
         )
         .addStringOption((option) =>
           option.setName('label').setDescription('Dynamic channel name').setDescriptionLocalizations({ uk: 'Динамічна назва каналу' })
