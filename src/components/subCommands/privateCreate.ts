@@ -13,9 +13,9 @@ const CreatePrivateSubcommand: SubCommand = {
     const lng = interaction.locale
 
     const data = await Modules.findOne({ guildId: interaction.guildId })
-    const lobbyChannel = interaction.guild?.channels.cache.get(data?.lobby.channel as string) as VoiceChannel
+    const lobbyChannel = interaction.guild?.channels.cache.get(data?.lobby?.channel as string) as VoiceChannel
 
-    if (!data || !data.lobby.channel || !lobbyChannel) return interaction.reply({ content: t('private:moduleOff', { lng }), ephemeral: true })
+    if (!data || !data.lobby?.channel || !lobbyChannel) return interaction.reply({ content: t('private:moduleOff', { lng }), ephemeral: true })
 
     const existingChannel = getPrivateChannel(interaction.member as GuildMember)
     if (existingChannel) existingChannel.delete()

@@ -37,15 +37,12 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
     ),
   execute: async function (interaction) {
     // Move those subcommand to different files
-
-    const data = await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { guildId: interaction.guildId }, { new: true, upsert: true })
     const lng = interaction.locale
 
     switch (interaction.options.getSubcommand()) {
       case 'channel': {
         const channel = interaction.options.getChannel('channel')
-        data.log.channel = channel?.id as string
-        data.save()
+        await Modules.updateOne({ guildId: interaction.guildId }, { log: { channel: channel?.id } }, { upsert: true })
 
         return interaction.reply({
           content: t('config:logChannelSet', { lng, channel: channel?.toString() }),
@@ -53,8 +50,7 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
         })
       }
       case 'channel-remove': {
-        data.log.channel = null
-        data.save()
+        await Modules.updateOne({ guildId: interaction.guildId }, { log: { channel: null } }, { upsert: true })
 
         return interaction.reply({
           content: t('config:logChannelRemove', { lng }),
@@ -63,27 +59,27 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
       }
       case 'switch': {
         const data = await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { guildId: interaction.guildId }, { new: true, upsert: true })
-        const types = data.log.types
+        const types = data.log?.types
 
         const messageSwitch = new ButtonBuilder(LogTypeSwitch.button.data)
           .setCustomId('switch_messages')
-          .setStyle((types.messageDelete, types.messageDelete) ? ButtonStyle.Success : ButtonStyle.Danger)
+          .setStyle((types?.messageDelete, types?.messageDelete) ? ButtonStyle.Success : ButtonStyle.Danger)
           .setLabel(t('message_other', { lng }))
 
         const membersSwitch = new ButtonBuilder(LogTypeSwitch.button.data)
           .setCustomId('switch_members')
-          .setStyle((types.guildMemberAdd, types.guildMemberRemove) ? ButtonStyle.Success : ButtonStyle.Danger)
+          .setStyle((types?.guildMemberAdd, types?.guildMemberRemove) ? ButtonStyle.Success : ButtonStyle.Danger)
           .setLabel(t('member_other', { lng }))
 
         const voiceSwitch = new ButtonBuilder(LogTypeSwitch.button.data)
           .setCustomId('switch_voices')
-          .setStyle(types.voiceStateUpdate ? ButtonStyle.Success : ButtonStyle.Danger)
+          .setStyle(types?.voiceStateUpdate ? ButtonStyle.Success : ButtonStyle.Danger)
           .setLabel(t('voice_channel_other', { lng }))
 
         const modSwitch = new ButtonBuilder(LogTypeSwitch.button.data)
           .setCustomId('switch_mods')
           .setStyle(
-            (types.guildBanAdd, types.guildBanRemove, types.guildMemberTimeout, types.guildMemberRolesUpdate, types.guildMemberNicknameUpdate)
+            (types?.guildBanAdd, types?.guildBanRemove, types?.guildMemberTimeout, types?.guildMemberRolesUpdate, types?.guildMemberNicknameUpdate)
               ? ButtonStyle.Success
               : ButtonStyle.Danger
           )
@@ -91,7 +87,7 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
 
         const reportSwitch = new ButtonBuilder(LogTypeSwitch.button.data)
           .setCustomId('switch_reports')
-          .setStyle((types.messageDelete, types.messageDelete) ? ButtonStyle.Success : ButtonStyle.Danger)
+          .setStyle((types?.messageDelete, types?.messageDelete) ? ButtonStyle.Success : ButtonStyle.Danger)
           .setLabel(t('report_other', { lng }))
 
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(messageSwitch, membersSwitch, voiceSwitch, modSwitch, reportSwitch)
@@ -102,7 +98,7 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
           .setFooter({ text: t('config:logSwitches_footer', { lng }) })
           .addFields({
             name: t('channel', { lng }),
-            value: interaction.guild?.channels.cache.get(data.log.channel as string)?.toString() ?? t('disabled', { lng }),
+            value: interaction.guild?.channels.cache.get(data.log?.channel as string)?.toString() ?? t('disabled', { lng }),
           })
           .setColor('Green')
 

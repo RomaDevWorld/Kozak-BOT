@@ -7,7 +7,7 @@ const useCounters = (client: Client) => {
     const data = await Modules.find()
 
     data.forEach(async (element) => {
-      if (!element.counter.channelId || !element.counter.label) return
+      if (!element.counter?.channelId || !element.counter.label) return
 
       const guild = client.guilds.cache.get(element.guildId)
       if (!guild) return

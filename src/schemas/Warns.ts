@@ -1,5 +1,4 @@
 import { Schema, model } from 'mongoose'
-import { WarnsI } from '../@types/schemas'
 
 const WarnSchema = new Schema({
   guildId: {
@@ -31,4 +30,4 @@ const WarnSchema = new Schema({
   },
 })
 
-export default model<WarnsI>('warns', WarnSchema)
+export default model('warns', WarnSchema)
