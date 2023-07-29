@@ -48,9 +48,7 @@ src/
 
 `DISCORD_CLIENT_ID` - Discord application ID (Aka. Discord bot id) | https://discord.com/developers/applications
 
-`DB_HOST` - MongoDB connect url without `mongodb://` | So if running MongoDB on your local machine you type `localhost`
-
-`DB_NAME` - MongoDB database name that will store the data | Just type something like `DiscordBotDB` and mongoose will create it
+`MONGOURL` - MongoDB connection string | Probably starts with mongodb:// or mongodb+srv://
 
 `DEBUG` - Used in dev mode, prints some additional information at runtime
 
@@ -100,7 +98,6 @@ sudo docker run \
 --restart unless-stopped \
 -e DISCORD_TOKEN='Your discord bot token' \
 -e DISCORD_CLIENT_ID='Your discord bot client id' \
--e DB_HOST='MongoDB url without mongodb://' \
--e DB_NAME='Name of your database' \
+-e MONGOURL='MongoDB connection string'
 romadevworld/cossackbot:latest
 ```
