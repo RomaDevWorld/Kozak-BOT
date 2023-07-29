@@ -1,6 +1,5 @@
 {
   "messageDelete_author": "Message deleted | {{user}}",
-  "messageDelete_title": "Go to point where message was deleted",
 
   "messageUpdate_author": "Message updated | {{user}}",
   "messageUpdate_title": "Go to message",

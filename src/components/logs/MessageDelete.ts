@@ -12,7 +12,6 @@ const MessageDeleteLog = async (message: Message) => {
       name: t('logs:messageDelete_author', { lng: message.guild?.preferredLocale, user: message.author.username }),
       iconURL: message.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
-    .setTitle(t('logs:messageDelete_title', { lng: message.guild?.preferredLocale }))
     .setURL(message.url)
     .setDescription(message.content || 'N/A')
     .addFields(

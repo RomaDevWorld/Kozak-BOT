@@ -1,6 +1,5 @@
 {
   "messageDelete_author": "Повідомлення видалено | {{user}}",
-  "messageDelete_title": "Побачити де повідомлення було видалено",
 
   "messageUpdate_author": "Повідомлення оновлено | {{user}}",
   "messageUpdate_title": "Перейти до повідомлення",
