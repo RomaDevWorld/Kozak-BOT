@@ -9,46 +9,40 @@ const LogTypeSwitch: Button = {
     const active = interaction.component.style === ButtonStyle.Success ? true : false
     const guildId = interaction.guildId
 
-    const data = await Modules.findOneAndUpdate({ guildId }, {}, { new: true, upsert: true })
+    const data = await Modules.findOneAndUpdate({ guildId }, { guildId }, { new: true, upsert: true })
     const types = data.log?.types
 
     switch (clicked) {
       case 'messages': {
-        if (types) {
-          types.messageUpdate = !active
-          types.messageDelete = !active
-          data.save()
-        }
+        await Modules.findOneAndUpdate({ guildId }, { 'log.types.messageDelete': !active, 'log.types.messageUpdate': !active }, { upsert: true })
 
         flipButtonStyle(interaction)
         break
       }
       case 'members': {
-        if (types) {
-          types.guildMemberAdd = !active
-          types.guildMemberRemove = !active
-          data.save()
-        }
+        await Modules.findOneAndUpdate({ guildId }, { 'log.types.guildMemberAdd': !active, 'log.types.guildMemberRemove': !active }, { upsert: true })
+
         flipButtonStyle(interaction)
         break
       }
       case 'voices': {
-        if (types) {
-          types.voiceStateUpdate = !active
-          data.save()
-        }
+        await Modules.findOneAndUpdate({ guildId }, { 'log.types.voiceStateUpdate': !active }, { upsert: true })
+
         flipButtonStyle(interaction)
         break
       }
       case 'mods': {
-        if (types) {
-          types.guildMemberTimeout = !active
-          types.guildBanAdd = !active
-          types.guildBanRemove = !active
-          types.guildMemberNicknameUpdate = !active
-          types.guildMemberRolesUpdate = !active
-          data.save()
-        }
+        await Modules.findOneAndUpdate(
+          { guildId },
+          {
+            'log.types.guildMemberTimeout': !active,
+            'log.types.guildBanAdd': !active,
+            'log.types.guildBanRemove': !active,
+            'log.types.guildMemberNicknameUpdate': !active,
+            'log.types.guildMemberRolesUpdate': !active,
+          },
+          { upsert: true }
+        )
 
         flipButtonStyle(interaction)
         break
