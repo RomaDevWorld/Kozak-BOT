@@ -24,18 +24,15 @@ const PrivateSubcommandGroup: SubCommandGroup = {
     )
     .addSubcommand((sub) => sub.setName('off').setDescription('Turn off this module').setDescriptionLocalizations({ uk: 'Вимкнути цей модуль' })),
   execute: async function (interaction) {
-    const data = await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { guildId: interaction.guildId }, { new: true, upsert: true })
-
     switch (interaction.options.getSubcommand()) {
       case 'set': {
         const channel = interaction.options.getChannel('channel') as TextChannel
-        await Modules.updateOne({ guildId: interaction.guildId }, { lobby: { channel: channel.id } }, { upsert: true })
+        await Modules.updateOne({ guildId: interaction.guildId }, { "lobby.channel": channel.id }, { upsert: true })
         interaction.reply({ content: t('config:lobbyChannelSet', { lng: interaction.locale, channel: channel.toString() }), ephemeral: true })
         break
       }
       case 'off': {
-        await Modules.updateOne({ guildId: interaction.guildId }, { lobby: { channel: null } }, { upsert: true })
-        data.save()
+        await Modules.updateOne({ guildId: interaction.guildId }, { "lobby.channel": null }, { upsert: true })
         interaction.reply({ content: t('config:lobbyChannelOff', { lng: interaction.locale }), ephemeral: true })
         break
       }
