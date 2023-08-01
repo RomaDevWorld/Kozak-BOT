@@ -13,10 +13,10 @@ export const cacheAllInvites = async (client: Client) => {
     invites.each((invite) => codeUses.set(invite.code, invite.uses || 0))
 
     globalInvites.set(guild.id, codeUses)
-
-    // eslint-disable-next-line no-console
-    console.log(`[Invites] Successfully cached invites in ${globalInvites.size} guild`)
   })
+
+  // eslint-disable-next-line no-console
+  console.log('Successfully cached invites')
 }
 
 export const trackInvite = async (member: GuildMember) => {
