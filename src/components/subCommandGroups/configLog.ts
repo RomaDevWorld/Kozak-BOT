@@ -42,7 +42,7 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
     switch (interaction.options.getSubcommand()) {
       case 'channel': {
         const channel = interaction.options.getChannel('channel')
-        await Modules.updateOne({ guildId: interaction.guildId }, { log: { channel: channel?.id } }, { upsert: true })
+        await Modules.updateOne({ guildId: interaction.guildId }, { "log.channel": channel?.id }, { upsert: true })
 
         return interaction.reply({
           content: t('config:logChannelSet', { lng, channel: channel?.toString() }),
@@ -50,7 +50,7 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
         })
       }
       case 'channel-remove': {
-        await Modules.updateOne({ guildId: interaction.guildId }, { log: { channel: null } }, { upsert: true })
+        await Modules.updateOne({ guildId: interaction.guildId }, { "log.channel": null }, { upsert: true })
 
         return interaction.reply({
           content: t('config:logChannelRemove', { lng }),
