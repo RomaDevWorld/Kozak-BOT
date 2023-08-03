@@ -101,3 +101,29 @@ sudo docker run \
 -e MONGOURL='MongoDB connection string'
 romadevworld/cossackbot:latest
 ```
+
+### Docker Compose
+
+- Requires Docker Engine and Docker Compose Plugin installed
+
+If you prefer using Docker Compose, you can spin up both MongoDB and CossackBot containers with a single command
+
+Clone the entire repo
+
+```
+git clone git@github.com:RomaDevWorld/Cossack-BOT.git
+```
+
+or just `docker-compose.yml`
+
+```
+wget https://github.com/RomaDevWorld/Cossack-BOT/blob/main/docker-compose.yml docker-compose.yml
+```
+
+Open file in a text editor, and change `DISCORD_CLIENT_ID` and `DISCORD_TOKEN`
+
+Run this command
+
+`docker compose up -d`
+
+Then check how bot is doing with `docker logs bot`
