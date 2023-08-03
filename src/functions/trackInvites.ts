@@ -16,7 +16,7 @@ export const cacheAllInvites = async (client: Client) => {
   })
 
   // eslint-disable-next-line no-console
-  console.log('Successfully cached invites')
+  console.log('[Invite tracker] Successfully cached invites')
 }
 
 export const trackInvite = async (member: GuildMember) => {

@@ -39,6 +39,12 @@
   "uses": "Uses",
   "enabled": "Enabled",
   "disabled": "Disabled",
+  "guild": "Guild",
+  "guild_other": "Guilds",
+  "user_one": "User",
+  "user_other": "Users",
+  "channel_one": "Channel",
+  "channel_other": "Channels",
 
   "message_one": "Message",
   "message_other": "Messages",
