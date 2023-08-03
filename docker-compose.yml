@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: on-failure
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb_data:/data/db
+    logging:
+      driver: none
+
+  bot:
+    image: romadevworld/cossackbot:latest
+    container_name: bot
+    restart: on-failure
+    environment:
+      DISCORD_TOKEN: Your discord bot token
+      DISCORD_CLIENT_ID: Your discord bot ID
+      MONGOURL: 'mongodb://mongodb:27017/bot'
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:
