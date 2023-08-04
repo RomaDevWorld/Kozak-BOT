@@ -28,7 +28,7 @@ const GuildMemberAddLog = async (member: GuildMember) => {
   if (invite) {
     const embedValue = [
       `**${t('code', { lng })}:** ${invite.code}`,
-      `**${t('member', { lng })}:** ${invite.inviter?.toString()}`,
+      `**${t('member_one', { lng })}:** ${invite.inviter?.toString()}`,
       `**${t('uses', { lng })}:** ${invite.maxUses ? `${invite.uses}/${invite.maxUses}` : invite.uses}`,
     ]
 
