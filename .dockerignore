@@ -8,3 +8,10 @@ dist
 .env*
 
 .git
+
+*.md
+
+.gitignore
+.prettierrc.js
+.eslintrc.js
+.eslintignore
