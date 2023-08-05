@@ -31,6 +31,20 @@ const ManagePrivateSubcommandGroup: SubCommandGroup = {
     )
     .addSubcommand((sub) =>
       sub.setName('delete').setDescription('Delete your private channel').setDescriptionLocalizations({ uk: 'Видалити ваш особистий канал' })
+    )
+    .addSubcommand((sub) =>
+      sub
+        .setName('rename')
+        .setDescription('Rename your private channel')
+        .setDescriptionLocalizations({ uk: 'Перейменувати ваш приватний канал' })
+        .addStringOption((option) =>
+          option
+            .setName('name')
+            .setDescription('New name')
+            .setDescriptionLocalizations({ uk: 'Нова назва каналу' })
+            .setRequired(true)
+            .setMaxLength(50)
+        )
     ),
 
   execute: async function (interaction) {
@@ -64,6 +78,13 @@ const ManagePrivateSubcommandGroup: SubCommandGroup = {
         removePrivateChannel(interaction.member as GuildMember)
 
         interaction.reply({ content: t('private:channelDeleted', { lng }), ephemeral: true })
+        break
+      }
+      case 'rename': {
+        const name = interaction.options.getString('name') as string
+        channel.setName(name)
+
+        interaction.reply({ content: t('private:channelRenamed', { lng, name }), ephemeral: true })
         break
       }
     }
