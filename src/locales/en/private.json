@@ -7,5 +7,6 @@
   "noChannel": "Your don't have private channel created",
   "inviteSuccess": "{{member}} now has access to your private channel",
   "kickSuccess": "{{member}} no longer has access to your private channel",
-  "channelRenamed": "Your new channel name: **{{name}}**"
+  "channelRenamed": "Your new channel name: **{{name}}**",
+  "channelExpired": "Your private channel was automatically deleted because you didn't joined it in past 5 minutes"
 }

@@ -63,7 +63,7 @@ export const removePrivateChannel = (member: GuildMember) => {
 interface TimeoutsI {
   [key: string]: NodeJS.Timeout
 }
-const timeouts: TimeoutsI = {}
+export const timeouts: TimeoutsI = {}
 
 export const handlePrivateChannelTimeout = async (oldVoiceState: VoiceState, newVoiceState: VoiceState) => {
   if (!oldVoiceState.member || !newVoiceState.member) return

@@ -2,7 +2,7 @@ import { GuildMember, SlashCommandSubcommandBuilder, VoiceChannel } from 'discor
 import { SubCommand } from '../../@types/discord'
 import Modules from '../../schemas/Modules'
 import { t } from 'i18next'
-import { createPrivateChannel, getPrivateChannel } from '../../functions/usePrivateChannel'
+import { createPrivateChannel, getPrivateChannel, removePrivateChannel, timeouts } from '../../functions/usePrivateChannel'
 
 const CreatePrivateSubcommand: SubCommand = {
   data: new SlashCommandSubcommandBuilder()
@@ -24,6 +24,14 @@ const CreatePrivateSubcommand: SubCommand = {
     if (!channel) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
 
     interaction.reply({ content: t('private:channelCreated', { lng, channel: channel.toString() }), ephemeral: true })
+
+    timeouts[channel.id] = setTimeout(() => {
+      interaction.followUp({ content: t('private:channelExpired', { lng }), ephemeral: true }).catch((err) => console.error(err))
+
+      removePrivateChannel(interaction.member as GuildMember)
+      clearTimeout(timeouts[channel.id])
+      delete timeouts[channel.id]
+    }, 60000 * 5)
   },
 }
 
