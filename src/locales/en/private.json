@@ -6,5 +6,6 @@
   "channelDeleted": "Your private channel was deleted",
   "noChannel": "Your don't have private channel created",
   "inviteSuccess": "{{member}} now has access to your private channel",
-  "kickSuccess": "{{member}} no longer has access to your private channel"
+  "kickSuccess": "{{member}} no longer has access to your private channel",
+  "channelRenamed": "Your new channel name: **{{name}}**"
 }
