@@ -38,6 +38,7 @@ const command: SlashCommand = {
   cooldown: 10,
   execute: async (interaction) => {
     const value = await Vote.create({
+      'message.channelId': interaction.channel?.id,
       authorId: interaction.user.id,
       options: [],
     })
@@ -64,7 +65,7 @@ const command: SlashCommand = {
       optionsRow.addComponents(dynamicButton)
     }
 
-    const closeButton = new ButtonBuilder(CloseVote.button.data).setLabel('Close').setLabel(t('vote_closebutton', { lng: interaction.locale }))
+    const closeButton = new ButtonBuilder(CloseVote.button.data).setLabel(t('vote_closebutton', { lng: interaction.locale }))
 
     const closeRow = new ActionRowBuilder<ButtonBuilder>().addComponents(closeButton)
 
@@ -72,12 +73,15 @@ const command: SlashCommand = {
       .setAuthor({ name: interaction.options.getString('label') as string })
       .setColor('Random')
       .setDescription(list.join(`\n`))
-      .setFooter({ text: value.id })
 
-    interaction.reply({
+    await interaction.reply({
       embeds: [embed],
       components: [optionsRow, closeRow],
     })
+
+    const message = await interaction.fetchReply()
+
+    await Vote.findByIdAndUpdate(value.id, { 'message.id': message.id })
 
     //END
   },

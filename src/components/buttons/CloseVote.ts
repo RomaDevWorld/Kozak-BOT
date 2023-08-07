@@ -11,7 +11,8 @@ const button: Button = {
 
     const voteId = embedData.footer?.text
 
-    const data = await Vote.findById(voteId)
+    let data
+    voteId ? (data = await Vote.findById(voteId)) : (data = await Vote.findOne({ 'message.id': interaction.message.id }))
 
     if (!data) {
       console.error('[Error] Vote not found.')
@@ -21,7 +22,7 @@ const button: Button = {
     if (data.authorId !== interaction.user.id)
       return await interaction.reply({ content: t('vote_notauthor', { lng: interaction.locale }), ephemeral: true })
 
-    await Vote.findByIdAndDelete(voteId)
+    voteId ? await Vote.findByIdAndDelete(voteId) : await Vote.findOneAndDelete({ 'message.id': interaction.message.id })
 
     const updatedEmbed = new EmbedBuilder()
       .setDescription(embedData.description)

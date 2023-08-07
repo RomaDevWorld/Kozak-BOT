@@ -8,9 +8,10 @@ const button: Button = {
     const embedData = interaction.message.embeds[0]
     if (!embedData) return interaction.message.deletable ? interaction.message.delete() : null
 
-    const voteId = embedData.footer?.text
+    const voteId = embedData.footer?.text // For backwards compatibility
 
-    const data = await Vote.findById(voteId)
+    let data
+    voteId ? (data = await Vote.findById(voteId)) : (data = await Vote.findOne({ 'message.id': interaction.message.id }))
 
     if (!data) {
       console.error('[Error] Vote not found.')
@@ -25,7 +26,7 @@ const button: Button = {
 
     const selected = data.options[selectedId]
 
-    selected.value.push(interaction.user.id as never)
+    selected.value.push(interaction.user.id)
 
     data.save()
 
@@ -37,9 +38,9 @@ const button: Button = {
 
     const updatedEmbed = new EmbedBuilder()
       .setAuthor({ name: embedData.author?.name as string })
-      .setFooter({ text: embedData.footer?.text as string })
       .setColor(embedData.color)
       .setDescription(description.join('\n'))
+    if (embedData.footer) updatedEmbed.setFooter({ text: embedData.footer.text }) //Backwards compatibility
 
     interaction.update({ embeds: [updatedEmbed] })
   },
