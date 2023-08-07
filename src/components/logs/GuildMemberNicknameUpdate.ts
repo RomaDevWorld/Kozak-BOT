@@ -20,7 +20,7 @@ const GuildMemberNicknameUpdateLog = async (oldMember: GuildMember, newMember: G
     })
     .addFields(
       {
-        name: t('member', { lng }),
+        name: t('member_one', { lng }),
         value: newMember.toString(),
       },
       {

@@ -23,7 +23,7 @@ const GuildMemberReport = async (guild: Guild, message: Message) => {
       name: t('logs:guildMemberReport_author', { lng, author: message.author.username, value: report.members.length }),
       iconURL: message.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
-    .addFields({ name: t('member', { lng }), value: message.author.toString() })
+    .addFields({ name: t('member_one', { lng }), value: message.author.toString() })
     .setTitle(t('logs:messageDelete_title', { lng }))
     .setURL(message.url)
     .setTimestamp()

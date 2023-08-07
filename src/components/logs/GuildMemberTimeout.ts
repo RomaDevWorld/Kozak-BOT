@@ -24,7 +24,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
         iconURL: newMember.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
       })
       .setFooter({ text: newMember.id })
-      .addFields({ name: t('member', { lng }), value: newMember.toString() })
+      .addFields({ name: t('member_one', { lng }), value: newMember.toString() })
       .setTimestamp()
     if (audit)
       embed.addFields(
@@ -43,7 +43,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
       .setFooter({ text: newMember.id })
       .addFields(
         {
-          name: t('member', { lng }),
+          name: t('member_one', { lng }),
           value: newMember.toString(),
         },
         {

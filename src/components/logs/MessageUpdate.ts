@@ -18,7 +18,7 @@ const MessageUpdateLog = async (oldMessage: Message, newMessage: Message) => {
       { name: t('before', { lng: newMessage.guild?.preferredLocale }), value: oldMessage.content || 'N/A' },
       { name: t('now', { lng: newMessage.guild?.preferredLocale }), value: newMessage.content || 'N/A' },
       { name: t('author', { lng: newMessage.guild?.preferredLocale }), value: newMessage.author.toString(), inline: true },
-      { name: t('channel', { lng: newMessage.guild?.preferredLocale }), value: newMessage.channel.toString(), inline: true }
+      { name: t('channel_one', { lng: newMessage.guild?.preferredLocale }), value: newMessage.channel.toString(), inline: true }
     )
     .setFooter({ text: `ID: ${newMessage.author.id}` })
     .setColor('Blue')

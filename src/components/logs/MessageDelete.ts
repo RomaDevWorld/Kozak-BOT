@@ -16,7 +16,7 @@ const MessageDeleteLog = async (message: Message) => {
     .setDescription(message.content || 'N/A')
     .addFields(
       { name: t('author', { lng: message.guild?.preferredLocale }), value: message.author.toString(), inline: true },
-      { name: t('channel', { lng: message.guild?.preferredLocale }), value: message.channel.toString(), inline: true }
+      { name: t('channel_one', { lng: message.guild?.preferredLocale }), value: message.channel.toString(), inline: true }
     )
     .setFooter({ text: `ID: ${message.author.id}` })
     .setColor('Red')
