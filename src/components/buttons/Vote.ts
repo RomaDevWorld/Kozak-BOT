@@ -8,9 +8,10 @@ const button: Button = {
     const embedData = interaction.message.embeds[0]
     if (!embedData) return interaction.message.deletable ? interaction.message.delete() : null
 
-    const voteId = embedData.footer?.text
+    const voteId = embedData.footer?.text // For backwards compatibility
 
-    const data = await Vote.findById(voteId)
+    let data
+    voteId ? (data = await Vote.findById(voteId)) : (data = await Vote.findOne({ 'message.id': interaction.message.id }))
 
     if (!data) {
       console.error('[Error] Vote not found.')

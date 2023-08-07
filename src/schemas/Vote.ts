@@ -5,6 +5,13 @@ const VoteSchema = new Schema({
     type: String,
     required: true,
   },
+  message: {
+    channelId: {
+      type: String,
+      required: true,
+    },
+    id: String,
+  },
   options: [
     {
       name: {
