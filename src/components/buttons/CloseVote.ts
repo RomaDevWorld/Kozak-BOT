@@ -22,7 +22,7 @@ const button: Button = {
     if (data.authorId !== interaction.user.id)
       return await interaction.reply({ content: t('vote_notauthor', { lng: interaction.locale }), ephemeral: true })
 
-    await Vote.findByIdAndDelete(voteId)
+    voteId ? await Vote.findByIdAndDelete(voteId) : await Vote.findOneAndDelete({ 'message.id': interaction.message.id })
 
     const updatedEmbed = new EmbedBuilder()
       .setDescription(embedData.description)
