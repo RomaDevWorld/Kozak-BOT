@@ -74,12 +74,14 @@ const command: SlashCommand = {
       .setColor('Random')
       .setDescription(list.join(`\n`))
 
-    const message = await interaction.reply({
+    await interaction.reply({
       embeds: [embed],
       components: [optionsRow, closeRow],
     })
 
-    await Vote.findOneAndUpdate(value.id, { 'message.id': message.id })
+    const message = await interaction.fetchReply()
+
+    await Vote.findByIdAndUpdate(value.id, { 'message.id': message.id })
 
     //END
   },
