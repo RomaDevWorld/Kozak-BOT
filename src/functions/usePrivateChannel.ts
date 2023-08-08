@@ -1,5 +1,8 @@
-import { ChannelType, GuildMember, PermissionFlagsBits, VoiceChannel, VoiceState } from 'discord.js'
+import { ActionRowBuilder, ButtonBuilder, ChannelType, EmbedBuilder, GuildMember, PermissionFlagsBits, VoiceChannel, VoiceState } from 'discord.js'
 import Modules from '../schemas/Modules'
+import RestorePrivates from '../schemas/RestorePrivate'
+import RestorePrivate from '../components/buttons/RestorePrivate'
+import { t } from 'i18next'
 
 export const handleLobbyJoin = async (newVoiceState: VoiceState) => {
   if (!newVoiceState.channel || !newVoiceState.member || newVoiceState.member.user.bot) return
@@ -36,6 +39,26 @@ export const createPrivateChannel = async (member: GuildMember, lobbyChannel: Vo
 
   savePrivateChannel(member, channel)
 
+  const data = await RestorePrivates.findOne({ guildId: member.guild.id, memberId: member.id })
+  if (data && (data.name || data.limit || data.isPublic || data.invited?.length || data.kicked?.length)) {
+    const lng = member.guild.preferredLocale
+
+    const embed = new EmbedBuilder()
+      .setAuthor({ name: t('private:restore.embed_title', { lng }) })
+      .setColor('Green')
+      .setFooter({ text: t('private:restore.embed_footer', { lng }) })
+    if (data.name) embed.addFields({ name: t('private:restore.name', { lng }), value: data.name })
+    if (data.limit) embed.addFields({ name: t('private:restore.limit', { lng }), value: data.limit.toString() })
+    if (data.isPublic) embed.addFields({ name: t('private:restore.isPublic', { lng }), value: data.isPublic ? 'Yes' : 'No' })
+    if (data.invited?.length) embed.addFields({ name: t('private:restore.invited', { lng }), value: data.invited.map((id) => `<@${id}>`).join(', ') })
+    if (data.kicked?.length) embed.addFields({ name: t('private:restore.kicked', { lng }), value: data.kicked.map((id) => `<@${id}>`).join(', ') })
+
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+      new ButtonBuilder(RestorePrivate.button.data).setLabel(t('private:restore.buttonText', { lng }))
+    )
+    channel.send({ content: `<@${member.id}>`, components: [row], embeds: [embed] })
+  }
+
   return channel
 }
 
@@ -53,9 +76,30 @@ export const getPrivateChannel = (member: GuildMember) => {
   return member.guild.channels.cache.get(value.channel.id) as VoiceChannel
 }
 
-export const removePrivateChannel = (member: GuildMember) => {
+export const removePrivateChannel = async (member: GuildMember) => {
   const existingChannel = getPrivateChannel(member)
-  if (existingChannel) existingChannel.delete().catch((err) => console.error(err))
+  if (existingChannel) {
+    existingChannel.delete().catch((err) => console.error(err))
+    await RestorePrivates.findOneAndUpdate(
+      { guildId: member.guild.id, memberId: member.id },
+      {
+        name: [member.user.username, member.nickname].includes(existingChannel.name) ? null : existingChannel.name, //If channel name wasn't changed - don't save
+        limit: existingChannel.userLimit,
+        isPublic: existingChannel.permissionsFor(member.guild.id)?.has('ViewChannel'),
+        invited: existingChannel.guild.members.cache
+          .filter(
+            (member) => member.id !== member.guild.ownerId && existingChannel.permissionOverwrites.cache.get(member.id)?.allow.has('ViewChannel')
+          )
+          .map((member) => member.id),
+        kicked: existingChannel.guild.members.cache
+          .filter(
+            (member) => member.id !== member.guild.ownerId && existingChannel.permissionOverwrites.cache.get(member.id)?.deny.has('ViewChannel')
+          )
+          .map((member) => member.id),
+      },
+      { upsert: true }
+    )
+  }
 
   privateChannels.delete(member.id)
 }
@@ -85,4 +129,33 @@ export const handlePrivateChannelTimeout = async (oldVoiceState: VoiceState, new
       delete timeouts[i.channel.id]
     }
   })
+}
+
+export const restorePrivateChannel = async (member: GuildMember, channel: VoiceChannel) => {
+  const savedChannel = await RestorePrivates.findOne({ guildId: member.guild.id, memberId: member.id })
+  if (savedChannel) {
+    channel.edit({
+      name: savedChannel.name,
+      userLimit: savedChannel.limit,
+      permissionOverwrites: [
+        savedChannel.isPublic
+          ? { id: member.guild.id, allow: [PermissionFlagsBits.ViewChannel] }
+          : { id: member.guild.id, deny: [PermissionFlagsBits.ViewChannel] },
+      ],
+    })
+
+    savedChannel.invited.push(member.id)
+    if (savedChannel.invited.length > 0)
+      savedChannel.invited.forEach((id) => {
+        const user = member.guild.members.cache.get(id)
+        if (user) channel.permissionOverwrites.edit(user, { ViewChannel: true })
+      })
+    if (savedChannel.kicked.length > 0)
+      savedChannel.kicked.forEach((id) => {
+        const user = member.guild.members.cache.get(id)
+        if (user) channel.permissionOverwrites.edit(user, { ViewChannel: false })
+      })
+
+    await RestorePrivates.findOneAndRemove({ guildId: member.guild.id, memberId: member.id })
+  }
 }
