@@ -8,5 +8,18 @@
   "inviteSuccess": "{{member}} now has access to your private channel",
   "kickSuccess": "{{member}} no longer has access to your private channel",
   "channelRenamed": "Your new channel name: **{{name}}**",
-  "channelExpired": "Your private channel was automatically deleted because you didn't joined it in past 5 minutes"
+  "channelExpired": "Your private channel was automatically deleted because you didn't joined it in past 5 minutes",
+
+  "restore": {
+    "embed_title": "We found data about your previous channel!",
+    "embed_footer": "Click a button below to apply these values",
+    "name": "Name",
+    "limit": "Limit",
+    "isPublic": "Is public?",
+    "invited": "Invited members",
+    "kicked": "Kicked members",
+    "buttonText": "Restore",
+    "success": "Successfully changed your channel's parameters",
+    "notOwner": "This is not your channel!"
+  }
 }

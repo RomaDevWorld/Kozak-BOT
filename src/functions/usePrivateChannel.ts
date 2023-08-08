@@ -49,7 +49,7 @@ export const createPrivateChannel = async (member: GuildMember, lobbyChannel: Vo
       .setFooter({ text: t('private:restore.embed_footer', { lng }) })
     if (data.name) embed.addFields({ name: t('private:restore.name', { lng }), value: data.name })
     if (data.limit) embed.addFields({ name: t('private:restore.limit', { lng }), value: data.limit.toString() })
-    if (data.isPublic) embed.addFields({ name: t('private:restore.isPublic', { lng }), value: data.isPublic ? 'Yes' : 'No' })
+    if (data.isPublic) embed.addFields({ name: t('private:restore.isPublic', { lng }), value: data.isPublic ? t('yes', { lng }) : t('no', { lng }) })
     if (data.invited?.length) embed.addFields({ name: t('private:restore.invited', { lng }), value: data.invited.map((id) => `<@${id}>`).join(', ') })
     if (data.kicked?.length) embed.addFields({ name: t('private:restore.kicked', { lng }), value: data.kicked.map((id) => `<@${id}>`).join(', ') })
 

@@ -11,7 +11,7 @@ const RestorePrivate: Button = {
     const memberChannel = getPrivateChannel(interaction.member as GuildMember)
 
     if (!memberChannel || memberChannel.id !== interaction.channel?.id)
-      return interaction.reply({ content: t('private:restore.notTheOwner', { lng }), ephemeral: true })
+      return interaction.reply({ content: t('private:restore.notOwner', { lng }), ephemeral: true })
 
     restorePrivateChannel(interaction.member as GuildMember, interaction.channel as VoiceChannel)
 
