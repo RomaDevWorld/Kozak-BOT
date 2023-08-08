@@ -59,5 +59,8 @@
   "ticketDescription": "**Soon authorized people will fully answer your question.**\nYou can start describing your problem while you waiting",
   "ticketChannelTopic": "Ticket requested by {{member}} (ID: {{memberId}})",
   "closeTicket": "Close ticket",
-  "ticketClosed": "**This ticket was closed by {{member}}**"
+  "ticketClosed": "**This ticket was closed by {{member}}**",
+
+  "yes": "Yes",
+  "no": "No"
 }
