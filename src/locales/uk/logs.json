@@ -1,8 +1,12 @@
 {
   "messageDelete_author": "Повідомлення видалено | {{user}}",
 
-  "messageUpdate_author": "Повідомлення оновлено | {{user}}",
-  "messageUpdate_title": "Перейти до повідомлення",
+  "messageUpdate": {
+    "author": "Повідомлення оновлено | {{user}}",
+    "title": "Перейти до повідомлення",
+    "oldAttach": "Вкладення раніше:",
+    "newAttach": "Вкладення зараз:"
+  },
 
   "guildMemberRemove_undefined_author": "Учасник вийшов / був вигнаний",
   "guildMemberRemove_kick_author": "Учасник був вигнаний",

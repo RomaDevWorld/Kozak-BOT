@@ -1,6 +1,7 @@
 import { EmbedBuilder, GuildChannel, ImageURLOptions, Message } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
+import parseMessageAttachments from '../../functions/parseMessageAttachments'
 
 const MessageDeleteLog = async (message: Message) => {
   if (message.author.bot) return
@@ -15,7 +16,7 @@ const MessageDeleteLog = async (message: Message) => {
       iconURL: message.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setURL(message.url)
-    .setDescription(message.content || 'N/A')
+    .setDescription(message.content || t('none', { lng }))
     .addFields(
       { name: t('author', { lng }), value: message.author.toString(), inline: true },
       { name: t('channel_one', { lng }), value: `${message.channel.toString()} (#${(message.channel as GuildChannel).name})`, inline: true }
@@ -26,11 +27,8 @@ const MessageDeleteLog = async (message: Message) => {
 
   if (message.attachments.size > 0)
     embed.addFields({
-      name: t('attachment'),
-      value:
-        message.attachments.size > 1
-          ? message.attachments.map((i, index) => `${index}. ${i.url}`).join('\n')
-          : message.attachments.first()?.url || t('error', { lng }),
+      name: t('attachment', { lng, value: message.attachments.size }),
+      value: parseMessageAttachments(message.attachments) || t('error', { lng }),
     })
 
   channel.send({ embeds: [embed] })

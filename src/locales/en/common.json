@@ -62,5 +62,7 @@
   "ticketClosed": "**This ticket was closed by {{member}}**",
 
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+
+  "none": "None"
 }
