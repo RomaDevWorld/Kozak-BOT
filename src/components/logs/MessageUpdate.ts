@@ -33,11 +33,12 @@ const MessageUpdateLog = async (oldMessage: Message, newMessage: Message) => {
 
   if (oldMessage.attachments.size > 0 || newMessage.attachments.size > 0) {
     const embedLines = [
-      `**${t('logs:messageUpdate.oldAttach')}:**`,
-      parseMessageAttachments(oldMessage.attachments) || t('none', { lng }),
-      `**${t('logs:messageUpdate.newAttach')}:`,
-      parseMessageAttachments(newMessage.attachments) || t('none', { lng }),
+      `**${(t('logs:messageUpdate.oldAttach'), { lng })}:**`,
+      parseMessageAttachments(oldMessage.attachments) ?? t('none', { lng }),
+      `**${(t('logs:messageUpdate.newAttach'), { lng })}:**`,
+      parseMessageAttachments(newMessage.attachments) ?? t('none', { lng }),
     ]
+
     embed.addFields({ name: t('attachment_other', { lng }), value: embedLines.join('\n') })
   }
 

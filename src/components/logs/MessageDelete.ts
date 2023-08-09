@@ -16,7 +16,6 @@ const MessageDeleteLog = async (message: Message) => {
       iconURL: message.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setURL(message.url)
-    .setDescription(message.content || t('none', { lng }))
     .addFields(
       { name: t('author', { lng }), value: message.author.toString(), inline: true },
       { name: t('channel_one', { lng }), value: `${message.channel.toString()} (#${(message.channel as GuildChannel).name})`, inline: true }
@@ -25,11 +24,13 @@ const MessageDeleteLog = async (message: Message) => {
     .setColor('Red')
     .setTimestamp()
 
-  if (message.attachments.size > 0)
+  if (message.content) embed.setDescription(message.content)
+  if (message.attachments.size > 0) {
     embed.addFields({
-      name: t('attachment', { lng, value: message.attachments.size }),
-      value: parseMessageAttachments(message.attachments) || t('error', { lng }),
+      name: t('attachment', { lng, count: message.attachments.size }),
+      value: parseMessageAttachments(message.attachments) || t('none', { lng }),
     })
+  }
 
   channel.send({ embeds: [embed] })
 }

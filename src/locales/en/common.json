@@ -63,6 +63,7 @@
 
   "yes": "Yes",
   "no": "No",
-
+  "attachment_one": "Attachment",
+  "attachment_other": "Attachments",
   "none": "None"
 }
