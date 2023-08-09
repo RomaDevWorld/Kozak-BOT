@@ -1,17 +1,27 @@
+# Workspace and GH folders
 .github
 .vscode
 
+# External modules
 node_modules
 
+# Build folder
 dist
 
+# Env variables & it's example
 .env*
 
+# Git files & folders
 .git
+.gitignore
 
+# README & other Markdown files
 *.md
 
-.gitignore
+# Configs for linters & formatters
 .prettierrc.js
 .eslintrc.js
 .eslintignore
+
+# Not essential docker files
+docker-compose.yml
