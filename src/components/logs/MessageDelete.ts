@@ -1,4 +1,4 @@
-import { EmbedBuilder, ImageURLOptions, Message } from 'discord.js'
+import { EmbedBuilder, GuildChannel, ImageURLOptions, Message } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 
@@ -7,20 +7,31 @@ const MessageDeleteLog = async (message: Message) => {
   const channel = await validateLog(message.guild, 'messageDelete')
   if (!channel) return
 
+  const lng = message.guild?.preferredLocale
+
   const embed = new EmbedBuilder()
     .setAuthor({
-      name: t('logs:messageDelete_author', { lng: message.guild?.preferredLocale, user: message.author.username }),
+      name: t('logs:messageDelete_author', { lng, user: message.author.username }),
       iconURL: message.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setURL(message.url)
     .setDescription(message.content || 'N/A')
     .addFields(
-      { name: t('author', { lng: message.guild?.preferredLocale }), value: message.author.toString(), inline: true },
-      { name: t('channel_one', { lng: message.guild?.preferredLocale }), value: message.channel.toString(), inline: true }
+      { name: t('author', { lng }), value: message.author.toString(), inline: true },
+      { name: t('channel_one', { lng }), value: `${message.channel.toString()} (#${(message.channel as GuildChannel).name})`, inline: true }
     )
     .setFooter({ text: `ID: ${message.author.id}` })
     .setColor('Red')
     .setTimestamp()
+
+  if (message.attachments.size > 0)
+    embed.addFields({
+      name: t('attachment'),
+      value:
+        message.attachments.size > 1
+          ? message.attachments.map((i, index) => `${index}. ${i.url}`).join('\n')
+          : message.attachments.first()?.url || t('error', { lng }),
+    })
 
   channel.send({ embeds: [embed] })
 }
