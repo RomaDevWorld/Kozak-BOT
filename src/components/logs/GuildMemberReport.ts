@@ -23,9 +23,11 @@ const GuildMemberReport = async (guild: Guild, message: Message) => {
       name: t('logs:guildMemberReport_author', { lng, author: message.author.username, value: report.members.length }),
       iconURL: message.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
-    .addFields({ name: t('member_one', { lng }), value: message.author.toString() })
+    .addFields(
+      { name: t('member_one', { lng }), value: message.author.toString() },
+      { name: t('channel_one', { lng }), value: `${message.channel.toString()} (#${message.channel.name})` }
+    )
     .setTitle(t('logs:messageDelete_title', { lng }))
-    .setURL(message.url)
     .setTimestamp()
     .setDescription(message.content)
   // .setFooter({ text: t('logs:guildMemberReport_footer', { lng }) })
