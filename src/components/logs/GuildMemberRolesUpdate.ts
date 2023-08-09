@@ -41,7 +41,7 @@ const GuildMemberRolesUpdateLog = async (oldMember: GuildMember, newMember: Guil
 
   const audit = await fetchAuditLog(newMember.guild, AuditLogEvent.MemberRoleUpdate)
   if (audit && audit.targetId === newMember.id) {
-    embed.addFields({ name: t('executor', { lng }), value: audit.executor?.toString() || 'N/A' })
+    embed.addFields({ name: t('executor', { lng }), value: audit.executor?.toString() || t('none', { lng }) })
     if (audit.reason) embed.addFields({ inline: true, name: t('reason', { lng }), value: audit.reason })
   }
 

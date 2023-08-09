@@ -21,7 +21,7 @@ const GuildBanAddLog = async (guildBan: GuildBan) => {
 
   const audit = await fetchAuditLog(guildBan.guild, AuditLogEvent.MemberBanAdd)
   if (audit && audit.targetId === guildBan.user.id) {
-    embed.addFields({ name: t('moderator', { lng }), value: audit.executor?.toString() || 'N/A' })
+    embed.addFields({ name: t('moderator', { lng }), value: audit.executor?.toString() || t('none', { lng }) })
     if (audit.reason) embed.addFields({ inline: true, name: t('reason', { lng }), value: audit.reason })
   }
 
