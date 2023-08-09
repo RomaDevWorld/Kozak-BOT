@@ -1,4 +1,4 @@
-import { EmbedBuilder, Guild, ImageURLOptions, Message } from 'discord.js'
+import { EmbedBuilder, Guild, GuildChannel, ImageURLOptions, Message } from 'discord.js'
 import { Reports } from '../context/Report'
 import validateLog from '../../functions/validateLog'
 import { getOnline } from '../../functions/fetchMembers'
@@ -25,7 +25,7 @@ const GuildMemberReport = async (guild: Guild, message: Message) => {
     })
     .addFields(
       { name: t('member_one', { lng }), value: message.author.toString() },
-      { name: t('channel_one', { lng }), value: `${message.channel.toString()} (#${message.channel.name})` }
+      { name: t('channel_one', { lng }), value: `${message.channel.toString()} (#${(message.channel as GuildChannel).name})` }
     )
     .setTitle(t('logs:messageDelete_title', { lng }))
     .setTimestamp()
