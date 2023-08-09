@@ -25,12 +25,12 @@ const GuildMemberNicknameUpdateLog = async (oldMember: GuildMember, newMember: G
       },
       {
         name: t('before', { lng }),
-        value: oldMember.nickname || 'N/A',
+        value: oldMember.nickname || t('none', { lng }),
         inline: true,
       },
       {
         name: t('now', { lng }),
-        value: newMember.nickname || 'N/A',
+        value: newMember.nickname || t('none', { lng }),
         inline: true,
       }
     )
@@ -40,7 +40,7 @@ const GuildMemberNicknameUpdateLog = async (oldMember: GuildMember, newMember: G
 
   const audit = await fetchAuditLog(newMember.guild, AuditLogEvent.MemberUpdate)
   if (audit && audit.targetId === newMember.id) {
-    embed.addFields({ name: t('executor', { lng }), value: audit.executor?.toString() || 'N/A' })
+    embed.addFields({ name: t('executor', { lng }), value: audit.executor?.toString() || t('none', { lng }) })
     if (audit.reason) embed.addFields({ inline: true, name: t('reason', { lng }), value: audit.reason })
   }
 

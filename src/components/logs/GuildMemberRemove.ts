@@ -26,7 +26,7 @@ const GuildMemberRemoveLog = async (member: GuildMember) => {
 
   if (audit?.executorId && audit.targetId === member.id) {
     embed.addFields(
-      { name: t('moderator', { lng }), value: audit.executor?.toString() || 'N/A' },
+      { name: t('moderator', { lng }), value: audit.executor?.toString() || t('none', { lng }) },
       {
         name: t('reason', { lng }),
         value: audit.reason || t('reasonNotSpecified', { lng }),

@@ -28,7 +28,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
       .setTimestamp()
     if (audit)
       embed.addFields(
-        { name: t('moderator', { lng }), value: audit.executor?.toString() || 'N/A' },
+        { name: t('moderator', { lng }), value: audit.executor?.toString() || t('none', { lng }) },
         { name: t('reason', { lng }), value: audit.reason || t('reasonNotSpecified', { lng }) }
       )
 
@@ -54,7 +54,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
       .setTimestamp()
     if (audit)
       embed.addFields(
-        { name: t('moderator', { lng }), value: audit.executor?.toString() || 'N/A' },
+        { name: t('moderator', { lng }), value: audit.executor?.toString() || t('none', { lng }) },
         { name: t('reason', { lng }), value: audit.reason || t('reasonNotSpecified', { lng }) }
       )
     channel.send({ embeds: [embed] })

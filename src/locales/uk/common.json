@@ -60,5 +60,8 @@
   "ticketClosed": "**Цей квиток було зачинено учасником {{member}}**",
 
   "yes": "Так",
-  "no": "Ні"
+  "no": "Ні",
+  "attachment_one": "Вкладення",
+  "attachment_other": "Вкладення",
+  "none": "Немає"
 }

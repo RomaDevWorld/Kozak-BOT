@@ -1,8 +1,12 @@
 {
   "messageDelete_author": "Message deleted | {{user}}",
 
-  "messageUpdate_author": "Message updated | {{user}}",
-  "messageUpdate_title": "Go to message",
+  "messageUpdate": {
+    "author": "Message updated | {{user}}",
+    "title": "Go to message",
+    "oldAttach": "Old attachments",
+    "newAttach": "New attachments"
+  },
 
   "guildMemberRemove_undefined_author": "Member left / was kicked",
   "guildMemberRemove_kick_author": "Member was kicked",
