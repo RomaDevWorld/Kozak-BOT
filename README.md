@@ -8,7 +8,6 @@
   <li>Over 15 commands</li>
   <li>Advanced logging system</li>
   <li>Ticket system</li>
-  <li>Reaction roles</li>
   <li>Private voice channels on your server</li>
   <li>Online member counter</li>
 </ul>
