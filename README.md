@@ -1,6 +1,6 @@
 # Cossack - multi-language, multipurpose discord bot created using discord.js, typescript, MongoDB and i18next
 
-**This bot is currently under development. Stay tuned for new updates!**
+**This bot is up and running! [Add it to your server](https://discord.com/oauth2/authorize?client_id=797395030851059713&permissions=1495655312618&scope=bot%20applications.commands)**
 
 ## Featuring:
 
