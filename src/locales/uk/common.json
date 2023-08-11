@@ -61,7 +61,6 @@
 
   "yes": "Так",
   "no": "Ні",
-  "attachment_one": "Вкладення",
-  "attachment_other": "Вкладення",
+  "attachment": "Вкладення",
   "none": "Немає"
 }
