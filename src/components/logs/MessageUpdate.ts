@@ -5,6 +5,8 @@ import parseMessageAttachments from '../../functions/parseMessageAttachments'
 
 const MessageUpdateLog = async (oldMessage: Message, newMessage: Message) => {
   if (newMessage.author.bot) return
+  if (oldMessage.content === newMessage.content && oldMessage.attachments === newMessage.attachments) return
+
   const channel = await validateLog(newMessage.guild, 'messageUpdate')
   if (!channel) return
 
@@ -33,9 +35,9 @@ const MessageUpdateLog = async (oldMessage: Message, newMessage: Message) => {
 
   if (oldMessage.attachments.size > 0 || newMessage.attachments.size > 0) {
     const embedLines = [
-      `**${(t('logs:messageUpdate.oldAttach'), { lng })}:**`,
+      `**${t('logs:messageUpdate.oldAttach', { lng })}**`,
       parseMessageAttachments(oldMessage.attachments) ?? t('none', { lng }),
-      `**${(t('logs:messageUpdate.newAttach'), { lng })}:**`,
+      `**${t('logs:messageUpdate.newAttach', { lng })}**`,
       parseMessageAttachments(newMessage.attachments) ?? t('none', { lng }),
     ]
 
