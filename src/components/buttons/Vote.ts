@@ -33,7 +33,7 @@ const button: Button = {
     const totalResponses = data.options.reduce((sum, option) => sum + option.value.length, 0)
 
     const description = data.options.map(
-      (option, index) => `**${index + 1}.** ${option.name} (${((option.value.length / totalResponses) * 100).toFixed(0)}%)`
+      (option, index) => `**${index + 1}.** ${option.name} (${option.value.length} | ${((option.value.length / totalResponses) * 100).toFixed(0)}%)`
     )
 
     const updatedEmbed = new EmbedBuilder()
