@@ -8,7 +8,7 @@ export const handleLobbyJoin = async (newVoiceState: VoiceState) => {
   if (!newVoiceState.channel || !newVoiceState.member || newVoiceState.member.user.bot) return
 
   const data = await Modules.findOne({ guildId: newVoiceState.channel?.guild.id })
-  if (!data || data.lobby?.channel !== newVoiceState.channel.id) return
+  if (!data || data.lobby?.channel !== newVoiceState.channel?.id) return
 
   const lobbyChannel = newVoiceState.guild.channels.cache.get(data.lobby.channel) as VoiceChannel
 
