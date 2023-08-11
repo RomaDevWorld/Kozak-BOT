@@ -10,4 +10,4 @@ COPY . .
 
 RUN yarn build
 
-CMD ["yarn", "start"]
+CMD ["node", "./dist/index.js"]
