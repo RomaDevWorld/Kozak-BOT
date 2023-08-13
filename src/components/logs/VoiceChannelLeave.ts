@@ -18,7 +18,7 @@ const VoiceChannelLeave = async (oldVoiceState: VoiceState, newVoiceState: Voice
       .setDescription(
         followUp.embeds[0].description +
           '\n' +
-          `**${t('logs:voiceChannelLeaveTime', {
+          `**${t('logs:voiceChannel.LeaveTime', {
             lng: newVoiceState.guild.preferredLocale,
             channel: oldVoiceState.channel?.name,
             time: new Date(Date.now() - followUp.createdTimestamp).toISOString().slice(11, 19),
@@ -35,7 +35,7 @@ const VoiceChannelLeave = async (oldVoiceState: VoiceState, newVoiceState: Voice
         name: newVoiceState.member?.user.username as string,
         iconURL: newVoiceState.member?.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
       })
-      .setDescription(`**${t('logs:voiceChannelLeave', { lng: newVoiceState.guild.preferredLocale, channel: oldVoiceState.channel?.name })}**`)
+      .setDescription(`**${t('logs:voiceChannel.Leave', { lng: newVoiceState.guild.preferredLocale, channel: oldVoiceState.channel?.name })}**`)
       .setTimestamp()
       .setFooter({ text: `ID: ${newVoiceState.id}` })
     channel.send({ embeds: [embed] })

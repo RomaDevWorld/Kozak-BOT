@@ -1,9 +1,15 @@
 {
-  "list_embed_author": "Список попереджень {{member}}",
-  "list_embed_footer": "Усього: {{value}}",
+  "list": {
+    "embed_author": "Список попереджень {{member}}",
+    "embed_footer": "Усього: {{value}}"
+  },
 
-  "push_embed_author": "Попередження відправлено!",
-  "push_embed_description": "**Причина:** {{reason}}",
+  "push": {
+    "embed_author": "Попередження відправлено!",
+    "embed_description": "**Причина:** {{reason}}"
+  },
 
-  "clear_success": "Успішно очищено усі попередження {{member}}"
+  "clear": {
+    "success": "Успішно очищено усі попередження {{member}}"
+  }
 }

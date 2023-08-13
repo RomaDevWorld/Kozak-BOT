@@ -42,18 +42,18 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
     switch (interaction.options.getSubcommand()) {
       case 'channel': {
         const channel = interaction.options.getChannel('channel')
-        await Modules.updateOne({ guildId: interaction.guildId }, { "log.channel": channel?.id }, { upsert: true })
+        await Modules.updateOne({ guildId: interaction.guildId }, { 'log.channel': channel?.id }, { upsert: true })
 
         return interaction.reply({
-          content: t('config:logChannelSet', { lng, channel: channel?.toString() }),
+          content: t('config:log.channelSet', { lng, channel: channel?.toString() }),
           ephemeral: true,
         })
       }
       case 'channel-remove': {
-        await Modules.updateOne({ guildId: interaction.guildId }, { "log.channel": null }, { upsert: true })
+        await Modules.updateOne({ guildId: interaction.guildId }, { 'log.channel': null }, { upsert: true })
 
         return interaction.reply({
-          content: t('config:logChannelRemove', { lng }),
+          content: t('config:log.channelRemove', { lng }),
           ephemeral: true,
         })
       }
@@ -93,9 +93,9 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
         const row = new ActionRowBuilder<ButtonBuilder>().addComponents(messageSwitch, membersSwitch, voiceSwitch, modSwitch, reportSwitch)
 
         const embed = new EmbedBuilder()
-          .setAuthor({ name: t('config:logSwitches_author', { lng }), iconURL: interaction.guild?.iconURL() as string })
-          .setDescription(t('config:logSwitches_desc', { lng }))
-          .setFooter({ text: t('config:logSwitches_footer', { lng }) })
+          .setAuthor({ name: t('config:log.switches.author', { lng }), iconURL: interaction.guild?.iconURL() as string })
+          .setDescription(t('config:log.switches.desc', { lng }))
+          .setFooter({ text: t('config:log.switches.footer', { lng }) })
           .addFields({
             name: t('channel', { lng }),
             value: interaction.guild?.channels.cache.get(data.log?.channel as string)?.toString() ?? t('disabled', { lng }),

@@ -20,14 +20,14 @@ const GuildMemberReport = async (guild: Guild, message: Message) => {
 
   const embed = new EmbedBuilder()
     .setAuthor({
-      name: t('logs:guildMemberReport_author', { lng, author: message.author.username, value: report.members.length }),
+      name: t('logs:guildMemberReport.author', { lng, author: message.author.username, value: report.members.length }),
       iconURL: message.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .addFields(
       { name: t('member_one', { lng }), value: message.author.toString() },
       { name: t('channel_one', { lng }), value: `${message.channel.toString()} (#${(message.channel as GuildChannel).name})` }
     )
-    .setTitle(t('logs:messageDelete_title', { lng }))
+    .setTitle(t('logs:messageDelete.author', { lng }))
     .setTimestamp()
     .setDescription(message.content)
   // .setFooter({ text: t('logs:guildMemberReport_footer', { lng }) })

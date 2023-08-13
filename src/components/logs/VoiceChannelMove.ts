@@ -27,7 +27,7 @@ const VoiceChannelMove = async (oldVoiceState: VoiceState, newVoiceState: VoiceS
         iconURL: newVoiceState.member?.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
       })
       .setDescription(
-        `**${t('logs:voiceChannelLost', { lng: newVoiceState.guild.preferredLocale })}**` +
+        `**${t('logs:voiceChannel.Lost', { lng: newVoiceState.guild.preferredLocale })}**` +
           `\n` +
           `=> #${oldVoiceState.channel?.name}` +
           `\n` +

@@ -30,12 +30,12 @@ const CounterSubcommandGroup: SubCommandGroup = {
       case 'set': {
         const channel = interaction.options.getChannel('channel') as VoiceChannel | CategoryChannel
         let label = interaction.options.getString('label')
-        if (!label) label = t('config:defaultCounterName', { lng: interaction.guild?.preferredLocale })
+        if (!label) label = t('config:counter.defaultName', { lng: interaction.guild?.preferredLocale })
 
         await Modules.updateOne({ guildId: interaction.guildId }, { counter: { channelId: channel.id, label } }, { upsert: true })
 
         return interaction.reply({
-          content: t('config:counterChannelSet', { channel: channel.toString(), label, lng: interaction.locale }),
+          content: t('config:counter.channelSet', { channel: channel.toString(), label, lng: interaction.locale }),
           ephemeral: true,
         })
       }

@@ -17,11 +17,11 @@ const RolesAutoRoleSubcommand: SubCommand = {
     const role = interaction.options.getRole('role') as Role
 
     if (role.position >= (interaction.member?.roles as GuildMemberRoleManager).highest.position)
-      return interaction.reply({ content: t('config:autoRolePosition', { lng }), ephemeral: true })
+      return interaction.reply({ content: t('config:autoRole.position', { lng }), ephemeral: true })
 
     await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { 'roles.autorole': role.id })
 
-    interaction.reply({ content: t('config:autoRoleSet', { lng, role: role.toString() }), ephemeral: true })
+    interaction.reply({ content: t('config:autoRole.set', { lng, role: role.toString() }), ephemeral: true })
   },
 }
 

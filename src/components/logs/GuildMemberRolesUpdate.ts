@@ -21,7 +21,7 @@ const GuildMemberRolesUpdateLog = async (oldMember: GuildMember, newMember: Guil
 
   const embed = new EmbedBuilder()
     .setAuthor({
-      name: t('logs:guildMemberRolesUpdate_author', { lng, user: newMember.user.username }),
+      name: t('logs:guildMemberRolesUpdate.author', { lng, user: newMember.user.username }),
       iconURL: newMember.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setColor('Yellow')
@@ -30,12 +30,12 @@ const GuildMemberRolesUpdateLog = async (oldMember: GuildMember, newMember: Guil
 
   if (addedRoles.size > 0)
     embed.addFields({
-      name: t('logs:guildMemberRolesUpdate_field1', { lng }),
+      name: t('logs:guildMemberRolesUpdate.field1', { lng }),
       value: addedRoles.map((role) => role.toString()).join('\n'),
     })
   if (removedRoles.size > 0)
     embed.addFields({
-      name: t('logs:guildMemberRolesUpdate_field2', { lng }),
+      name: t('logs:guildMemberRolesUpdate.field2', { lng }),
       value: removedRoles.map((role) => role.toString()).join('\n'),
     })
 

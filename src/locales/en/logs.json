@@ -1,35 +1,57 @@
 {
-  "messageDelete_author": "Message deleted | {{user}}",
+  "messageDelete": {
+    "author": "Message deleted | {{user}}"
+  },
 
   "messageUpdate": {
     "author": "Message updated | {{user}}",
     "title": "Go to message",
-    "oldAttach": "Old attachments",
-    "newAttach": "New attachments"
+    "oldAttach": "Old attachments:",
+    "newAttach": "New attachments:"
   },
 
-  "guildMemberRemove_undefined_author": "Member left / was kicked",
-  "guildMemberRemove_kick_author": "Member was kicked",
-  "guildMemberRemove_left_author": "Member left",
+  "guildMemberRemove": {
+    "undefined_author": "Member left / was kicked",
+    "kick_author": "Member was kicked",
+    "left_author": "Member left"
+  },
 
-  "guildMemberAdd_embed_author": "Member joined",
-  "guildMemberAdd_embed_description": "Account created:",
+  "guildMemberAdd": {
+    "embed_author": "Member joined",
+    "embed_description": "Account created:"
+  },
 
-  "guildMemberTimeout_unmute_author": "Member unmuted | {{user}}",
-  "guildMemberTimeout_mute_author": "Member muted | {{user}}",
-  "guildMemberNicknameUpdate_author": "Nickname changed | {{user}}",
+  "guildMemberTimeout": {
+    "unmute_author": "Member unmuted | {{user}}",
+    "mute_author": "Member muted | {{user}}"
+  },
 
-  "guildMemberRolesUpdate_author": "Roles updated | {{user}}",
-  "guildMemberRolesUpdate_field1": "Added roles:",
-  "guildMemberRolesUpdate_field2": "Removed roles:",
+  "guildMemberNicknameUpdate": {
+    "author": "Nickname changed | {{user}}"
+  },
 
-  "guildMemberReport_author": "Member reported | {{author}} ({{value}})",
+  "guildMemberRolesUpdate": {
+    "author": "Roles updated | {{user}}",
+    "field1": "Added roles:",
+    "field2": "Removed roles:"
+  },
 
-  "voiceChannelJoin": "Member joined #{{channel}}",
-  "voiceChannelLeave": "Member left from #{{channel}}",
-  "voiceChannelLeaveTime": "Member left from #{{channel}}\nSession lasted: {{time}}",
-  "voiceChannelLost": "Previous activity were lost..",
+  "guildMemberReport": {
+    "author": "Member reported | {{author}} ({{value}})"
+  },
 
-  "guildBanAdd_author": "User banned | {{user}}",
-  "guildBanRemove_author": "User unbanned | {{user}}"
+  "voiceChannel": {
+    "Join": "Member joined #{{channel}}",
+    "Leave": "Member left from #{{channel}}",
+    "LeaveTime": "Member left from #{{channel}}\nSession lasted: {{time}}",
+    "Lost": "Previous activity was lost.."
+  },
+
+  "guildBanAdd": {
+    "author": "User banned | {{user}}"
+  },
+
+  "guildBanRemove": {
+    "author": "User unbanned | {{user}}"
+  }
 }

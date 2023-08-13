@@ -1,9 +1,15 @@
 {
-  "list_embed_author": "List of all {{member}} warnings",
-  "list_embed_footer": "Total warnings: {{value}}",
+  "list": {
+    "embed_author": "List of all {{member}} warnings",
+    "embed_footer": "Total warnings: {{value}}"
+  },
 
-  "push_embed_author": "Warning sent!",
-  "push_embed_description": "**Reason:** {{reason}}",
+  "push": {
+    "embed_author": "Warning sent!",
+    "embed_description": "**Reason:** {{reason}}"
+  },
 
-  "clear_success": "Successfully wiped all {{member}}'s warnings."
+  "clear": {
+    "success": "Successfully wiped all {{member}}'s warnings."
+  }
 }
