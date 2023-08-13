@@ -21,14 +21,14 @@ const PrivateManageLimitSubcommand: SubCommand = {
     const lng = interaction.locale
 
     const channel = getPrivateChannel(interaction.member as GuildMember)
-    if (!channel) return interaction.reply({ content: t('private:noChannel', { lng }), ephemeral: true })
+    if (!channel) return interaction.reply({ content: t('privates:noChannel', { lng }), ephemeral: true })
     if (!interaction.guild) return
 
     const limit = interaction.options.getInteger('limit') as number
 
     channel.setUserLimit(limit)
 
-    interaction.reply({ content: t('private:limitUpdated', { lng, limit }), ephemeral: true })
+    interaction.reply({ content: t('privates:limitUpdated', { lng, limit }), ephemeral: true })
   },
 }
 

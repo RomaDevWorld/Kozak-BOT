@@ -44,17 +44,18 @@ export const createPrivateChannel = async (member: GuildMember, lobbyChannel: Vo
     const lng = member.guild.preferredLocale
 
     const embed = new EmbedBuilder()
-      .setAuthor({ name: t('private:restore.embed_title', { lng }) })
+      .setAuthor({ name: t('privates:restore.embed_title', { lng }) })
       .setColor('Green')
-      .setFooter({ text: t('private:restore.embed_footer', { lng }) })
-    if (data.name) embed.addFields({ name: t('private:restore.name', { lng }), value: data.name })
-    if (data.limit) embed.addFields({ name: t('private:restore.limit', { lng }), value: data.limit.toString() })
-    if (data.isPublic) embed.addFields({ name: t('private:restore.isPublic', { lng }), value: data.isPublic ? t('yes', { lng }) : t('no', { lng }) })
-    if (data.invited?.length) embed.addFields({ name: t('private:restore.invited', { lng }), value: data.invited.map((id) => `<@${id}>`).join(', ') })
-    if (data.kicked?.length) embed.addFields({ name: t('private:restore.kicked', { lng }), value: data.kicked.map((id) => `<@${id}>`).join(', ') })
+      .setFooter({ text: t('privates:restore.embed_footer', { lng }) })
+    if (data.name) embed.addFields({ name: t('privates:restore.name', { lng }), value: data.name })
+    if (data.limit) embed.addFields({ name: t('privates:restore.limit', { lng }), value: data.limit.toString() })
+    if (data.isPublic) embed.addFields({ name: t('privates:restore.isPublic', { lng }), value: data.isPublic ? t('yes', { lng }) : t('no', { lng }) })
+    if (data.invited?.length)
+      embed.addFields({ name: t('privates:restore.invited', { lng }), value: data.invited.map((id) => `<@${id}>`).join(', ') })
+    if (data.kicked?.length) embed.addFields({ name: t('privates:restore.kicked', { lng }), value: data.kicked.map((id) => `<@${id}>`).join(', ') })
 
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-      new ButtonBuilder(RestorePrivate.button.data).setLabel(t('private:restore.buttonText', { lng }))
+      new ButtonBuilder(RestorePrivate.button.data).setLabel(t('privates:restore.buttonText', { lng }))
     )
     channel.send({ content: `<@${member.id}>`, components: [row], embeds: [embed] })
   }

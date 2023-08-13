@@ -12,12 +12,12 @@ const PrivateManageDeleteSubcommand: SubCommand = {
     const lng = interaction.locale
 
     const channel = getPrivateChannel(interaction.member as GuildMember)
-    if (!channel) return interaction.reply({ content: t('private:noChannel', { lng }), ephemeral: true })
+    if (!channel) return interaction.reply({ content: t('privates:noChannel', { lng }), ephemeral: true })
     if (!interaction.guild) return
 
     removePrivateChannel(interaction.member as GuildMember)
 
-    interaction.reply({ content: t('private:channelDeleted', { lng }), ephemeral: true })
+    interaction.reply({ content: t('privates:channelDeleted', { lng }), ephemeral: true })
   },
 }
 

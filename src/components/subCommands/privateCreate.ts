@@ -15,7 +15,7 @@ const CreatePrivateSubcommand: SubCommand = {
     const data = await Modules.findOne({ guildId: interaction.guildId })
     const lobbyChannel = interaction.guild?.channels.cache.get(data?.lobby?.channel as string) as VoiceChannel
 
-    if (!data || !data.lobby?.channel || !lobbyChannel) return interaction.reply({ content: t('private:moduleOff', { lng }), ephemeral: true })
+    if (!data || !data.lobby?.channel || !lobbyChannel) return interaction.reply({ content: t('privates:moduleOff', { lng }), ephemeral: true })
 
     const existingChannel = getPrivateChannel(interaction.member as GuildMember)
     if (existingChannel) existingChannel.delete()
@@ -23,10 +23,10 @@ const CreatePrivateSubcommand: SubCommand = {
     const channel = await createPrivateChannel(interaction.member as GuildMember, lobbyChannel)
     if (!channel) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
 
-    interaction.reply({ content: t('private:channelCreated', { lng, channel: channel.toString() }), ephemeral: true })
+    interaction.reply({ content: t('privates:channelCreated', { lng, channel: channel.toString() }), ephemeral: true })
 
     timeouts[channel.id] = setTimeout(() => {
-      interaction.followUp({ content: t('private:channelExpired', { lng }), ephemeral: true }).catch((err) => console.error(err))
+      interaction.followUp({ content: t('privates:channelExpired', { lng }), ephemeral: true }).catch((err) => console.error(err))
 
       removePrivateChannel(interaction.member as GuildMember)
       clearTimeout(timeouts[channel.id])
