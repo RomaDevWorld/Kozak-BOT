@@ -1,5 +1,5 @@
 {
-  "messageDelete_author": "Повідомлення видалено | {{user}}",
+  "messageDelete": { "author": "Повідомлення видалено | {{user}}" },
 
   "messageUpdate": {
     "author": "Повідомлення оновлено | {{user}}",
@@ -8,28 +8,48 @@
     "newAttach": "Вкладення зараз:"
   },
 
-  "guildMemberRemove_undefined_author": "Учасник вийшов / був вигнаний",
-  "guildMemberRemove_kick_author": "Учасник був вигнаний",
-  "guildMemberRemove_left_author": "Учасник вийшов",
+  "guildMemberRemove": {
+    "undefined_author": "Учасник вийшов / був вигнаний",
+    "kick_author": "Учасник був вигнаний",
+    "left_author": "Учасник вийшов"
+  },
 
-  "guildMemberAdd_embed_author": "Учасник приєднався",
-  "guildMemberAdd_embed_description": "Обліковий запис створено:",
+  "guildMemberAdd": {
+    "embed_author": "Учасник приєднався",
+    "embed_description": "Обліковий запис створено:"
+  },
 
-  "guildMemberTimeout_unmute_author": "Учасника увімкнено | {{user}}",
-  "guildMemberTimeout_mute_author": "Учасника вимкнено | {{user}}",
-  "guildMemberNicknameUpdate_author": "Нікнейм змінено | {{user}}",
+  "guildMemberTimeout": {
+    "unmute_author": "Учасника увімкнено | {{user}}",
+    "mute_author": "Учасника вимкнено | {{user}}"
+  },
 
-  "guildMemberRolesUpdate_author": "Ролі оновлено | {{user}}",
-  "guildMemberRolesUpdate_field1": "Додані ролі:",
-  "guildMemberRolesUpdate_field2": "Вилучені ролі:",
+  "guildMemberNicknameUpdate": {
+    "author": "Нікнейм змінено | {{user}}"
+  },
 
-  "guildMemberReport_author": "Скарга на учасника | {{author}} ({{value}})",
+  "guildMemberRolesUpdate": {
+    "author": "Ролі оновлено | {{user}}",
+    "field1": "Додані ролі:",
+    "field2": "Вилучені ролі:"
+  },
 
-  "voiceChannelJoin": "Учасник приєднався до #{{channel}}",
-  "voiceChannelLeave": "Учасник від'єднався від #{{channel}}",
-  "voiceChannelLeaveTime": "Учасник від'єднався від #{{channel}}\nСесія тривала: {{time}}",
-  "voiceChannelLost": "Попередня активність була втрачена..",
+  "guildMemberReport": {
+    "author": "Скарга на учасника | {{author}} ({{value}})"
+  },
 
-  "guildBanAdd_author": "Користувача заблоковано | {{user}}",
-  "guildBanRemove_author": "Користувача розблоковано | {{user}}"
+  "voiceChannel": {
+    "Join": "Учасник приєднався до #{{channel}}",
+    "Leave": "Учасник від'єднався від #{{channel}}",
+    "LeaveTime": "Учасник від'єднався від #{{channel}}\nСесія тривала: {{time}}",
+    "Lost": "Попередня активність була втрачена.."
+  },
+
+  "guildBanAdd": {
+    "author": "Користувача заблоковано | {{user}}"
+  },
+
+  "guildBanRemove": {
+    "author": "Користувача розблоковано | {{user}}"
+  }
 }

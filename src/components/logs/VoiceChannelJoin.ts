@@ -14,7 +14,7 @@ const VoiceChannelJoin = async (oldVoiceState: VoiceState, newVoiceState: VoiceS
       name: newVoiceState.member.user.username,
       iconURL: newVoiceState.member.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
-    .setDescription(`**${t('logs:voiceChannelJoin', { lng: newVoiceState.guild.preferredLocale, channel: newVoiceState.channel?.name })}**`)
+    .setDescription(`**${t('logs:voiceChannel.Join', { lng: newVoiceState.guild.preferredLocale, channel: newVoiceState.channel?.name })}**`)
     .setTimestamp()
     .setFooter({ text: `ID: ${newVoiceState.member.id}` })
 

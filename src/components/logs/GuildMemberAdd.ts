@@ -12,11 +12,11 @@ const GuildMemberAddLog = async (member: GuildMember) => {
 
   const embed = new EmbedBuilder()
     .setAuthor({
-      name: t('logs:guildMemberAdd_embed_author', { lng, user: member.user.username }),
+      name: t('logs:guildMemberAdd.embed_author', { lng, user: member.user.username }),
       iconURL: member.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setDescription(
-      `${member} (${member.user.username})\n${t('logs:guildMemberAdd_embed_description', { lng })}\n${moment(member.user.createdAt).format(
+      `${member} (${member.user.username})\n${t('logs:guildMemberAdd.embed_description', { lng })}\n${moment(member.user.createdAt).format(
         'YYYY.DD.MM HH:mm'
       )}`
     )

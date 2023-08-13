@@ -4,11 +4,10 @@ import { t } from 'i18next'
 import { SlashCommand } from '../@types/discord'
 
 const command: SlashCommand = {
-  command: new SlashCommandBuilder().setName('cat').setDescription('Show random cat')
-    .setDescriptionLocalizations({
-      uk: 'Показати випадкового кота!',
-      fr:"Faire apparaitre un chat aléatoire"
-    }),
+  command: new SlashCommandBuilder().setName('cat').setDescription('Show random cat').setDescriptionLocalizations({
+    uk: 'Показати випадкового кота!',
+    fr: 'Faire apparaitre un chat aléatoire',
+  }),
   cooldown: 10,
   execute: async (interaction) => {
     await interaction.deferReply().catch((err: Error) => console.error(err))

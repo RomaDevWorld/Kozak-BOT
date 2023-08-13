@@ -13,7 +13,7 @@ const RolesAutoRoleSubcommandOff: SubCommand = {
 
     await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { 'roles.autorole': null })
 
-    interaction.reply({ content: t('config:autoRoleOff', { lng }), ephemeral: true })
+    interaction.reply({ content: t('config:autoRole.off', { lng }), ephemeral: true })
   },
 }
 

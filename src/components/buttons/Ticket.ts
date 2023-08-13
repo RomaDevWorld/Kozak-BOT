@@ -24,7 +24,7 @@ const TicketButton: Button = {
       name: `ticket-${interaction.user.id}`,
       type: ChannelType.GuildText,
       parent: category.id,
-      topic: t('ticketChannelTopic', { lng: interaction.guild.preferredLocale, member: interaction.user.toString(), memberId: interaction.user.id }),
+      topic: t('ticket.channelTopic', { lng: interaction.guild.preferredLocale, member: interaction.user.toString(), memberId: interaction.user.id }),
       permissionOverwrites: [
         {
           id: interaction.user.id,
@@ -42,19 +42,19 @@ const TicketButton: Button = {
     )
 
     const CloseButton = new ButtonBuilder(CloseTicket.button.data)
-      .setLabel(t('closeTicket', { lng: interaction.guild?.preferredLocale }))
+      .setLabel(t('ticket.close', { lng: interaction.guild?.preferredLocale }))
       .setStyle(ButtonStyle.Danger)
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(CloseButton)
 
     const embed = new EmbedBuilder()
-      .setAuthor({ name: t('ticketCreated', { lng: interaction.guild?.preferredLocale }) })
-      .setDescription(t('ticketDescription', { lng: interaction.guild?.preferredLocale }))
+      .setAuthor({ name: t('ticket.created', { lng: interaction.guild?.preferredLocale }) })
+      .setDescription(t('ticket.description', { lng: interaction.guild?.preferredLocale }))
       .setColor('Green')
 
     const ticketMessage = await ticketChannel?.send({ content: '@here', embeds: [embed], components: [row] }).catch((err) => console.error(err))
     ticketMessage?.pin()
 
-    interaction.reply({ content: `**${t('ticketCreated', { lng })}** ${ticketChannel?.toString()}`, ephemeral: true })
+    interaction.reply({ content: `**${t('ticket.created', { lng })}** ${ticketChannel?.toString()}`, ephemeral: true })
   },
 }
 export default TicketButton

@@ -12,7 +12,7 @@ const MessageDeleteLog = async (message: Message) => {
 
   const embed = new EmbedBuilder()
     .setAuthor({
-      name: t('logs:messageDelete_author', { lng, user: message.author.username }),
+      name: t('logs:messageDelete.author', { lng, user: message.author.username }),
       iconURL: message.author.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setURL(message.url)

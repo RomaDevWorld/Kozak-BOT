@@ -1,22 +1,32 @@
 {
-  "logChannelSet": "Log messages will now be sent to {{channel}}",
-  "logChannelRemove": "Log channel removed",
-  "logSwitches_author": "Log types switches",
-  "logSwitches_desc": "Green button color - log type is **active**\nRed button color - log type is **active**",
-  "logSwitches_footer": "Click the button to toggle ON or OFF the log type",
-
-  "lobbyChannelSet": "Private channels lobby has been set to {{channel}}",
-  "lobbyChannelOff": "Private channels lobby has been removed",
-
-  "defaultCounterName": "Online: ONLINE/MEMBERS",
-  "counterChannelSet": "Counter channel **{{channel}}** will now display **{{label}}**",
-
-  "autoRoleSet": "Autorole is now: {{role}}",
-  "autoRoleOff": "Autorole assignment is now off",
-  "autoRolePosition": "Your can't set an autorole that is higher on the same as yours",
+  "log": {
+    "channel": {
+      "set": "Log messages will now be sent to {{channel}}",
+      "remove": "Log channel removed"
+    },
+    "switches": {
+      "author": "Log type switches",
+      "desc": "Green button color - log type is **active**\nRed button color - log type is **inactive**",
+      "footer": "Click the button to toggle the log type ON or OFF"
+    }
+  },
+  "lobby": {
+    "channelSet": "Private channels lobby has been set to {{channel}}",
+    "channelOff": "Private channels lobby has been removed"
+  },
+  "counter": {
+    "defaultName": "Online: ONLINE/MEMBERS",
+    "channelSet": "Counter channel **{{channel}}** will now display **{{label}}**"
+  },
+  "autoRole": {
+    "set": "Autorole is now: {{role}}",
+    "off": "Autorole assignment is now off",
+    "position": "You can't set an autorole that is higher or the same as yours"
+  },
   "roleRestore": "Role restore status: {{status}}",
-
-  "ticketDefaultButtonText": "Create new ticket",
-  "ticketDefaultDesc": "Press a button below to create new ticket",
-  "ticketInitCreated": "Ticket initial message was successfully created!"
+  "ticket": {
+    "defaultButtonText": "Create new ticket",
+    "defaultDesc": "Press the button below to create a new ticket",
+    "initCreated": "Ticket initial message was successfully created!"
+  }
 }

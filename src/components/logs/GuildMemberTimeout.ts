@@ -20,7 +20,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
     const embed = new EmbedBuilder()
       .setColor('Green')
       .setAuthor({
-        name: t('logs:guildMemberTimeout_unmute_author', { lng, user: newMember.user.username }),
+        name: t('logs:guildMemberTimeout.unmute_author', { lng, user: newMember.user.username }),
         iconURL: newMember.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
       })
       .setFooter({ text: newMember.id })
@@ -37,7 +37,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
     const embed = new EmbedBuilder()
       .setColor('Red')
       .setAuthor({
-        name: t('logs:guildMemberTimeout_mute_author', { lng, user: newMember.user.username }),
+        name: t('logs:guildMemberTimeout.mute_author', { lng, user: newMember.user.username }),
         iconURL: newMember.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
       })
       .setFooter({ text: newMember.id })

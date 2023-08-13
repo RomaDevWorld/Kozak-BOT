@@ -11,7 +11,7 @@ const GuildBanAddLog = async (guildBan: GuildBan) => {
 
   const embed = new EmbedBuilder()
     .setAuthor({
-      name: t('logs:guildBanAdd_author', { lng, user: guildBan.user.username }),
+      name: t('logs:guildBanAdd.author', { lng, user: guildBan.user.username }),
       iconURL: guildBan.user.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setDescription(`${guildBan.user} (${guildBan.user.username})`)

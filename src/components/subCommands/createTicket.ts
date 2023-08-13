@@ -42,7 +42,7 @@ const CreateTicketSubcommand: SubCommand = {
     const lng = interaction.guild?.preferredLocale
 
     const button = new ButtonBuilder(TicketButton.button.data).setLabel(
-      interaction.options.getString('button_text') || t('config:ticketDefaultButtonText', { lng })
+      interaction.options.getString('button_text') || t('config:ticket.defaultButtonText', { lng })
     )
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(button)
 
@@ -50,7 +50,7 @@ const CreateTicketSubcommand: SubCommand = {
       .setAuthor({
         name: interaction.options.getString('name') as string,
       })
-      .setDescription(interaction.options.getString('description') || t('config:ticketDefaultDesc', { lng }))
+      .setDescription(interaction.options.getString('description') || t('config:ticket.defaultDesc', { lng }))
       .setColor('Green')
 
     const msg = await interaction.channel?.send({ embeds: [embed], components: [row] }).catch((err) => {
@@ -72,7 +72,7 @@ const CreateTicketSubcommand: SubCommand = {
       { upsert: true }
     )
 
-    interaction.reply({ content: t('config:ticketInitCreated', { lng: interaction.locale }), ephemeral: true })
+    interaction.reply({ content: t('config:ticket.initCreated', { lng: interaction.locale }), ephemeral: true })
   },
 }
 

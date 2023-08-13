@@ -15,7 +15,7 @@ const GuildMemberNicknameUpdateLog = async (oldMember: GuildMember, newMember: G
 
   const embed = new EmbedBuilder()
     .setAuthor({
-      name: t('logs:guildMemberNicknameUpdate_author', { lng, user: newMember.user.username }),
+      name: t('logs:guildMemberNicknameUpdate.author', { lng, user: newMember.user.username }),
       iconURL: newMember.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .addFields(

@@ -2,9 +2,9 @@ import common_en from '../locales/en/common.json'
 import common_uk from '../locales/uk/common.json'
 import common_fr from '../locales/fr/common.json'
 
-import eightball_en from '../locales/en/8ball.json'
-import eightball_uk from '../locales/uk/8ball.json'
-import eightball_fr from '../locales/fr/8ball.json'
+import eightball_en from '../locales/en/eightball.json'
+import eightball_uk from '../locales/uk/eightball.json'
+import eightball_fr from '../locales/fr/eightball.json'
 
 import dice_en from '../locales/en/dice.json'
 import dice_uk from '../locales/uk/dice.json'
@@ -22,13 +22,13 @@ import logs_uk from '../locales/uk/logs.json'
 import config_en from '../locales/en/config.json'
 import config_uk from '../locales/uk/config.json'
 
-import private_en from '../locales/en/private.json'
-import private_uk from '../locales/uk/private.json'
+import private_en from '../locales/en/privates.json'
+import private_uk from '../locales/uk/privates.json'
 
 const resources = {
   en: {
     common: common_en,
-    '8ball': eightball_en,
+    eightball: eightball_en,
     dice: dice_en,
     mute: mute_en,
     warn: warn_en,
@@ -38,7 +38,7 @@ const resources = {
   },
   uk: {
     common: common_uk,
-    '8ball': eightball_uk,
+    eightball: eightball_uk,
     dice: dice_uk,
     mute: mute_uk,
     warn: warn_uk,
@@ -48,7 +48,7 @@ const resources = {
   },
   fr: {
     common: common_fr,
-    '8ball': eightball_fr,
+    eightball: eightball_fr,
     dice: dice_fr,
   },
 }
