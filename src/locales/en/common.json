@@ -55,11 +55,13 @@
   "report_one": "Report",
   "report_other": "Reports",
 
-  "ticketCreated": "Ticket created!",
-  "ticketDescription": "**Soon authorized people will fully answer your question.**\nYou can start describing your problem while you waiting",
-  "ticketChannelTopic": "Ticket requested by {{member}} (ID: {{memberId}})",
-  "closeTicket": "Close ticket",
-  "ticketClosed": "**This ticket was closed by {{member}}**",
+  "ticket": {
+    "created": "Ticket created!",
+    "description": "**Soon authorized people will fully answer your question.**\nYou can start describing your problem while you waiting",
+    "channelTopic": "Ticket requested by {{member}} (ID: {{memberId}})",
+    "close": "Close ticket",
+    "closed": "**This ticket was closed by {{member}}**"
+  },
 
   "yes": "Yes",
   "no": "No",

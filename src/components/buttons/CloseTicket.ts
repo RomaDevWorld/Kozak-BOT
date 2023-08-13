@@ -16,7 +16,7 @@ const CloseTicket: Button = {
     channel.setName(`archive-` + channel.name)
 
     interaction.message.edit({ components: [] })
-    interaction.reply(t('ticketClosed', { lng: interaction.guild?.preferredLocale, member: interaction.user.toString() }))
+    interaction.reply(t('ticket.closed', { lng: interaction.guild?.preferredLocale, member: interaction.user.toString() }))
   },
 }
 
