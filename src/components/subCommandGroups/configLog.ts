@@ -45,7 +45,7 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
         await Modules.updateOne({ guildId: interaction.guildId }, { 'log.channel': channel?.id }, { upsert: true })
 
         return interaction.reply({
-          content: t('config:log.channelSet', { lng, channel: channel?.toString() }),
+          content: t('config:log.channel.set', { lng, channel: channel?.toString() }),
           ephemeral: true,
         })
       }
@@ -53,7 +53,7 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
         await Modules.updateOne({ guildId: interaction.guildId }, { 'log.channel': null }, { upsert: true })
 
         return interaction.reply({
-          content: t('config:log.channelRemove', { lng }),
+          content: t('config:log.channel.remove', { lng }),
           ephemeral: true,
         })
       }

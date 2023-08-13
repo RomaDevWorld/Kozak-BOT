@@ -1,7 +1,9 @@
 {
   "log": {
-    "channelSet": "Log messages will now be sent to {{channel}}",
-    "channelRemove": "Log channel removed",
+    "channel": {
+      "set": "Log messages will now be sent to {{channel}}",
+      "remove": "Log channel removed"
+    },
     "switches": {
       "author": "Log type switches",
       "desc": "Green button color - log type is **active**\nRed button color - log type is **inactive**",
