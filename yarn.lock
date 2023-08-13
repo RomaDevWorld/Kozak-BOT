@@ -859,6 +859,13 @@ has-flag@^4.0.0:
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
   integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
+i18next-resources-for-ts@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/i18next-resources-for-ts/-/i18next-resources-for-ts-1.2.1.tgz#056631177063762b4a1616caccf208d0caf676b8"
+  integrity sha512-Z2FmlSJZRVUlmcqVnpoe2oxixawSYku2Ez7p1KRF3TsJAhW5JzcynKkeeqlw5Jn6MJHhOpXKvT3eK2UcWt2/aw==
+  dependencies:
+    "@babel/runtime" "^7.22.5"
+
 i18next@^23.2.3:
   version "23.2.11"
   resolved "https://registry.yarnpkg.com/i18next/-/i18next-23.2.11.tgz#0c6f3a637fa87d3243e64b78ad285b7f77d41353"
