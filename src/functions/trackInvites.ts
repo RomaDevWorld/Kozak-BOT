@@ -5,7 +5,7 @@ const globalInvites = new Map<string, Map<string, number>>()
 export const cacheAllInvites = async (client: Client) => {
   client.guilds.cache.forEach(async (guild) => {
     if (!guild.members.me?.permissions.has(PermissionFlagsBits.ManageGuild)) return
-    const invites = await guild.invites.fetch().catch((err: Error) => console.error(err.message))
+    const invites = await guild.invites.fetch().catch((err) => console.error(err.message))
     if (!invites) return
 
     const codeUses = new Map<string, number>()

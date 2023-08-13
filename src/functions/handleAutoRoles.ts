@@ -25,6 +25,10 @@ export const handleAutoRoles = async (member: GuildMember) => {
 }
 
 export const saveRolesToRestore = async (member: GuildMember) => {
+  const data = await Modules.findOne({ guildId: member.guild.id })
+
+  if (!data?.roles?.restore?.status) return
+
   await RestoreRoles.findOneAndUpdate(
     { guildId: member.guild.id, userId: member.id },
     {
