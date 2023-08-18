@@ -12,7 +12,7 @@ export default function (time: string) {
 
   if (!match) return
 
-  const [, value, unit] = match
+  const [value, unit] = match
   const multiplier = units[unit]
 
   if (!multiplier) return
