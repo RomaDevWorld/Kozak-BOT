@@ -12,16 +12,19 @@ const TicketButton: Button = {
 
     const data = await Modules.findOne({ guildId: interaction.guildId })
     const thisTicket = data?.tickets.find((ticket) => ticket.messageId === id)
+    if (!thisTicket) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
+
     const category = interaction.guild?.channels.cache.get(thisTicket?.channelId as string)
     const allowedRoles = thisTicket?.allowedRoles
+    const ticketPrefix = thisTicket?.prefix || 'ticket'
 
     if (!category) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
 
-    const existingTicketChannel = interaction.guild?.channels.cache.find((channel) => channel.name === `ticket-${interaction.user.id}`)
-    if (existingTicketChannel) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
+    const existingTicketChannel = interaction.guild?.channels.cache.find((channel) => channel.name === `${ticketPrefix}-${interaction.user.id}`)
+    if (existingTicketChannel) return interaction.reply({ content: t('ticket.alreadyCreated', { lng }), ephemeral: true })
 
     const ticketChannel = await interaction.guild?.channels.create({
-      name: `ticket-${interaction.user.id}`,
+      name: `${ticketPrefix}-${interaction.user.id}`,
       type: ChannelType.GuildText,
       parent: category.id,
       topic: t('ticket.channelTopic', { lng: interaction.guild.preferredLocale, member: interaction.user.toString(), memberId: interaction.user.id }),

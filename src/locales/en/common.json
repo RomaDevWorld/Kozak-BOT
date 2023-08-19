@@ -56,6 +56,7 @@
   "report_other": "Reports",
 
   "ticket": {
+    "alreadyCreated": "You already have an ongoing ticket",
     "created": "Ticket created!",
     "description": "**Soon authorized people will fully answer your question.**\nYou can start describing your problem while you waiting",
     "channelTopic": "Ticket requested by {{member}} (ID: {{memberId}})",
