@@ -59,7 +59,6 @@
     "alreadyCreated": "You already have an ongoing ticket",
     "created": "Ticket created!",
     "description": "**Soon authorized people will fully answer your question.**\nYou can start describing your problem while you waiting",
-    "channelTopic": "Ticket requested by {{member}} (ID: {{memberId}})",
     "close": "Close ticket",
     "closed": "**This ticket was closed by {{member}}**"
   },
