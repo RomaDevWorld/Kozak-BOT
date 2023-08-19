@@ -20,6 +20,9 @@ const command = new SlashCommandSubcommandBuilder()
     option.setName('name').setDescription('Ticket name').setDescriptionLocalizations({ uk: 'Назва квитка' }).setRequired(true).setMaxLength(256)
   )
   .addStringOption((option) =>
+    option.setName('prefix').setDescription('Ticket prefix').setDescriptionLocalizations({ uk: 'Префікс квитка' }).setRequired(true).setMaxLength(10)
+  )
+  .addStringOption((option) =>
     option.setName('button_text').setDescription('Button text').setDescriptionLocalizations({ uk: 'Текст кнопки' }).setMaxLength(32)
   )
   .addStringOption((option) =>
@@ -66,6 +69,7 @@ const CreateTicketSubcommand: SubCommand = {
             messageId: msg.id,
             channelId: interaction.options.getChannel('channel')?.id,
             allowedRoles: interaction.options.resolved?.roles?.map((role) => role?.id),
+            prefix: interaction.options.getString('prefix') as string,
           },
         },
       },

@@ -68,6 +68,10 @@ const ModulesSchema = new Schema({
         type: SchemaTypes.String,
       },
       allowedRoles: [String],
+      prefix: {
+        type: SchemaTypes.String,
+        required: true,
+      },
     },
   ],
 })
