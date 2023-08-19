@@ -1,4 +1,4 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, EmbedBuilder } from 'discord.js'
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, Collection, EmbedBuilder, TextChannel } from 'discord.js'
 import { Button } from '../../@types/discord'
 import Modules from '../../schemas/Modules'
 import { t } from 'i18next'
@@ -20,14 +20,18 @@ const TicketButton: Button = {
 
     if (!category) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
 
-    const existingTicketChannel = interaction.guild?.channels.cache.find((channel) => channel.name === `${ticketPrefix}-${interaction.user.id}`)
+    const channelsWithPrefix = interaction.guild?.channels.cache.filter(
+      (channel) => channel.name.startsWith(ticketPrefix) && channel.type === ChannelType.GuildText
+    ) as Collection<string, TextChannel> | undefined
+
+    const existingTicketChannel = channelsWithPrefix?.find((channel) => channel.topic === interaction.user.toString())
     if (existingTicketChannel) return interaction.reply({ content: t('ticket.alreadyCreated', { lng }), ephemeral: true })
 
     const ticketChannel = await interaction.guild?.channels.create({
-      name: `${ticketPrefix}-${interaction.user.id}`,
+      name: `${ticketPrefix}-${(channelsWithPrefix?.size || 0) + 1}`,
       type: ChannelType.GuildText,
       parent: category.id,
-      topic: t('ticket.channelTopic', { lng: interaction.guild.preferredLocale, member: interaction.user.toString(), memberId: interaction.user.id }),
+      topic: interaction.user.toString(),
       permissionOverwrites: [
         {
           id: interaction.user.id,
