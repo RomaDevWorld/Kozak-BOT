@@ -13,7 +13,9 @@ const GuildMemberReport = async (guild: Guild, message: Message) => {
   const channel = await validateLog(guild, 'guildMemberReport')
   if (!channel) return
 
-  let threshold = Math.floor((await getOnline(guild)) / 2)
+  const online = await getOnline(guild)
+  if (!online) return
+  let threshold = Math.floor(online / 2)
   if (threshold < 2) threshold = 2
 
   const percent = Math.floor((report.members.length / threshold) * 100)
@@ -30,7 +32,6 @@ const GuildMemberReport = async (guild: Guild, message: Message) => {
     .setTitle(t('logs:messageDelete.author', { lng }))
     .setTimestamp()
     .setDescription(message.content)
-  // .setFooter({ text: t('logs:guildMemberReport_footer', { lng }) })
 
   if (percent === 100) {
     embed.setColor('Red')

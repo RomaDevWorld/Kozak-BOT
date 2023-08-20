@@ -6,20 +6,22 @@ const useCounters = (client: Client) => {
   setInterval(async () => {
     const data = await Modules.find()
 
-    data.forEach(async (element) => {
-      if (!element.counter?.channelId || !element.counter.label) return
+    data.forEach(async (item) => {
+      if (!item.counter?.channelId || !item.counter.label) return
 
-      const guild = client.guilds.cache.get(element.guildId)
+      const guild = client.guilds.cache.get(item.guildId)
       if (!guild) return
 
-      const channel = guild.channels.cache.get(element.counter.channelId)
+      const channel = guild.channels.cache.get(item.counter.channelId)
       if (!channel || !channel.permissionsFor(guild.members.me as GuildMember).has('ManageChannels')) return
 
       try {
         const online = await getOnline(guild, ['online', 'idle', 'dnd'])
         const members = await getHumans(guild)
 
-        const name = element.counter.label
+        if (!online || !members) return
+
+        const name = item.counter.label
           .replaceAll(`ON`, online.toString())
           .replaceAll(`MEM`, members.toString())
           .replaceAll(`ALL`, members.toString())
