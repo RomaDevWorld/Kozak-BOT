@@ -5,10 +5,10 @@ import { t } from 'i18next'
 
 const RestorePrivate: Button = {
   button: new ButtonBuilder().setCustomId('private_restore').setStyle(ButtonStyle.Primary).setLabel('Restore'),
-  execute(interaction) {
+  execute: async (interaction) => {
     const lng = interaction.locale
 
-    const memberChannel = getPrivateChannel(interaction.member as GuildMember)
+    const memberChannel = await getPrivateChannel(interaction.member as GuildMember)
 
     if (!memberChannel || memberChannel.id !== interaction.channel?.id)
       return interaction.reply({ content: t('privates:restore.notOwner', { lng }), ephemeral: true })

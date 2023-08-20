@@ -3,6 +3,7 @@ import Modules from '../schemas/Modules'
 import RestorePrivates from '../schemas/RestorePrivate'
 import RestorePrivate from '../components/buttons/RestorePrivate'
 import { t } from 'i18next'
+import Privates from '../schemas/Privates'
 
 export const handleLobbyJoin = async (newVoiceState: VoiceState) => {
   if (!newVoiceState.channel || !newVoiceState.member || newVoiceState.member.user.bot) return
@@ -12,7 +13,7 @@ export const handleLobbyJoin = async (newVoiceState: VoiceState) => {
 
   const lobbyChannel = newVoiceState.guild.channels.cache.get(data.lobby.channel) as VoiceChannel
 
-  const existingChannel = getPrivateChannel(newVoiceState.member)
+  const existingChannel = await getPrivateChannel(newVoiceState.member)
   if (existingChannel) return newVoiceState.member.voice.setChannel(existingChannel).catch((err) => console.error(err))
 
   createPrivateChannel(newVoiceState.member, lobbyChannel)
@@ -63,22 +64,20 @@ export const createPrivateChannel = async (member: GuildMember, lobbyChannel: Vo
   return channel
 }
 
-const privateChannels = new Map<string, { channel: VoiceChannel }>()
-
-export const savePrivateChannel = (member: GuildMember, channel: VoiceChannel) => {
-  privateChannels.set(member.id, { channel })
+export const savePrivateChannel = async (member: GuildMember, channel: VoiceChannel) => {
+  await Privates.findOneAndUpdate({ memberId: member.id, guildId: member.guild.id }, { channelId: channel.id }, { upsert: true })
 }
 
-export const getPrivateChannel = (member: GuildMember) => {
-  const value = privateChannels.get(member.id)
+export const getPrivateChannel = async (member: GuildMember) => {
+  const value = await Privates.findOne({ memberId: member.id, guildId: member.guild.id })
 
   if (!value) return
 
-  return member.guild.channels.cache.get(value.channel.id) as VoiceChannel
+  return member.guild.channels.cache.get(value.channelId) as VoiceChannel
 }
 
 export const removePrivateChannel = async (member: GuildMember) => {
-  const existingChannel = getPrivateChannel(member)
+  const existingChannel = await getPrivateChannel(member)
   if (existingChannel) {
     existingChannel.delete().catch((err) => console.error(err))
     await RestorePrivates.findOneAndUpdate(
@@ -102,7 +101,7 @@ export const removePrivateChannel = async (member: GuildMember) => {
     )
   }
 
-  privateChannels.delete(member.id)
+  await Privates.findOneAndDelete({ memberId: member.id, guildId: member.guild.id })
 }
 
 interface TimeoutsI {
@@ -113,23 +112,26 @@ export const timeouts: TimeoutsI = {}
 export const handlePrivateChannelTimeout = async (oldVoiceState: VoiceState, newVoiceState: VoiceState) => {
   if (!oldVoiceState.member || !newVoiceState.member) return
   if (oldVoiceState.channelId === newVoiceState.channelId) return
+  if (oldVoiceState.channel && oldVoiceState.channel.members.size > 0) return
 
-  privateChannels.forEach((i) => {
-    if (oldVoiceState.channel?.id === i.channel.id) {
-      if (oldVoiceState.channel.members.size > 0) return
-
-      timeouts[i.channel.id] = setTimeout(() => {
-        removePrivateChannel(oldVoiceState.member as GuildMember)
-        clearTimeout(timeouts[i.channel.id])
-        delete timeouts[i.channel.id]
-      }, 60000)
-    } else if (newVoiceState.channel?.id === i.channel.id) {
-      const timeout = timeouts[i.channel.id]
-      if (!timeout) return
-      clearTimeout(timeouts[i.channel.id])
-      delete timeouts[i.channel.id]
-    }
+  const data = await Privates.findOne({
+    $or: [{ channelId: oldVoiceState.channelId }, { channelId: newVoiceState.channelId }],
   })
+
+  if (!data) return
+
+  if (oldVoiceState.channel?.id === data.channelId) {
+    timeouts[data.channelId] = setTimeout(() => {
+      removePrivateChannel(oldVoiceState.member as GuildMember)
+      clearTimeout(timeouts[data.channelId])
+      delete timeouts[data.channelId]
+    }, 60000)
+  } else if (newVoiceState.channel?.id === data.channelId) {
+    const timeout = timeouts[data.channelId]
+    if (!timeout) return
+    clearTimeout(timeouts[data.channelId])
+    delete timeouts[data.channelId]
+  }
 }
 
 export const restorePrivateChannel = async (member: GuildMember, channel: VoiceChannel) => {

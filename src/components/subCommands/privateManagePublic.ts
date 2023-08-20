@@ -8,10 +8,10 @@ const PrivateManagePublicSubcommand: SubCommand = {
     .setName('public')
     .setDescription('Make the channel public or private')
     .setDescriptionLocalizations({ uk: 'Зробити канал відкритим або особистим' }),
-  execute: function (interaction) {
+  execute: async (interaction) => {
     const lng = interaction.locale
 
-    const channel = getPrivateChannel(interaction.member as GuildMember)
+    const channel = await getPrivateChannel(interaction.member as GuildMember)
     if (!channel) return interaction.reply({ content: t('privates:noChannel', { lng }), ephemeral: true })
     if (!interaction.guild) return
 

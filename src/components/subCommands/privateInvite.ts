@@ -11,9 +11,9 @@ const InvitePrivateSubcommand: SubCommand = {
     .addUserOption((option) =>
       option.setName('member').setDescription('Guild member').setDescriptionLocalizations({ uk: 'Учасник серверу' }).setRequired(true)
     ),
-  execute: function (interaction) {
+  execute: async (interaction) => {
     const lng = interaction.locale
-    const channel = getPrivateChannel(interaction.member as GuildMember)
+    const channel = await getPrivateChannel(interaction.member as GuildMember)
     if (!channel) return interaction.reply({ content: t('privates:noChannel', { lng }), ephemeral: true })
 
     const member = interaction.options.getMember('member') as GuildMember

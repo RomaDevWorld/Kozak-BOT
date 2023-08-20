@@ -17,10 +17,10 @@ const PrivateManageLimitSubcommand: SubCommand = {
         .setMaxValue(99)
         .setRequired(true)
     ),
-  execute: function (interaction) {
+  execute: async (interaction) => {
     const lng = interaction.locale
 
-    const channel = getPrivateChannel(interaction.member as GuildMember)
+    const channel = await getPrivateChannel(interaction.member as GuildMember)
     if (!channel) return interaction.reply({ content: t('privates:noChannel', { lng }), ephemeral: true })
     if (!interaction.guild) return
 
