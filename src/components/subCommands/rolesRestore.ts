@@ -23,7 +23,7 @@ const RolesRestoreSubcommand: SubCommand = {
     const bool = interaction.options.getBoolean('toggle')
 
     let time = parseTime(interaction.options.getString('expire') || '7d')
-    if (!time) time = 86400000 * 7
+    if (!time || time > 24 * 60 * 60 * 1000) time = 86400000 * 7
 
     await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { 'roles.restore': { status: bool, expireTime: time } })
 
