@@ -11,10 +11,10 @@ const PrivateManageRenameSubcommand: SubCommand = {
     .addStringOption((option) =>
       option.setName('name').setDescription('New name').setDescriptionLocalizations({ uk: 'Нова назва каналу' }).setRequired(true).setMaxLength(50)
     ),
-  execute: function (interaction) {
+  execute: async (interaction) => {
     const lng = interaction.locale
 
-    const channel = getPrivateChannel(interaction.member as GuildMember)
+    const channel = await getPrivateChannel(interaction.member as GuildMember)
     if (!channel) return interaction.reply({ content: t('privates:noChannel', { lng }), ephemeral: true })
     if (!interaction.guild) return
 

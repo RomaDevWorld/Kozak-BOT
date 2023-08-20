@@ -9,7 +9,7 @@ const CreatePrivateSubcommand: SubCommand = {
     .setName('create')
     .setDescription('Create or Recreate your private channel')
     .setDescriptionLocalizations({ uk: 'Створити або Пере-створити ваш приватний канал' }),
-  execute: async function (interaction) {
+  execute: async (interaction) => {
     const lng = interaction.locale
 
     const data = await Modules.findOne({ guildId: interaction.guildId })
@@ -17,7 +17,7 @@ const CreatePrivateSubcommand: SubCommand = {
 
     if (!data || !data.lobby?.channel || !lobbyChannel) return interaction.reply({ content: t('privates:moduleOff', { lng }), ephemeral: true })
 
-    const existingChannel = getPrivateChannel(interaction.member as GuildMember)
+    const existingChannel = await getPrivateChannel(interaction.member as GuildMember)
     if (existingChannel) existingChannel.delete()
 
     const channel = await createPrivateChannel(interaction.member as GuildMember, lobbyChannel)

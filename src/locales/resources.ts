@@ -34,7 +34,7 @@ const resources = {
     warn: warn_en,
     logs: logs_en,
     config: config_en,
-    private: private_en,
+    privates: private_en,
   },
   uk: {
     common: common_uk,
@@ -44,7 +44,7 @@ const resources = {
     warn: warn_uk,
     logs: logs_uk,
     config: config_uk,
-    private: private_uk,
+    privates: private_uk,
   },
   fr: {
     common: common_fr,

@@ -11,7 +11,7 @@
   "channelExpired": "Your private channel was automatically deleted because you didn't joined it in past 5 minutes",
 
   "restore": {
-    "embed_title": "We found data about your previous channel!",
+    "embed_title": "Want to restore your previous channel?",
     "embed_footer": "Click a button below to apply these values",
     "name": "Name",
     "limit": "Limit",
