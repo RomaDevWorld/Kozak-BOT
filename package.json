@@ -16,7 +16,7 @@
   "dependencies": {
     "@types/node": "^20.4.4",
     "axios": "^1.4.0",
-    "discord.js": "^14.11.0",
+    "discord.js": "^14.12.1",
     "dotenv": "^16.3.1",
     "i18next": "^23.3.0",
     "i18next-resources-for-ts": "^1.2.1",
