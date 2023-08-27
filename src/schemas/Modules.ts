@@ -59,6 +59,21 @@ const ModulesSchema = new Schema({
       },
     },
   },
+  leveling: {
+    status: { type: SchemaTypes.Boolean, default: false },
+    minXp: {
+      type: SchemaTypes.Number,
+      default: 5,
+    },
+    maxXp: {
+      type: SchemaTypes.Number,
+      default: 15,
+    },
+    cooldown: {
+      type: SchemaTypes.Number,
+      default: 15 * 1000, // 15 seconds
+    },
+  },
   tickets: [
     {
       channelId: {
