@@ -14,7 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^20.4.4",
+    "@types/node": "^20.5.0",
     "axios": "^1.4.0",
     "discord.js": "^14.12.1",
     "dotenv": "^16.3.1",
