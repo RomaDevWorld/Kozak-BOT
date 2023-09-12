@@ -33,7 +33,7 @@ const LevelingXpAmountSubcommand: SubCommand = {
 
     await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { 'leveling.minXp': min, 'leveling.maxXp': max }, { upsert: true })
 
-    interaction.reply({ content: t('xp.setup.amount.success', { lng }), ephemeral: true })
+    interaction.reply({ content: t('config:xp.amount.success', { lng }), ephemeral: true })
   },
 }
 

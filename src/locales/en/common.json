@@ -81,15 +81,6 @@
     "top": {
       "no_data": "No one gained xp on this server",
       "author": "Top 10 members by XP on this server"
-    },
-    "setup": {
-      "amount": {
-        "success": "Values has been successfully updated!"
-      },
-      "cooldown": {
-        "success": "Cooldown has been successfully updated!",
-        "invalidTime": "Specified value `{{value}}` is not a correct time\nCooldown cannot be less than 15 seconds or greater than 5 minutes.\nTime should end with s/m to specify seconds and minutes"
-      }
     }
   }
 }

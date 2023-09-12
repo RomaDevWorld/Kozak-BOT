@@ -19,11 +19,11 @@ const LevelingXpCooldownSubcommand: SubCommand = {
     const time = parseTime(rawTime)
 
     if (!time || time < 15 * 1000 || time > 5 * 60 * 1000)
-      return interaction.reply({ content: t('xp.setup.cooldown.invalidTime', { lng, value: rawTime }), ephemeral: true })
+      return interaction.reply({ content: t('config:xp.cooldown.invalidTime', { lng, value: rawTime }), ephemeral: true })
 
     await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { 'leveling.cooldown': time }, { upsert: true })
 
-    interaction.reply({ content: t('xp.setup.cooldown.success', { lng }), ephemeral: true })
+    interaction.reply({ content: t('config:xp.cooldown.success', { lng }), ephemeral: true })
   },
 }
 
