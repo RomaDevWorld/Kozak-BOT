@@ -43,7 +43,7 @@ export const addXp = async (message: Message) => {
     const embed = new EmbedBuilder()
       .setAuthor({ name: t('xp.notifications.lvlUp.author', { lng: lng }) })
       .setDescription(t('xp.notifications.lvlUp.description', { lng: lng, xp: updated.xp, level: Math.floor(updated.xp / 100) }))
-      .setColor('LuminousVividPink')
+      .setColor('Fuchsia')
 
     const msg = await message.reply({ embeds: [embed] }).catch((err) => console.error(`Error while replying: ${err.message}`))
 
