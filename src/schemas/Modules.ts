@@ -73,6 +73,9 @@ const ModulesSchema = new Schema({
       type: SchemaTypes.Number,
       default: 15 * 1000, // 15 seconds
     },
+    notifications: {
+      onLvlUp: { type: SchemaTypes.Boolean, default: false },
+    },
   },
   tickets: [
     {

@@ -29,8 +29,8 @@ const command: SlashCommand = {
       })
       .setColor('Green')
       .addFields(
-        { name: t('xp.level.fields.xp', { lng }), value: data.xp.toString() },
-        { name: t('xp.level.fields.level', { lng }), value: Math.floor(data.xp / 100).toString() }
+        { name: t('xp.level.fields.xp', { lng }), value: data.xp.toString(), inline: true },
+        { name: t('xp.level.fields.level', { lng }), value: Math.floor(data.xp / 100).toString(), inline: true }
       )
       .setTimestamp()
 

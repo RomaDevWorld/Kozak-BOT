@@ -81,6 +81,12 @@
     "top": {
       "no_data": "No one gained xp on this server",
       "author": "Top 10 members by XP on this server"
+    },
+    "notifications": {
+      "lvlUp": {
+        "author": "Level UP!",
+        "description": "You have reached **{{level}}** with **{{xp}}** xp"
+      }
     }
   }
 }

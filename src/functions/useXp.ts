@@ -1,7 +1,8 @@
-import { Message } from 'discord.js'
+import { EmbedBuilder, Message } from 'discord.js'
 import XPs from '../schemas/XPs'
 import getRandomNum from './getRandomNum'
 import Modules from '../schemas/Modules'
+import { t } from 'i18next'
 
 const cd = new Set<string>()
 
@@ -16,9 +17,26 @@ export const addXp = async (message: Message) => {
     cd.delete(message.author.id)
   }, data.leveling?.cooldown || 15000)
 
-  await XPs.findOneAndUpdate(
+  const xpToGive = getRandomNum(data.leveling?.minXp, data.leveling?.maxXp)
+
+  const updated = await XPs.findOneAndUpdate(
     { memberId: message.author.id, guildId: message.guild.id },
-    { $inc: { xp: getRandomNum(data.leveling?.minXp || 5, data.leveling?.maxXp || 15) } },
-    { upsert: true }
+    { $inc: { xp: xpToGive } },
+    { upsert: true, new: true }
   )
+
+  if (data.leveling?.notifications?.onLvlUp && Math.floor(updated.xp / 100) > Math.floor((updated.xp - xpToGive) / 100)) {
+    const lng = message.guild.preferredLocale
+
+    const embed = new EmbedBuilder()
+      .setAuthor({ name: t('xp.notifications.lvlUp.author', { lng: lng }) })
+      .setDescription(t('xp.notifications.lvlUp.description', { lng: lng, xp: updated.xp, level: Math.floor(updated.xp / 100) }))
+      .setColor('LuminousVividPink')
+
+    const msg = await message.reply({ embeds: [embed] }).catch((err) => console.error(`Error while replying: ${err.message}`))
+
+    setTimeout(() => {
+      if (msg) msg.delete().catch((err) => err)
+    }, 5000)
+  }
 }
