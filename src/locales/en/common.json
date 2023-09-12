@@ -67,5 +67,26 @@
   "no": "No",
   "attachment_one": "Attachment",
   "attachment_other": "Attachments",
-  "none": "None"
+  "none": "None",
+
+  "xp": {
+    "level": {
+      "no_data": "This member has no xp on this server",
+      "author": "{{member}}'s XP and level on this server",
+      "fields": {
+        "xp": "XP",
+        "level": "Level"
+      }
+    },
+    "top": {
+      "no_data": "No one gained xp on this server",
+      "author": "Top 10 members by XP on this server"
+    },
+    "notifications": {
+      "lvlUp": {
+        "author": "Level UP!",
+        "description": "You have reached **{{level}}** with **{{xp}}** xp"
+      }
+    }
+  }
 }
