@@ -16,7 +16,12 @@ export const addXp = async (message: Message) => {
     data.leveling.ignoredChannels.includes(message.channel.id) ||
     data.leveling.ignoredRoles.some((role) => message.member?.roles.cache.get(role))
   )
-    return
+    return (
+      cd.add(message.author.id),
+      setTimeout(() => {
+        cd.delete(message.author.id)
+      }, 2000)
+    )
 
   cd.add(message.author.id)
 
