@@ -116,7 +116,7 @@ git clone git@github.com:RomaDevWorld/Cossack-BOT.git
 or just `docker-compose.yml`
 
 ```
-wget https://github.com/RomaDevWorld/Cossack-BOT/blob/main/docker-compose.yml docker-compose.yml
+wget https://raw.githubusercontent.com/RomaDevWorld/Cossack-BOT/main/docker-compose.yml docker-compose.yml
 ```
 
 Open file in a text editor, and change `DISCORD_CLIENT_ID` and `DISCORD_TOKEN`
