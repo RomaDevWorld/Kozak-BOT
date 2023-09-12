@@ -13,7 +13,7 @@ const LevelingToggleSubcommand: SubCommand = {
     const lng = interaction.locale
     const state = interaction.options.getBoolean('state') as boolean
 
-    await Modules.findOneAndUpdate({ guildID: interaction.guildId }, { 'leveling.state': state })
+    await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { 'leveling.status': state }, { upsert: true })
 
     interaction.reply({ content: state ? t('enabled', { lng }) : t('disabled', { lng }), ephemeral: true })
   },
