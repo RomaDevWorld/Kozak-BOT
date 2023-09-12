@@ -10,9 +10,16 @@ export const addXp = async (message: Message) => {
   if (!message.member || !message.guild || message.author.bot || cd.has(message.author.id)) return
 
   const data = await Modules.findOne({ guildId: message.guild.id })
-  if (!data || !data.leveling?.status) return
+  if (
+    !data ||
+    !data.leveling?.status ||
+    data.leveling.ignoredChannels.includes(message.channel.id) ||
+    data.leveling.ignoredRoles.some((role) => message.member?.roles.cache.get(role))
+  )
+    return
 
   cd.add(message.author.id)
+
   setTimeout(() => {
     cd.delete(message.author.id)
   }, data.leveling?.cooldown || 15000)

@@ -76,6 +76,14 @@ const ModulesSchema = new Schema({
     notifications: {
       onLvlUp: { type: SchemaTypes.Boolean, default: false },
     },
+    ignoredChannels: {
+      type: [SchemaTypes.String],
+      default: [],
+    },
+    ignoredRoles: {
+      type: [SchemaTypes.String],
+      default: [],
+    },
   },
   tickets: [
     {
