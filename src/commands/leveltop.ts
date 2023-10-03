@@ -22,7 +22,7 @@ const command: SlashCommand = {
       .setDescription(data?.map((d, i) => `${i + 1}. <@${d.memberId}> - ${d.xp}`).join('\n') || ' ')
       .setColor('Orange')
 
-    interaction.reply({ embeds: [embed], ephemeral: true })
+    interaction.reply({ embeds: [embed] })
   },
 }
 
