@@ -1,7 +1,7 @@
 import { ChannelType, Guild, GuildMember } from 'discord.js'
 import Modules, { logTypes } from '../schemas/Modules'
 
-const validateLog = async (guild: Guild | null, type: keyof typeof logTypes) => {
+const validateLog = async (guild: Guild, type: keyof typeof logTypes) => {
   const data = await Modules.findOne({ guildId: guild?.id })
   if (!data || !data.log?.channel) return
 

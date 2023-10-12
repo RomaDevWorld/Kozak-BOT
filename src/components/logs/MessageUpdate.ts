@@ -6,6 +6,7 @@ import parseMessageAttachments from '../../functions/parseMessageAttachments'
 const MessageUpdateLog = async (oldMessage: Message, newMessage: Message) => {
   if (newMessage.author.bot) return
   if (oldMessage.content === newMessage.content && oldMessage.attachments === newMessage.attachments) return
+  if (!newMessage.guild) return
 
   const channel = await validateLog(newMessage.guild, 'messageUpdate')
   if (!channel) return

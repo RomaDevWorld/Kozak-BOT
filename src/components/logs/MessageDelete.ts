@@ -4,7 +4,7 @@ import { t } from 'i18next'
 import parseMessageAttachments from '../../functions/parseMessageAttachments'
 
 const MessageDeleteLog = async (message: Message) => {
-  if (message.author.bot) return
+  if (message.author.bot || !message.guild) return
   const channel = await validateLog(message.guild, 'messageDelete')
   if (!channel) return
 
