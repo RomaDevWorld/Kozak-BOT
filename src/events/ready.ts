@@ -3,6 +3,7 @@ import { BotEvent } from '../@types/discord'
 import useCounters from '../functions/useCounters'
 import { cacheAllInvites } from '../functions/trackInvites'
 import cleanUp from '../functions/cleanUp'
+import useActivity from '../functions/useActivity'
 
 const event: BotEvent = {
   name: 'ready',
@@ -15,6 +16,8 @@ const event: BotEvent = {
 
     useCounters(client)
     cacheAllInvites(client)
+
+    useActivity(client)
   },
 }
 
