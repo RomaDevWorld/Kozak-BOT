@@ -4,10 +4,17 @@ import { t } from 'i18next'
 import { saveFollowUp } from '../../functions/voiceLogFollowUp'
 
 const VoiceChannelJoin = async (oldVoiceState: VoiceState, newVoiceState: VoiceState) => {
-  const channel = await validateLog(newVoiceState.guild, 'voiceStateUpdate')
-  if (!channel) return
-
   if (!oldVoiceState.member || !newVoiceState.member) return
+  if (!oldVoiceState.channel || !newVoiceState.channel) return
+
+  const channel = await validateLog(
+    newVoiceState.guild,
+    'voiceStateUpdate',
+    undefined,
+    // [oldVoiceState.channel.id, newVoiceState.channel.id],
+    newVoiceState.member
+  )
+  if (!channel) return
 
   const embed = new EmbedBuilder()
     .setAuthor({

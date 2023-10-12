@@ -8,7 +8,7 @@ const GuildMemberNicknameUpdateLog = async (oldMember: GuildMember, newMember: G
 
   if (newMember.nickname === oldMember.nickname) return
 
-  const channel = await validateLog(newMember.guild, 'guildMemberNicknameUpdate')
+  const channel = await validateLog(newMember.guild, 'guildMemberNicknameUpdate', undefined, newMember)
   if (!channel) return
 
   const lng = newMember.guild.preferredLocale

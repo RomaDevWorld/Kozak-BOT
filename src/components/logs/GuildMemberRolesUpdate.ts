@@ -14,7 +14,7 @@ const GuildMemberRolesUpdateLog = async (oldMember: GuildMember, newMember: Guil
 
   if (addedRoles.size === 0 && removedRoles.size === 0) return
 
-  const channel = await validateLog(newMember.guild, 'guildMemberRolesUpdate')
+  const channel = await validateLog(newMember.guild, 'guildMemberRolesUpdate', undefined, newMember)
   if (!channel) return
 
   const lng = newMember.guild.preferredLocale

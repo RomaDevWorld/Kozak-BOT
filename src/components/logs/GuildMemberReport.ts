@@ -10,7 +10,9 @@ const GuildMemberReport = async (guild: Guild, message: Message) => {
   const report = Reports.get(message.author.id)
   if (!report) return
 
-  const channel = await validateLog(guild, 'guildMemberReport')
+  if (!message.member || !message.guild) return
+
+  const channel = await validateLog(guild, 'guildMemberReport', [message.channelId], message.member)
   if (!channel) return
 
   const online = await getOnline(guild)

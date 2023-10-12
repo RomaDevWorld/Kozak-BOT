@@ -8,7 +8,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
 
   if (oldMember.communicationDisabledUntil === newMember.communicationDisabledUntil) return
 
-  const channel = await validateLog(newMember.guild, 'guildMemberTimeout')
+  const channel = await validateLog(newMember.guild, 'guildMemberTimeout', undefined, newMember)
   if (!channel) return
 
   let audit = await fetchAuditLog(newMember.guild, AuditLogEvent.MemberUpdate)

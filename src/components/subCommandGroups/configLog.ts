@@ -3,6 +3,8 @@ import { SubCommandGroup } from '../../@types/discord'
 import LogChannelSubcommand from '../subCommands/logChannel'
 import LogChannelRemoveSubcommand from '../subCommands/logChannelRemove'
 import LogSwitchesSubcommand from '../subCommands/logSwitch'
+import LogIgnoredChannelsSubcommand from '../subCommands/logIgnoredChannels'
+import LogIgnoredRolesSubcommand from '../subCommands/logIgnoredRoles'
 
 const ConfigLogSubcommandGroup: SubCommandGroup = {
   data: new SlashCommandSubcommandGroupBuilder()
@@ -11,7 +13,9 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
     .setDescriptionLocalizations({ uk: 'Налаштувати модуль журналу аудиту' })
     .addSubcommand(LogChannelSubcommand.data)
     .addSubcommand(LogChannelRemoveSubcommand.data)
-    .addSubcommand(LogSwitchesSubcommand.data),
+    .addSubcommand(LogSwitchesSubcommand.data)
+    .addSubcommand(LogIgnoredRolesSubcommand.data)
+    .addSubcommand(LogIgnoredChannelsSubcommand.data),
   execute: async function (interaction) {
     switch (interaction.options.getSubcommand()) {
       case 'channel':
@@ -20,6 +24,10 @@ const ConfigLogSubcommandGroup: SubCommandGroup = {
         return LogChannelRemoveSubcommand.execute(interaction)
       case 'switch':
         return LogSwitchesSubcommand.execute(interaction)
+      case 'ignored-channels':
+        return LogIgnoredChannelsSubcommand.execute(interaction)
+      case 'ignored-roles':
+        return LogIgnoredRolesSubcommand.execute(interaction)
     }
   },
 }

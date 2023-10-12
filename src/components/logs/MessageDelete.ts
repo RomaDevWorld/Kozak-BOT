@@ -4,8 +4,8 @@ import { t } from 'i18next'
 import parseMessageAttachments from '../../functions/parseMessageAttachments'
 
 const MessageDeleteLog = async (message: Message) => {
-  if (message.author.bot || !message.guild) return
-  const channel = await validateLog(message.guild, 'messageDelete')
+  if (message.author.bot || !message.guild || !message.member) return
+  const channel = await validateLog(message.guild, 'messageDelete', [message.channelId], message.member)
   if (!channel) return
 
   const lng = message.guild?.preferredLocale

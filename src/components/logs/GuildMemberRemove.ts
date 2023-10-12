@@ -7,7 +7,7 @@ const GuildMemberRemoveLog = async (member: GuildMember) => {
   const isBanned = member.guild.bans.cache.find((ban) => ban.user.id === member.id)
   if (isBanned) return
 
-  const channel = await validateLog(member.guild, 'guildMemberRemove')
+  const channel = await validateLog(member.guild, 'guildMemberRemove', undefined, member)
   if (!channel) return
 
   const lng = member.guild.preferredLocale

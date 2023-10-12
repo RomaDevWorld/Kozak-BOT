@@ -4,11 +4,10 @@ import { t } from 'i18next'
 import parseMessageAttachments from '../../functions/parseMessageAttachments'
 
 const MessageUpdateLog = async (oldMessage: Message, newMessage: Message) => {
-  if (newMessage.author.bot) return
+  if (newMessage.author.bot || !newMessage.guild || !newMessage.member) return
   if (oldMessage.content === newMessage.content && oldMessage.attachments === newMessage.attachments) return
-  if (!newMessage.guild) return
 
-  const channel = await validateLog(newMessage.guild, 'messageUpdate')
+  const channel = await validateLog(newMessage.guild, 'messageUpdate', [newMessage.channelId], newMessage.member)
   if (!channel) return
 
   const lng = newMessage.guild?.preferredLocale
