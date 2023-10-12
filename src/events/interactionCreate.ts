@@ -19,7 +19,6 @@ const event: BotEvent = {
               ephemeral: true,
             })
             .catch((err) => console.error(err))
-          setTimeout(() => interaction.deleteReply(), 5000)
           return
         }
         interaction.client.cooldowns.set(`${interaction.commandName}-${interaction.user.username}`, Date.now() + command.cooldown * 1000)
