@@ -10,10 +10,10 @@ const StarboardMessagesSchema = new Schema({
     type: SchemaTypes.Number,
     required: true,
   },
-  // channelId: {
-  //   type: SchemaTypes.String,
-  //   required: true,
-  // },
+  starboardMessageId: {
+    type: SchemaTypes.String,
+    required: true,
+  },
 })
 
 export default model('starboard-messages', StarboardMessagesSchema)

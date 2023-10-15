@@ -21,25 +21,32 @@ export const handleStarReaction = async (reaction: MessageReaction, user: User) 
   const channel = guild.channels.cache.get(data.starboard.channelId)
   if (!channel || channel.type !== ChannelType.GuildText) return
 
-  const updated = await StarboardMessages.findOneAndUpdate(
-    { messageId: reaction.message.id },
-    { count, channelId: reaction.message.id },
-    { upsert: true }
-  )
+  const exist = await StarboardMessages.findOne({ messageId: reaction.message.id })
+  if (exist?.count === count) return
+  if (exist) {
+    const message = await channel.messages.fetch(exist.starboardMessageId).catch((e) => e)
 
-  if (!updated) {
-    const embed = new EmbedBuilder()
-      .setColor('Yellow')
-      .setDescription(`${reaction.message.content?.slice(0, 4000)}\n\n[${t('logs:messageUpdate.title', { lng })}](${reaction.message.url})`)
-      .setAuthor({
-        name: reaction.message.author?.username || 'N/A',
-        iconURL: reaction.message.author?.avatarURL({ dynamic: true } as ImageURLOptions) || undefined,
-      })
-      .setTimestamp()
-      .setFooter({ text: reaction.message.id })
-      .addFields({ name: t('channel_one', { lng }), value: reaction.message.channel.toString() })
-    if (reaction.message.attachments.size > 0) embed.setImage(reaction.message.attachments.first()?.url || null)
+    if (!message) return
+    message.edit({ content: `**${reaction.emoji.toString()} ${count}**` })
 
-    channel.send({ content: `**${reaction.emoji.toString()} ${count}**`, embeds: [embed] }).catch((e) => e)
+    await StarboardMessages.findOneAndUpdate({ messageId: reaction.message.id }, { count }, { upsert: true })
+
+    return
   }
+
+  const embed = new EmbedBuilder()
+    .setColor('Yellow')
+    .setDescription(`${reaction.message.content?.slice(0, 4000)}\n\n[${t('logs:messageUpdate.title', { lng })}](${reaction.message.url})`)
+    .setAuthor({
+      name: reaction.message.author?.username || 'N/A',
+      iconURL: reaction.message.author?.avatarURL({ dynamic: true } as ImageURLOptions) || undefined,
+    })
+    .setTimestamp()
+    .setFooter({ text: reaction.message.id })
+    .addFields({ name: t('channel_one', { lng }), value: reaction.message.channel.toString() })
+  if (reaction.message.attachments.size > 0) embed.setImage(reaction.message.attachments.first()?.url || null)
+
+  const starboardMessage = await channel.send({ content: `**${reaction.emoji.toString()} ${count}**`, embeds: [embed] }).catch((e) => e)
+
+  await StarboardMessages.findOneAndUpdate({ messageId: reaction.message.id }, { starboardMessageId: starboardMessage.id, count }, { upsert: true })
 }
