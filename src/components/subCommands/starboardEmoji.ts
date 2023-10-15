@@ -15,7 +15,7 @@ const StarboardEmojiSubcommand: SubCommand = {
 
     await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { 'starboard.emoji': emoji }, { upsert: true })
 
-    interaction.reply({ content: t('config:starboard.emoji.success', { lng }), ephemeral: true })
+    interaction.reply({ content: t('config:starboard.emoji.success', { lng, emoji: emoji.toString() }), ephemeral: true })
   },
 }
 

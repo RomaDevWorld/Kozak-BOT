@@ -23,7 +23,7 @@ const StarboardThresholdSubcommand: SubCommand = {
 
     await Modules.findOneAndUpdate({ guildId: interaction.guildId }, { 'starboard.threshold': number }, { upsert: true })
 
-    interaction.reply({ content: t('config:starboard.threshold.success', { lng }), ephemeral: true })
+    interaction.reply({ content: t('config:starboard.threshold.success', { lng, value: number }), ephemeral: true })
   },
 }
 
