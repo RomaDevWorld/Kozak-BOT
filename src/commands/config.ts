@@ -6,6 +6,7 @@ import CounterSubcommandGroup from '../components/subCommandGroups/configCounter
 import RolesSubCommandGroup from '../components/subCommandGroups/configRoles'
 import TicketsSubCommandGroup from '../components/subCommandGroups/configTickets'
 import LevelingSubcommandGroup from '../components/subCommandGroups/configLeveling'
+import StarboardSubCommandGroup from '../components/subCommandGroups/configStarboard'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -17,6 +18,7 @@ const command: SlashCommand = {
     .addSubcommandGroup(RolesSubCommandGroup.data)
     .addSubcommandGroup(TicketsSubCommandGroup.data)
     .addSubcommandGroup(LevelingSubcommandGroup.data)
+    .addSubcommandGroup(StarboardSubCommandGroup.data)
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .setDescriptionLocalizations({
       uk: 'Налаштувати бота',
@@ -41,6 +43,9 @@ const command: SlashCommand = {
       }
       case 'leveling': {
         return LevelingSubcommandGroup.execute(interaction)
+      }
+      case 'starboard': {
+        return StarboardSubCommandGroup.execute(interaction)
       }
     }
   },

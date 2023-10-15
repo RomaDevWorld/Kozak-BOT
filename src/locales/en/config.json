@@ -43,5 +43,16 @@
       "success": "Cooldown has been successfully updated!",
       "invalidTime": "Specified value `{{value}}` is not a correct time\nCooldown cannot be less than 15 seconds or greater than 5 minutes.\nTime should end with s/m to specify seconds and minutes"
     }
+  },
+  "starboard": {
+    "threshold": {
+      "success": "**Starboard threshold was successfully updated:**\n{{value}}"
+    },
+    "emoji": {
+      "success": "**Starboard emoji was successfully updated:**\n{{emoji}}"
+    },
+    "channel": {
+      "success": "**Starboard channel was successfully updated:**\n{{channel}}"
+    }
   }
 }

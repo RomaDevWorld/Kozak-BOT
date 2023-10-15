@@ -93,6 +93,21 @@ const ModulesSchema = new Schema({
       default: [],
     },
   },
+  starboard: {
+    status: { type: SchemaTypes.Boolean, default: false },
+    channelId: {
+      type: SchemaTypes.String,
+      default: null,
+    },
+    emoji: {
+      type: SchemaTypes.String,
+      default: '⭐',
+    },
+    threshold: {
+      type: SchemaTypes.Number,
+      default: 3,
+    },
+  },
   tickets: [
     {
       channelId: {
