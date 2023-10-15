@@ -2,6 +2,7 @@ import { Client } from 'discord.js'
 import Modules from '../schemas/Modules'
 import RestoreRoles from '../schemas/RestoreRoles'
 import Privates from '../schemas/Privates'
+import { ChannelType } from 'discord.js'
 
 const cleanUp = async (client: Client) => {
   // eslint-disable-next-line no-console
@@ -22,7 +23,18 @@ const cleanUp = async (client: Client) => {
     .then((res) => console.warn(`Cleaned up ${res.deletedCount} restore roles`))
     .catch((err) => console.error(err))
 
-  await Privates.deleteMany({ guildId: { $in: guildIdsToDelete } })
+  const activePrivates = await Privates.find({})
+  const privatesToDelete: string[] = []
+  activePrivates.forEach((i) => {
+    const channel = client.channels.cache.get(i.channelId)
+    if (!channel) privatesToDelete.push(i.channelId)
+    if (channel && channel.type === ChannelType.GuildVoice && channel.members.size === 0) {
+      channel.delete()
+      privatesToDelete.push(channel.id)
+    }
+  })
+
+  await Privates.deleteMany({ $or: [{ guildId: { $in: guildIdsToDelete } }, { channelId: { $in: privatesToDelete } }] })
     .then((res) => console.warn(`Cleaned up ${res.deletedCount} privates`))
     .catch((err) => console.error(err))
 
