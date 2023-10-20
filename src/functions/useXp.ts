@@ -3,6 +3,7 @@ import XPs from '../schemas/XPs'
 import getRandomNum from './getRandomNum'
 import Modules from '../schemas/Modules'
 import { t } from 'i18next'
+import ModulesRanking from '../schemas/Modules.Ranking'
 
 const cd = new Set<string>()
 
@@ -50,5 +51,11 @@ export const addXp = async (message: Message) => {
     setTimeout(() => {
       if (msg) msg.delete().catch((err) => err)
     }, 5000)
+
+    const ranks = await ModulesRanking.find({ guildId: message.guild.id, lvl: { $lte: Math.floor(updated.xp / 100) } })
+    ranks.forEach((r) => {
+      const role = message.guild?.roles.cache.get(r.roleId)
+      if (role) message.member?.roles.add(role).catch((err: Error) => console.error(`Unable to give ranked role: ${err.message}`))
+    })
   }
 }
