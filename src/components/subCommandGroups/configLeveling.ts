@@ -6,6 +6,7 @@ import LevelingToggleSubcommand from '../subCommands/levelingToggle'
 import LevelingNotificationsToggleSubcommand from '../subCommands/levelingNotifications'
 import LevelingIgnoredChannelsSubcommand from '../subCommands/levelingIgnoredChannels'
 import LevelingIgnoredRolesSubcommand from '../subCommands/levelingIgnoredRoles'
+import { LevelingRankingAddSubcommand, LevelingRankingListSubcommand, LevelingRankingRemoveSubcommand } from '../subCommands/levelingRanking'
 
 const LevelingSubcommandGroup: SubCommandGroup = {
   data: new SlashCommandSubcommandGroupBuilder()
@@ -17,6 +18,9 @@ const LevelingSubcommandGroup: SubCommandGroup = {
     .addSubcommand(LevelingNotificationsToggleSubcommand.data)
     .addSubcommand(LevelingIgnoredChannelsSubcommand.data)
     .addSubcommand(LevelingIgnoredRolesSubcommand.data)
+    .addSubcommand(LevelingRankingListSubcommand.data)
+    .addSubcommand(LevelingRankingAddSubcommand.data)
+    .addSubcommand(LevelingRankingRemoveSubcommand.data)
     .setDescriptionLocalizations({ uk: 'Налаштувати досвід' }),
   execute: async function (interaction) {
     switch (interaction.options.getSubcommand()) {
@@ -32,6 +36,12 @@ const LevelingSubcommandGroup: SubCommandGroup = {
         return LevelingIgnoredChannelsSubcommand.execute(interaction)
       case 'ignored-roles':
         return LevelingIgnoredRolesSubcommand.execute(interaction)
+      case 'ranking-list':
+        return LevelingRankingListSubcommand.execute(interaction)
+      case 'ranking-add':
+        return LevelingRankingAddSubcommand.execute(interaction)
+      case 'ranking-remove':
+        return LevelingRankingRemoveSubcommand.execute(interaction)
     }
   },
 }
