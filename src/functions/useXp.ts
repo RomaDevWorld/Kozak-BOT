@@ -26,11 +26,16 @@ export const addXp = async (message: Message) => {
 
   cd.add(message.author.id)
 
+  if (!data.leveling.cooldown || data.leveling.cooldown < 15000 || data.leveling.cooldown > 300000) data.leveling.cooldown = 15000
+
   setTimeout(() => {
     cd.delete(message.author.id)
-  }, data.leveling?.cooldown || 15000)
+  }, data.leveling.cooldown)
 
-  const xpToGive = getRandomNum(data.leveling?.minXp, data.leveling?.maxXp)
+  if (!data.leveling.minXp || data.leveling.minXp < 1 || data.leveling.minXp > 10000) data.leveling.minXp = 1
+  if (!data.leveling.maxXp || data.leveling.maxXp < 1 || data.leveling.maxXp > 20000) data.leveling.maxXp = 15
+
+  const xpToGive = getRandomNum(data.leveling.minXp, data.leveling.maxXp)
 
   const updated = await XPs.findOneAndUpdate(
     { memberId: message.author.id, guildId: message.guild.id },

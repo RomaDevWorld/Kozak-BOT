@@ -14,8 +14,11 @@ export const handleStarReaction = async (reaction: MessageReaction, user: User) 
   if (count < 3) return
 
   const data = await Modules.findOne({ guildId: guild.id })
+  if (!data || !data?.starboard) return
 
-  if (!data?.starboard?.status || count < data.starboard.threshold) return
+  if (!data.starboard.threshold || data.starboard.threshold < 3) data.starboard.threshold = 3
+
+  if (!data?.starboard.status || count < data.starboard.threshold) return
   if (reaction.emoji.name !== data.starboard.emoji && reaction.emoji.id !== parseEmoji(data.starboard.emoji)?.id) return
 
   const channel = guild.channels.cache.get(data.starboard.channelId)

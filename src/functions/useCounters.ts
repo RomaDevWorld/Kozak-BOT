@@ -32,7 +32,8 @@ const useCounters = (client: Client) => {
           .replaceAll('BOT', getBots(members).toString())
           .replaceAll('VC', getVoices(members).toString())
 
-        if (channel.name !== name) channel.setName(name).catch((err) => console.error(`Can't update ${channel.id} name: ${err.message}`))
+        if (channel.name !== name)
+          channel.setName(name.slice(0, 100)).catch((err) => console.error(`Can't update ${channel.id} name: ${err.message}`))
       } catch (error) {
         console.error(error)
       }
