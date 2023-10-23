@@ -1,8 +1,8 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, Collection, EmbedBuilder, TextChannel } from 'discord.js'
 import { Button } from '../../@types/discord'
-import Modules from '../../schemas/Modules'
 import { t } from 'i18next'
 import CloseTicket from './CloseTicket'
+import ModulesTickets from '../../schemas/Modules.Tickets'
 
 const TicketButton: Button = {
   button: new ButtonBuilder().setStyle(ButtonStyle.Primary).setCustomId('ticket'),
@@ -10,11 +10,10 @@ const TicketButton: Button = {
     const id = interaction.message.id
     const lng = interaction.locale
 
-    const data = await Modules.findOne({ guildId: interaction.guildId })
-    const thisTicket = data?.tickets.find((ticket) => ticket.messageId === id)
+    const thisTicket = await ModulesTickets.findOne({ guildId: interaction.guildId, messageId: id })
     if (!thisTicket) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
 
-    const category = interaction.guild?.channels.cache.get(thisTicket?.channelId as string)
+    const category = interaction.guild?.channels.cache.get(thisTicket?.categoryId as string)
     const allowedRoles = thisTicket?.allowedRoles
     const ticketPrefix = thisTicket?.prefix || 'ticket'
 
