@@ -1,7 +1,7 @@
 import { EmbedBuilder, Guild, GuildChannel, ImageURLOptions, Message } from 'discord.js'
 import { Reports } from '../context/Report'
 import validateLog from '../../functions/validateLog'
-import { getOnline } from '../../functions/fetchMembers'
+import { fetchAllMembers, getOnline } from '../../functions/fetchMembers'
 import { t } from 'i18next'
 
 const GuildMemberReport = async (guild: Guild, message: Message) => {
@@ -15,8 +15,9 @@ const GuildMemberReport = async (guild: Guild, message: Message) => {
   const channel = await validateLog(guild, 'guildMemberReport', [message.channelId], message.member)
   if (!channel) return
 
-  const online = await getOnline(guild)
-  if (!online) return
+  const members = await fetchAllMembers(guild)
+  if (!members) return
+  const online = getOnline(members)
   let threshold = Math.floor(online / 2)
   if (threshold < 2) threshold = 2
 

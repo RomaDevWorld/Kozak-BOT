@@ -1,6 +1,6 @@
 import { Client, GuildMember } from 'discord.js'
 import Modules from '../schemas/Modules'
-import { getBots, getHumans, getOnline, getVoices } from './fetchMembers'
+import { fetchAllMembers, getBots, getHumans, getOnline, getVoices } from './fetchMembers'
 
 const useCounters = (client: Client) => {
   setInterval(async () => {
@@ -16,17 +16,21 @@ const useCounters = (client: Client) => {
       if (!channel || !channel.permissionsFor(guild.members.me as GuildMember).has('ManageChannels')) return
 
       try {
-        const online = await getOnline(guild, ['online', 'idle', 'dnd'])
-        const members = await getHumans(guild)
+        const members = await fetchAllMembers(guild)
+
+        if (!members) return
+
+        const online = getOnline(members, ['online', 'idle', 'dnd'])
+        const humans = getHumans(members)
 
         if (!online || !members) return
 
         const name = item.counter.label
           .replaceAll(`ON`, online.toString())
-          .replaceAll(`MEM`, members.toString())
-          .replaceAll(`ALL`, members.toString())
-          .replaceAll('BOT', await getBots(guild).toString())
-          .replaceAll('VC', await getVoices(guild).toString())
+          .replaceAll(`MEM`, humans.toString())
+          .replaceAll(`ALL`, humans.toString())
+          .replaceAll('BOT', getBots(members).toString())
+          .replaceAll('VC', getVoices(members).toString())
 
         if (channel.name !== name) channel.setName(name).catch((err) => console.error(`Can't update ${channel.id} name: ${err.message}`))
       } catch (error) {
