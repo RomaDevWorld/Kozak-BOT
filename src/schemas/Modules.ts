@@ -108,21 +108,6 @@ const ModulesSchema = new Schema({
       default: 3,
     },
   },
-  tickets: [
-    {
-      channelId: {
-        type: SchemaTypes.String,
-      },
-      messageId: {
-        type: SchemaTypes.String,
-      },
-      allowedRoles: [String],
-      prefix: {
-        type: SchemaTypes.String,
-        required: true,
-      },
-    },
-  ],
 })
 
 export default model('modules', ModulesSchema)
