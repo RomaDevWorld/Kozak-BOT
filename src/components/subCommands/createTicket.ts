@@ -2,7 +2,7 @@ import { ActionRowBuilder, ButtonBuilder, ChannelType, EmbedBuilder, SlashComman
 import { SubCommand } from '../../@types/discord'
 import { t } from 'i18next'
 import TicketButton from '../buttons/Ticket'
-import Modules from '../../schemas/Modules'
+import ModulesTickets from '../../schemas/Modules.Tickets'
 
 const command = new SlashCommandSubcommandBuilder()
   .setName('create')
@@ -61,17 +61,13 @@ const CreateTicketSubcommand: SubCommand = {
     })
     if (!msg) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
 
-    await Modules.findOneAndUpdate(
+    await ModulesTickets.findOneAndUpdate(
       { guildId: interaction.guildId },
       {
-        $push: {
-          tickets: {
-            messageId: msg.id,
-            channelId: interaction.options.getChannel('channel')?.id,
-            allowedRoles: interaction.options.resolved?.roles?.map((role) => role?.id),
-            prefix: interaction.options.getString('prefix') as string,
-          },
-        },
+        messageId: msg.id,
+        prefix: interaction.options.getString('prefix') || 'ticket',
+        categoryId: interaction.options.getChannel('channel')?.id,
+        allowedRoles: interaction.options.resolved?.roles?.map((role) => role?.id),
       },
       { upsert: true }
     )
