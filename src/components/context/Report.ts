@@ -20,19 +20,19 @@ const command: ContextMenuCommand = {
     if (message.author.id === interaction.user.id) return interaction.reply({ content: t('memberSelf', { lng }), ephemeral: true })
 
     if (Reports.get(message.author.id)?.members?.includes(interaction.user.id))
-      return interaction.reply({ content: t('report_already', { lng }), ephemeral: true })
+      return interaction.reply({ content: t('report.already', { lng }), ephemeral: true })
 
     if (!Reports.has(message.author.id)) {
       Reports.set(message.author.id, { members: [interaction.user.id] })
       setTimeout(() => Reports.delete(message.author.id), 60000)
-      return interaction.reply({ content: t('report_success', { lng }), ephemeral: true })
+      return interaction.reply({ content: t('report.success', { lng }), ephemeral: true })
     }
 
     Reports.get(message.author.id)?.members?.push(interaction.user.id)
 
     GuildMemberReport(interaction.guild as Guild, message)
 
-    interaction.reply({ content: t('report_success', { lng }), ephemeral: true })
+    interaction.reply({ content: t('report.success', { lng }), ephemeral: true })
   },
 }
 

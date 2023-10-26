@@ -15,13 +15,13 @@ const PrivateManageRenameSubcommand: SubCommand = {
     const lng = interaction.locale
 
     const channel = await getPrivateChannel(interaction.member as GuildMember)
-    if (!channel) return interaction.reply({ content: t('privates:noChannel', { lng }), ephemeral: true })
+    if (!channel) return interaction.reply({ content: t('privates.noChannel', { lng }), ephemeral: true })
     if (!interaction.guild) return
 
     const name = interaction.options.getString('name') as string
     channel.setName(name)
 
-    interaction.reply({ content: t('privates:channelRenamed', { lng, name }), ephemeral: true })
+    interaction.reply({ content: t('privates.channelRenamed', { lng, name }), ephemeral: true })
   },
 }
 

@@ -1,26 +1,5 @@
 {
   "ping": "Pong!",
-
-  "cooldown_one": "You have to wait {{count}} second to use this command again.",
-  "cooldown_other": "You have to wait {{count}} seconds to use this command again.",
-
-  "dog_success": "Random dog!",
-  "cat_success": "Random cat!",
-
-  "animal_warning": "Image from {{url}}. We are not responsible for the content!",
-  "animal_error": "Couldn't fetch the image from the API",
-
-  "avatar_noavatar": "This user has no avatar!",
-
-  "purge_success_title": "Successfully purged!",
-  "purge_success_description": "Deleted: {{messages}}\nPending: {{agedMessages}}",
-
-  "vote_closebutton": "Close poll",
-  "vote_notauthor": "Only poll authors can close them",
-
-  "report_success": "Report successfully sent!",
-  "report_already": "You already reported this member",
-
   "error": "Error",
   "reasonNotSpecified": "Reason not specified",
   "memberNotFound": "This member is not on this server",
@@ -45,7 +24,6 @@
   "user_other": "Users",
   "channel_one": "Channel",
   "channel_other": "Channels",
-
   "message_one": "Message",
   "message_other": "Messages",
   "voice_channel_one": "Voice channel",
@@ -54,6 +32,36 @@
   "member_other": "Members",
   "report_one": "Report",
   "report_other": "Reports",
+  "yes": "Yes",
+  "no": "No",
+  "attachment_one": "Attachment",
+  "attachment_other": "Attachments",
+  "none": "None",
+  "cooldown_one": "You have to wait {{count}} second to use this command again.",
+  "cooldown_other": "You have to wait {{count}} seconds to use this command again.",
+
+  "dog_success": "Random dog!",
+  "cat_success": "Random cat!",
+
+  "animal_warning": "Image from {{url}}. We are not responsible for the content!",
+  "animal_error": "Couldn't fetch the image from the API",
+
+  "avatar_noavatar": "This user has no avatar!",
+
+  "purge": {
+    "success_title": "Successfully purged!",
+    "success_description": "Deleted: {{messages}}\nPending: {{agedMessages}}"
+  },
+
+  "poll": {
+    "closebutton": "Close poll",
+    "notauthor": "Only poll authors can close them"
+  },
+
+  "report": {
+    "success": "Report successfully sent!",
+    "already": "You already reported this member"
+  },
 
   "ticket": {
     "alreadyCreated": "You already have an ongoing ticket",
@@ -63,11 +71,83 @@
     "closed": "**This ticket was closed by {{member}}**"
   },
 
-  "yes": "Yes",
-  "no": "No",
-  "attachment_one": "Attachment",
-  "attachment_other": "Attachments",
-  "none": "None",
+  "8ball": {
+    "0": "Oops! We dropped the magic ball!",
+    "1": "Certainly No",
+    "2": "Certainly Yes",
+    "3": "The magic ball has doubts",
+    "4": "Spirits says \"Yes\"\nBut would you believe them?",
+    "5": "Spirits says \"No\"\nBut would you believe them?",
+    "6": "404: Not found",
+    "7": "The spirits are upset by this question",
+    "8": "Spirits love your questions",
+
+    "embed_author": "The magic sphere says..",
+    "embed_description": "Question:",
+    "embed_footer": "Using magic can harm your health"
+  },
+
+  "dice": {
+    "embed_author": "Let's play dice!",
+    "embed_footer": "Click a button to throw",
+
+    "button_label": "Throw dice",
+
+    "no_one_played": "No one threw the dice",
+
+    "win_author": "The winner is {{member}} with the result of {{value}}",
+
+    "already_played": "You already threw the dice"
+  },
+
+  "mute": {
+    "bot_noPermission": "I have no permission to timeout members on this server",
+    "member_greater": "This user is above or you have the same highest role or this member has `Administrator` permission",
+    "time_incorrect": "Specified value `{{value}}` is not a correct time\nTime cannot be less than 1 seconds or greater than 28 days.\nTime should end with s/m/h/d to specify seconds, minutes, hours or days accordingly",
+    "success": "**{{member}}** is muted until `{{date}}`"
+  },
+
+  "warn": {
+    "list": {
+      "embed_author": "List of all {{member}} warnings",
+      "embed_footer": "Total warnings: {{value}}"
+    },
+
+    "push": {
+      "embed_author": "Warning sent!",
+      "embed_description": "**Reason:** {{reason}}"
+    },
+
+    "clear": {
+      "success": "Successfully wiped all {{member}}'s warnings."
+    }
+  },
+
+  "privates": {
+    "moduleOff": "Privates are not enabled on this server",
+    "channelCreated": "Your private channel was created: {{channel}}",
+    "publicUpdated": "Your channel permissions updated",
+    "limitUpdated": "Your private channel member limit updated: {{limit}}",
+    "channelDeleted": "Your private channel was deleted",
+    "noChannel": "Your don't have private channel created",
+    "inviteSuccess": "{{member}} now has access to your private channel",
+    "kickSuccess": "{{member}} no longer has access to your private channel",
+    "channelRenamed": "Your new channel name: **{{name}}**",
+    "channelExpired": "Your private channel was automatically deleted because you didn't joined it in past 5 minutes",
+
+    "restore": {
+      "embed_title": "Want to restore your previous channel?",
+      "embed_footer": "Click a button below to apply these values",
+      "name": "Name",
+      "limit": "Limit",
+      "isPublic": "Is public?",
+      "invited": "Invited members",
+      "kicked": "Kicked members",
+      "buttonText": "Restore",
+      "success": "Successfully changed your channel's parameters",
+      "notOwner": "This is not your channel!"
+    }
+  },
 
   "xp": {
     "level": {

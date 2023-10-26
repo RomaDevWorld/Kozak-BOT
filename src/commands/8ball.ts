@@ -26,15 +26,15 @@ const ClearCommand: SlashCommand = {
 
     const embed = new EmbedBuilder()
       .setAuthor({
-        name: t('eightball:embed_author', { lng: interaction.locale }),
+        name: t('8ball.embed_author', { lng: interaction.locale }),
         iconURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/8-Ball_Pool.svg/1024px-8-Ball_Pool.svg.png',
       })
       .setDescription(
-        `**${t('eightball:embed_description', { lng: interaction.locale })}** "${question}"\n\n` +
-          `${t(`eightball:${Math.floor(Math.random() * 8) as 0}`, { lng: interaction.locale })}`
+        `**${t('8ball.embed_description', { lng: interaction.locale })}** "${question}"\n\n` +
+          `${t(`8ball.${Math.floor(Math.random() * 8) as 0}`, { lng: interaction.locale })}`
       )
       .setColor('DarkButNotBlack')
-      .setFooter({ text: t('eightball:embed_footer', { lng: interaction.locale }) })
+      .setFooter({ text: t('8ball.embed_footer', { lng: interaction.locale }) })
 
     await interaction.editReply({ embeds: [embed] }).catch((err: Error) => console.error(err))
   },

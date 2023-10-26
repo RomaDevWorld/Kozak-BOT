@@ -20,7 +20,7 @@ const button: Button = {
     }
 
     if (data.authorId !== interaction.user.id)
-      return await interaction.reply({ content: t('vote_notauthor', { lng: interaction.locale }), ephemeral: true })
+      return await interaction.reply({ content: t('poll.notauthor', { lng: interaction.locale }), ephemeral: true })
 
     voteId ? await Vote.findByIdAndDelete(voteId) : await Vote.findOneAndDelete({ 'message.id': interaction.message.id })
 

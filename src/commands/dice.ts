@@ -4,18 +4,15 @@ import createRandomString from '../functions/createRandomString'
 import { SlashCommand } from '../@types/discord'
 
 const command: SlashCommand = {
-  command: new SlashCommandBuilder()
-    .setName('dice')
-    .setDescription('Create a table for dice')
-    .setDescriptionLocalizations({
-      uk: 'Створити стіл для гральних кубиків',
-      fr:"Crée une table de dés"
-    }),
+  command: new SlashCommandBuilder().setName('dice').setDescription('Create a table for dice').setDescriptionLocalizations({
+    uk: 'Створити стіл для гральних кубиків',
+    fr: 'Crée une table de dés',
+  }),
   cooldown: 10,
   execute: async (interaction) => {
     const embed = new EmbedBuilder()
-      .setAuthor({ name: t('dice:embed_author', { lng: interaction.locale }) })
-      .setFooter({ text: t('dice:embed_footer', { lng: interaction.locale }) })
+      .setAuthor({ name: t('dice.embed_author', { lng: interaction.locale }) })
+      .setFooter({ text: t('dice.embed_footer', { lng: interaction.locale }) })
 
     const random = createRandomString()
 
@@ -23,7 +20,7 @@ const command: SlashCommand = {
       new ButtonBuilder()
         .setCustomId(random)
         .setStyle(ButtonStyle.Primary)
-        .setLabel(t('dice:button_label', { lng: interaction.locale }))
+        .setLabel(t('dice.button_label', { lng: interaction.locale }))
     )
 
     const message = await interaction.reply({ embeds: [embed], components: [row] })
@@ -51,7 +48,7 @@ const command: SlashCommand = {
 
         interaction.update({ embeds: [updatedEmbed] })
       } else {
-        interaction.reply({ content: t('dice:already_played', { lng: interaction.locale }), ephemeral: true })
+        interaction.reply({ content: t('dice.already_played', { lng: interaction.locale }), ephemeral: true })
       }
     })
 
@@ -59,7 +56,7 @@ const command: SlashCommand = {
       if (Object.keys(players).length === 0) {
         const newEmbed = new EmbedBuilder()
           .setAuthor({ name: embed.data.author?.name as string })
-          .setDescription(t('dice:no_one_played'))
+          .setDescription(t('dice.no_one_played'))
           .setColor('Red')
         await interaction.editReply({
           embeds: [newEmbed],
@@ -75,7 +72,7 @@ const command: SlashCommand = {
 
       const newEmbed = new EmbedBuilder()
         .setAuthor({
-          name: t('dice:win_author', {
+          name: t('dice.win_author', {
             lng: interaction.locale,
             member: interaction.guild?.members.cache.get(greatest.id)?.user.username,
             value: greatest.value,

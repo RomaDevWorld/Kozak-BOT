@@ -12,9 +12,42 @@
 
   "avatar_noavatar": "Cette utilisateur n'a pas une photo de profil!",
 
-  "purge_success_title": "Purge faite!",
-  "purge_success_description": "Supprimé(s): {{messages}}\nEn cours: {{agedMessages}}",
+  "purge": {
+    "success_title": "Purge faite!",
+    "success_description": "Supprimé(s): {{messages}}\nEn cours: {{agedMessages}}"
+  },
 
-  "vote_closebutton": "Fermer",
-  "vote_notauthor": "Seuls les auteurs du sondage peuvent le fermer."
+  "poll": {
+    "closebutton": "Fermer",
+    "notauthor": "Seuls les auteurs du sondage peuvent le fermer."
+  },
+
+  "8ball": {
+    "0": "Oops! La balle magique est tombée!",
+    "1": "Certainement que non.",
+    "2": "Certainement que oui.",
+    "3": "La balle magique à des doutes..",
+    "4": "Les esprits disent \"Yes\"\nMais les croirez-vous?",
+    "5": "Spirits says \"No\"\nBut would you believe them?",
+    "6": "404: Introuvable.",
+    "7": "Les esprits sont dérangés par votre question.",
+    "8": "Les esprits adorent votre question!",
+
+    "embed_author": "La sphere magique dis..",
+    "embed_description": "Question:",
+    "embed_footer": "L'utilisation de la magie peut endommager votre santé"
+  },
+
+  "dice": {
+    "embed_author": "Jouons au dé!",
+    "embed_footer": "Clique le button pour jeter",
+
+    "button_label": "Jeter le dé",
+
+    "no_one_played": "Personne n'a jeté le dé!",
+
+    "win_author": "Le gagnant est {{member}} avec un résultat de **{{value}}**!",
+
+    "already_played": "Vous avez déjà jeté le dé!"
+  }
 }

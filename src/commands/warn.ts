@@ -56,12 +56,12 @@ const command: SlashCommand = {
 
         const embed = new EmbedBuilder()
           .setAuthor({
-            name: t('warn:list.embed_author', { lng, member: member.user.username }),
+            name: t('warn.list.embed_author', { lng, member: member.user.username }),
             iconURL: member.user.displayAvatarURL(),
           })
           .setDescription(warnList?.join('\n') || ' ')
           .setFooter({
-            text: t('warn:list.embed_footer', { lng, value: warnList?.length || 0 }),
+            text: t('warn.list.embed_footer', { lng, value: warnList?.length || 0 }),
             iconURL: interaction.guild?.iconURL() || ' ',
           })
           .setColor('Orange')
@@ -77,11 +77,11 @@ const command: SlashCommand = {
         )
 
         const embed = new EmbedBuilder()
-          .setAuthor({ name: t('warn:push.embed_author', { lng }) })
-          .setDescription(t('warn:push.embed_description', { lng, reason: reason || t('reasonNotSpecified', { lng }) }))
+          .setAuthor({ name: t('warn.push.embed_author', { lng }) })
+          .setDescription(t('warn.push.embed_description', { lng, reason: reason || t('reasonNotSpecified', { lng }) }))
           .setColor('Green')
           .setFooter({
-            text: t('warn:list.embed_footer', {
+            text: t('warn.list.embed_footer', {
               lng,
               value: (data?.warns.length as number) + 1 || 1,
             }),
@@ -93,7 +93,7 @@ const command: SlashCommand = {
       case 'clear': {
         await Warns.findOneAndDelete({ guildId: interaction.guildId, userId: member.id })
 
-        return interaction.reply({ content: t('warn:clear.success', { lng, member: member.user.username }), ephemeral: true })
+        return interaction.reply({ content: t('warn.clear.success', { lng, member: member.user.username }), ephemeral: true })
       }
     }
   },

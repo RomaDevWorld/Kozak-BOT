@@ -12,7 +12,7 @@ const PrivateManagePublicSubcommand: SubCommand = {
     const lng = interaction.locale
 
     const channel = await getPrivateChannel(interaction.member as GuildMember)
-    if (!channel) return interaction.reply({ content: t('privates:noChannel', { lng }), ephemeral: true })
+    if (!channel) return interaction.reply({ content: t('privates.noChannel', { lng }), ephemeral: true })
     if (!interaction.guild) return
 
     const isOn = channel.permissionsFor(interaction.guild?.id)?.has(PermissionFlagsBits.ViewChannel) ?? false
@@ -21,7 +21,7 @@ const PrivateManagePublicSubcommand: SubCommand = {
       ViewChannel: !isOn,
     })
 
-    interaction.reply({ content: t('privates:publicUpdated', { lng }), ephemeral: true })
+    interaction.reply({ content: t('privates.publicUpdated', { lng }), ephemeral: true })
   },
 }
 

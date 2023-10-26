@@ -8,7 +8,7 @@ const command: SlashCommand = {
     .setDescription('Delete large amount of messages')
     .setDescriptionLocalizations({
       uk: 'Видалення великої кількості повідомлень',
-      fr: 'Supprime un groupe large de messages du salon' 
+      fr: 'Supprime un groupe large de messages du salon',
     })
     .addIntegerOption((option) =>
       option
@@ -19,13 +19,13 @@ const command: SlashCommand = {
         .setDescription('Max amount of messages')
         .setDescriptionLocalizations({
           uk: 'Максимальна кількість повідомлень',
-          fr: 'Nombre maximum de messages'
+          fr: 'Nombre maximum de messages',
         })
     )
     .addUserOption((option) =>
       option.setName('user').setDescription('Delete messages from a specific user').setDescriptionLocalizations({
         uk: 'Видалення повідомлень від вказаного користувача',
-        fr: 'Supprimer les messages d\'un utilisateur spécifique'
+        fr: "Supprimer les messages d'un utilisateur spécifique",
       })
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageMessages),
@@ -46,8 +46,8 @@ const command: SlashCommand = {
     await interaction.channel?.bulkDelete(messages, true).then(async (messages) => {
       const embed = new EmbedBuilder()
         .setColor('Green')
-        .setTitle(t('purge_success_title', { lng: interaction.locale }))
-        .setDescription(t('purge_success_description', { lng: interaction.locale, messages: messages.size, agedMessages: agedMessages.size }))
+        .setTitle(t('purge.success_title', { lng: interaction.locale }))
+        .setDescription(t('purge.success_description', { lng: interaction.locale, messages: messages.size, agedMessages: agedMessages.size }))
       await interaction.reply({ embeds: [embed], ephemeral: true })
 
       let n = 1

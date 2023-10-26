@@ -65,7 +65,7 @@ const command: SlashCommand = {
       optionsRow.addComponents(dynamicButton)
     }
 
-    const closeButton = new ButtonBuilder(CloseVote.button.data).setLabel(t('vote_closebutton', { lng: interaction.locale }))
+    const closeButton = new ButtonBuilder(CloseVote.button.data).setLabel(t('poll.closebutton', { lng: interaction.locale }))
 
     const closeRow = new ActionRowBuilder<ButtonBuilder>().addComponents(closeButton)
 

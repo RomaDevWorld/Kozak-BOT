@@ -45,18 +45,18 @@ export const createPrivateChannel = async (member: GuildMember, lobbyChannel: Vo
     const lng = member.guild.preferredLocale
 
     const embed = new EmbedBuilder()
-      .setAuthor({ name: t('privates:restore.embed_title', { lng }) })
+      .setAuthor({ name: t('privates.restore.embed_title', { lng }) })
       .setColor('Green')
-      .setFooter({ text: t('privates:restore.embed_footer', { lng }) })
-    if (data.name) embed.addFields({ name: t('privates:restore.name', { lng }), value: data.name })
-    if (data.limit) embed.addFields({ name: t('privates:restore.limit', { lng }), value: data.limit.toString() })
-    if (data.isPublic) embed.addFields({ name: t('privates:restore.isPublic', { lng }), value: data.isPublic ? t('yes', { lng }) : t('no', { lng }) })
+      .setFooter({ text: t('privates.restore.embed_footer', { lng }) })
+    if (data.name) embed.addFields({ name: t('privates.restore.name', { lng }), value: data.name })
+    if (data.limit) embed.addFields({ name: t('privates.restore.limit', { lng }), value: data.limit.toString() })
+    if (data.isPublic) embed.addFields({ name: t('privates.restore.isPublic', { lng }), value: data.isPublic ? t('yes', { lng }) : t('no', { lng }) })
     if (data.invited?.length)
-      embed.addFields({ name: t('privates:restore.invited', { lng }), value: data.invited.map((id) => `<@${id}>`).join(', ') })
-    if (data.kicked?.length) embed.addFields({ name: t('privates:restore.kicked', { lng }), value: data.kicked.map((id) => `<@${id}>`).join(', ') })
+      embed.addFields({ name: t('privates.restore.invited', { lng }), value: data.invited.map((id) => `<@${id}>`).join(', ') })
+    if (data.kicked?.length) embed.addFields({ name: t('privates.restore.kicked', { lng }), value: data.kicked.map((id) => `<@${id}>`).join(', ') })
 
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-      new ButtonBuilder(RestorePrivate.button.data).setLabel(t('privates:restore.buttonText', { lng }))
+      new ButtonBuilder(RestorePrivate.button.data).setLabel(t('privates.restore.buttonText', { lng }))
     )
     channel.send({ content: `<@${member.id}>`, components: [row], embeds: [embed] })
   }
@@ -149,15 +149,19 @@ export const restorePrivateChannel = async (member: GuildMember, channel: VoiceC
 
     savedChannel.invited.push(member.id)
     if (savedChannel.invited.length > 0)
-      savedChannel.invited.forEach((id) => {
-        const user = member.guild.members.cache.get(id)
-        if (user) channel.permissionOverwrites.edit(user, { ViewChannel: true })
-      })
+      savedChannel.invited
+        .filter((i) => i === savedChannel.memberId)
+        .forEach((id) => {
+          const user = member.guild.members.cache.get(id)
+          if (user) channel.permissionOverwrites.edit(user, { ViewChannel: true })
+        })
     if (savedChannel.kicked.length > 0)
-      savedChannel.kicked.forEach((id) => {
-        const user = member.guild.members.cache.get(id)
-        if (user) channel.permissionOverwrites.edit(user, { ViewChannel: false })
-      })
+      savedChannel.kicked
+        .filter((i) => i === savedChannel.memberId)
+        .forEach((id) => {
+          const user = member.guild.members.cache.get(id)
+          if (user) channel.permissionOverwrites.edit(user, { ViewChannel: false })
+        })
 
     await RestorePrivates.findOneAndRemove({ guildId: member.guild.id, memberId: member.id })
   }
