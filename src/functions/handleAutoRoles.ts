@@ -37,6 +37,6 @@ export const saveRolesToRestore = async (member: GuildMember) => {
         .map((role) => role.id),
       nickname: member.nickname,
     },
-    { upsert: true, new: true }
+    { upsert: true }
   )
 }

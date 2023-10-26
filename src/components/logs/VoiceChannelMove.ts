@@ -7,13 +7,7 @@ const VoiceChannelMove = async (oldVoiceState: VoiceState, newVoiceState: VoiceS
   if (!oldVoiceState.member || !newVoiceState.member) return
   if (!oldVoiceState.channel || !newVoiceState.channel) return
 
-  const channel = await validateLog(
-    newVoiceState.guild,
-    'voiceStateUpdate',
-    undefined,
-    // [oldVoiceState.channel.id, newVoiceState.channel.id],
-    newVoiceState.member
-  )
+  const channel = await validateLog(newVoiceState.guild, 'voiceStateUpdate', undefined, newVoiceState.member)
   if (!channel) return
 
   const followUp = await getFollowUp(newVoiceState.id, channel)

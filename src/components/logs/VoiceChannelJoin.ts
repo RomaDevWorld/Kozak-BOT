@@ -5,15 +5,9 @@ import { saveFollowUp } from '../../functions/voiceLogFollowUp'
 
 const VoiceChannelJoin = async (oldVoiceState: VoiceState, newVoiceState: VoiceState) => {
   if (!oldVoiceState.member || !newVoiceState.member) return
-  if (!oldVoiceState.channel || !newVoiceState.channel) return
+  if (!newVoiceState.channel) return
 
-  const channel = await validateLog(
-    newVoiceState.guild,
-    'voiceStateUpdate',
-    undefined,
-    // [oldVoiceState.channel.id, newVoiceState.channel.id],
-    newVoiceState.member
-  )
+  const channel = await validateLog(newVoiceState.guild, 'voiceStateUpdate', undefined, newVoiceState.member)
   if (!channel) return
 
   const embed = new EmbedBuilder()

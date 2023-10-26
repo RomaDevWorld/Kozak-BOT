@@ -5,15 +5,9 @@ import { t } from 'i18next'
 
 const VoiceChannelLeave = async (oldVoiceState: VoiceState, newVoiceState: VoiceState) => {
   if (!oldVoiceState.member || !newVoiceState.member) return
-  if (!oldVoiceState.channel || !newVoiceState.channel) return
+  if (!oldVoiceState.channel) return
 
-  const channel = await validateLog(
-    newVoiceState.guild,
-    'voiceStateUpdate',
-    undefined,
-    // [oldVoiceState.channel.id, newVoiceState.channel.id],
-    newVoiceState.member
-  )
+  const channel = await validateLog(newVoiceState.guild, 'voiceStateUpdate', undefined, newVoiceState.member)
   if (!channel) return
 
   const followUp = await getFollowUp(newVoiceState.id, channel)
