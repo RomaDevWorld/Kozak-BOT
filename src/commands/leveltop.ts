@@ -2,6 +2,7 @@ import { EmbedBuilder, SlashCommandBuilder } from 'discord.js'
 import { SlashCommand } from '../@types/discord'
 import XPs from '../schemas/XPs'
 import { t } from 'i18next'
+import { getLevel } from '../functions/useXp'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -19,7 +20,7 @@ const command: SlashCommand = {
 
     const embed = new EmbedBuilder()
       .setAuthor({ name: t('xp.top.author', { lng }), iconURL: interaction.guild?.iconURL() as string })
-      .setDescription(data?.map((d, i) => `${i + 1}. <@${d.memberId}> - ${d.xp}`).join('\n') || ' ')
+      .setDescription(data.map((d, i) => `${i + 1}. <@${d.memberId}> - ${d.xp} (${getLevel(d.xp).level})`).join('\n') || ' ')
       .setColor('Orange')
 
     interaction.reply({ embeds: [embed] })

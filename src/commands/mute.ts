@@ -29,21 +29,21 @@ const command: SlashCommand = {
     if (member.id === interaction.user.id) return interaction.reply({ content: t('memberSelf', { lng }), ephemeral: true })
 
     if (!interaction.guild?.members.me?.permissions.has(PermissionFlagsBits.MuteMembers)) {
-      return interaction.reply({ content: t('mute:bot_noPermission', { lng }), ephemeral: true })
+      return interaction.reply({ content: t('mute.bot_noPermission', { lng }), ephemeral: true })
     }
 
     if (
       member.permissions.has(PermissionFlagsBits.Administrator) ||
       member.roles.highest.position >= (interaction.member?.roles as GuildMemberRoleManager).highest.position
     ) {
-      return interaction.reply({ content: t('mute:member_greater', { lng }), ephemeral: true })
+      return interaction.reply({ content: t('mute.member_greater', { lng }), ephemeral: true })
     }
 
     const rawTime = interaction.options.getString('time')?.toLowerCase() as string
     const time = parseTime(rawTime)
 
     if (!time || time < 1 || time > 2419200 * 1000) {
-      return interaction.reply({ content: t('mute:time_incorrect', { lng, value: rawTime }), ephemeral: true })
+      return interaction.reply({ content: t('mute.time_incorrect', { lng, value: rawTime }), ephemeral: true })
     }
 
     try {
@@ -55,7 +55,7 @@ const command: SlashCommand = {
       )
 
       return await interaction.reply({
-        content: t('mute:success', {
+        content: t('mute.success', {
           lng,
           member: member.user.username,
           date: moment(Date.now() + time).format('HH:mm:ss DD.MM.YYYY'),

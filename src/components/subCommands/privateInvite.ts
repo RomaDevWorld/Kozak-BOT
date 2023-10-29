@@ -14,7 +14,7 @@ const InvitePrivateSubcommand: SubCommand = {
   execute: async (interaction) => {
     const lng = interaction.locale
     const channel = await getPrivateChannel(interaction.member as GuildMember)
-    if (!channel) return interaction.reply({ content: t('privates:noChannel', { lng }), ephemeral: true })
+    if (!channel) return interaction.reply({ content: t('privates.noChannel', { lng }), ephemeral: true })
 
     const member = interaction.options.getMember('member') as GuildMember
     if (!member) return interaction.reply({ content: t('memberNotFound', { lng }), ephemeral: true })
@@ -24,7 +24,7 @@ const InvitePrivateSubcommand: SubCommand = {
       ViewChannel: true,
     })
 
-    interaction.reply({ content: t('privates:inviteSuccess', { lng, member: member.toString() }), ephemeral: true })
+    interaction.reply({ content: t('privates.inviteSuccess', { lng, member: member.toString() }), ephemeral: true })
   },
 }
 

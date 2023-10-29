@@ -11,12 +11,12 @@ const RestorePrivate: Button = {
     const memberChannel = await getPrivateChannel(interaction.member as GuildMember)
 
     if (!memberChannel || memberChannel.id !== interaction.channel?.id)
-      return interaction.reply({ content: t('privates:restore.notOwner', { lng }), ephemeral: true })
+      return interaction.reply({ content: t('privates.restore.notOwner', { lng }), ephemeral: true })
 
     restorePrivateChannel(interaction.member as GuildMember, interaction.channel as VoiceChannel)
 
     interaction.message.edit({ components: [] }).catch((err) => console.error(err))
-    interaction.reply({ content: t('privates:restore.success', { lng }), ephemeral: true })
+    interaction.reply({ content: t('privates.restore.success', { lng }), ephemeral: true })
   },
 }
 
