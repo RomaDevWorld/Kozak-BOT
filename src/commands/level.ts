@@ -2,6 +2,7 @@ import { EmbedBuilder, GuildMember, ImageURLOptions, SlashCommandBuilder } from 
 import { SlashCommand } from '../@types/discord'
 import XPs from '../schemas/XPs'
 import { t } from 'i18next'
+import { getLevel } from '../functions/useXp'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -30,7 +31,8 @@ const command: SlashCommand = {
       .setColor('Green')
       .addFields(
         { name: t('xp.level.fields.xp', { lng }), value: data.xp.toString(), inline: true },
-        { name: t('xp.level.fields.level', { lng }), value: Math.floor(data.xp / 100).toString(), inline: true }
+        { name: t('xp.level.fields.level', { lng }), value: getLevel(data.xp).level.toString(), inline: true },
+        { name: t('xp.level.fields.xpToNextLvl', { lng }), value: getLevel(data.xp).xpToNextLvl.toString() }
       )
       .setTimestamp()
 

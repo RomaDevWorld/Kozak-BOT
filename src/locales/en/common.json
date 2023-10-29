@@ -155,6 +155,7 @@
       "author": "{{member}}'s XP and level on this server",
       "fields": {
         "xp": "XP",
+        "xpToNextLvl": "XP to next level",
         "level": "Level"
       }
     },
@@ -164,7 +165,6 @@
     },
     "notifications": {
       "lvlUp": {
-        "author": "Level UP!",
         "description": "You have reached **{{level}}** with **{{xp}}** xp"
       }
     }

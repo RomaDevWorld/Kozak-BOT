@@ -43,13 +43,15 @@ export const addXp = async (message: Message) => {
     { upsert: true, new: true }
   )
 
-  if (data.leveling?.notifications?.onLvlUp && Math.floor(updated.xp / 100) > Math.floor((updated.xp - xpToGive) / 100)) {
+  const curLvl = getLevel(updated.xp - xpToGive).level
+  const newLvl = getLevel(updated.xp).level
+
+  if (data.leveling?.notifications?.onLvlUp && newLvl > curLvl) {
     const lng = message.guild.preferredLocale
 
     const embed = new EmbedBuilder()
-      .setAuthor({ name: t('xp.notifications.lvlUp.author', { lng: lng }) })
-      .setDescription(t('xp.notifications.lvlUp.description', { lng: lng, xp: updated.xp, level: Math.floor(updated.xp / 100) }))
-      .setColor('Fuchsia')
+      .setDescription(t('xp.notifications.lvlUp.description', { lng: lng, xp: updated.xp, level: newLvl }))
+      .setColor('Blue')
 
     const msg = await message.reply({ embeds: [embed] }).catch((err) => console.error(`Error while replying: ${err.message}`))
 
@@ -57,10 +59,26 @@ export const addXp = async (message: Message) => {
       if (msg) msg.delete().catch((err) => err)
     }, 5000)
 
-    const ranks = await ModulesRanking.find({ guildId: message.guild.id, lvl: { $lte: Math.floor(updated.xp / 100) } })
+    const ranks = await ModulesRanking.find({ guildId: message.guild.id, lvl: { $lte: newLvl } })
     ranks.forEach((r) => {
       const role = message.guild?.roles.cache.get(r.roleId)
       if (role) message.member?.roles.add(role).catch((err: Error) => console.error(`Unable to give ranked role: ${err.message}`))
     })
+  }
+}
+
+export const getLevel = (xp: number) => {
+  let level = 0
+  let reqXp = 100
+
+  while (xp >= reqXp) {
+    xp -= reqXp
+    level++
+    reqXp *= 1.2
+  }
+
+  return {
+    level,
+    xpToNextLvl: Math.floor(reqXp - xp),
   }
 }
