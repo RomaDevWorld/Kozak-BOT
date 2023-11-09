@@ -1,4 +1,4 @@
-import { TextChannel, MessageReaction, User } from 'discord.js'
+import { TextChannel } from 'discord.js'
 import { BotEvent } from '../@types/discord'
 import client from '../lib/client'
 
@@ -27,7 +27,7 @@ const event: BotEvent = {
     if (!(event.t in events)) return
 
     const { d: data } = event
-    const user = client.users.cache.get(data.user_id) as User | undefined
+    const user = client.users.cache.get(data.user_id)
     const channel = client.channels.cache.get(data.channel_id) as TextChannel | undefined
     if (!channel) return
 
@@ -36,7 +36,7 @@ const event: BotEvent = {
     const message = await channel.messages.fetch(data.message_id)
 
     const emojiKey = data.emoji.id ? `${data.emoji.name}:${data.emoji.id}` : data.emoji.name
-    const reaction = message.reactions.cache.get(emojiKey) as MessageReaction | undefined
+    const reaction = message.reactions.cache.get(emojiKey)
 
     client.emit(events[event.t as keyof typeof events], reaction, user)
   },

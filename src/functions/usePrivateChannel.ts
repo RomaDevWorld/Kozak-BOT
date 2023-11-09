@@ -70,10 +70,7 @@ export const savePrivateChannel = async (member: GuildMember, channel: VoiceChan
 
 export const getPrivateChannel = async (member: GuildMember) => {
   const value = await Privates.findOne({ memberId: member.id, guildId: member.guild.id })
-
-  if (!value) return
-
-  return member.guild.channels.cache.get(value.channelId) as VoiceChannel
+  return value ? (member.guild.channels.cache.get(value.channelId) as VoiceChannel) : undefined
 }
 
 export const removePrivateChannel = async (member: GuildMember) => {
@@ -122,10 +119,10 @@ export const handlePrivateChannelTimeout = async (oldVoiceState: VoiceState, new
 
   if (oldVoiceState.channel?.id === data.channelId) {
     timeouts[data.channelId] = setTimeout(() => {
-      removePrivateChannel(oldVoiceState.member as GuildMember)
+      removePrivateChannel(newVoiceState.guild.members.cache.get(data.memberId) as GuildMember)
       clearTimeout(timeouts[data.channelId])
       delete timeouts[data.channelId]
-    }, 60000)
+    }, 10000)
   } else if (newVoiceState.channel?.id === data.channelId) {
     const timeout = timeouts[data.channelId]
     if (!timeout) return
