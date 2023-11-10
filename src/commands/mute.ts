@@ -2,7 +2,7 @@ import { GuildMemberRoleManager, PermissionFlagsBits, SlashCommandBuilder } from
 import { t } from 'i18next'
 import { SlashCommand } from '../@types/discord'
 import parseTime from '../functions/parseTime'
-import moment from 'moment'
+import timestamp from '../functions/createTimestamp'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -58,7 +58,7 @@ const command: SlashCommand = {
         content: t('mute.success', {
           lng,
           member: member.user.username,
-          date: moment(Date.now() + time).format('HH:mm:ss DD.MM.YYYY'),
+          date: timestamp(Date.now() + time, 'f'),
         }),
         ephemeral: true,
       })

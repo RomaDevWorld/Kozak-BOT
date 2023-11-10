@@ -2,6 +2,7 @@ import { AuditLogEvent, EmbedBuilder, GuildMember, ImageURLOptions } from 'disco
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
 import fetchAuditLog from '../../functions/fetchAuditLog'
+import timestamp from '../../functions/createTimestamp'
 
 const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMember) => {
   if (newMember.user.bot) return
@@ -48,7 +49,7 @@ const GuildMemberTimeoutLog = async (oldMember: GuildMember, newMember: GuildMem
         },
         {
           name: t('time', { lng }),
-          value: new Date(newMember.communicationDisabledUntilTimestamp as number).toLocaleString(),
+          value: timestamp(newMember.communicationDisabledUntilTimestamp as number, 'R'),
         }
       )
       .setTimestamp()

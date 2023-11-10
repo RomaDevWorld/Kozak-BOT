@@ -2,7 +2,7 @@ import { EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from 'discord.
 import { t } from 'i18next'
 import { SlashCommand } from '../@types/discord'
 import Warns from '../schemas/Warns'
-import moment from 'moment'
+import timestamp from '../functions/createTimestamp'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -52,7 +52,9 @@ const command: SlashCommand = {
 
     switch (interaction.options.getSubcommand()) {
       case 'list': {
-        const warnList = data?.warns.map((i) => `**${moment(i.dateTimestamp).format('DD.MM.YYYY HH:mm')}:** ${i.reason}\n(<@${i.modId}>)`)
+        const warnList = data?.warns.map(
+          (i) => `**${timestamp(i.dateTimestamp, 'd')} ${timestamp(i.dateTimestamp, 't')}:** ${i.reason}\n(<@${i.modId}>)`
+        )
 
         const embed = new EmbedBuilder()
           .setAuthor({
@@ -62,7 +64,7 @@ const command: SlashCommand = {
           .setDescription(warnList?.join('\n') || ' ')
           .setFooter({
             text: t('warn.list.embed_footer', { lng, value: warnList?.length || 0 }),
-            iconURL: interaction.guild?.iconURL() || ' ',
+            iconURL: interaction.guild?.iconURL() || undefined,
           })
           .setColor('Orange')
 

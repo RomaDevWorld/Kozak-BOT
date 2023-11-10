@@ -1,8 +1,8 @@
 import { EmbedBuilder, GuildMember, ImageURLOptions } from 'discord.js'
 import validateLog from '../../functions/validateLog'
 import { t } from 'i18next'
-import moment from 'moment'
 import { trackInvite } from '../../functions/trackInvites'
+import timestamp from '../../functions/createTimestamp'
 
 const GuildMemberAddLog = async (member: GuildMember) => {
   const channel = await validateLog(member.guild, 'guildMemberAdd')
@@ -16,9 +16,7 @@ const GuildMemberAddLog = async (member: GuildMember) => {
       iconURL: member.displayAvatarURL({ dynamic: true } as ImageURLOptions),
     })
     .setDescription(
-      `${member} (${member.user.username})\n${t('logs:guildMemberAdd.embed_description', { lng })}\n${moment(member.user.createdAt).format(
-        'YYYY.DD.MM HH:mm'
-      )}`
+      `${member} (${member.user.username})\n${t('logs:guildMemberAdd.embed_description', { lng })}\n${timestamp(member.user.createdTimestamp, 'R')}`
     )
     .setFooter({ text: `ID: ${member.id}` })
     .setColor('Green')
