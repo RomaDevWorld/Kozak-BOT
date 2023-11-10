@@ -33,7 +33,12 @@ const LogSwitchesSubcommand: SubCommand = {
     const modSwitch = new ButtonBuilder(LogTypeSwitch.button.data)
       .setCustomId('switch_mods')
       .setStyle(
-        (types?.guildBanAdd, types?.guildBanRemove, types?.guildMemberTimeout, types?.guildMemberRolesUpdate, types?.guildMemberNicknameUpdate)
+        (types?.guildBanAdd,
+        types?.guildBanRemove,
+        types?.guildMemberTimeout,
+        types?.guildMemberRolesUpdate,
+        types?.guildMemberNicknameUpdate,
+        types?.guildMemberWarn)
           ? ButtonStyle.Success
           : ButtonStyle.Danger
       )

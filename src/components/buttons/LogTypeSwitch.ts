@@ -40,6 +40,7 @@ const LogTypeSwitch: Button = {
             'log.types.guildBanRemove': !active,
             'log.types.guildMemberNicknameUpdate': !active,
             'log.types.guildMemberRolesUpdate': !active,
+            'log.types.guildMemberWarn': !active,
           },
           { upsert: true }
         )

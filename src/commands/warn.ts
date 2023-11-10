@@ -1,8 +1,9 @@
-import { EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js'
+import { EmbedBuilder, GuildMember, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js'
 import { t } from 'i18next'
 import { SlashCommand } from '../@types/discord'
 import Warns from '../schemas/Warns'
 import timestamp from '../functions/createTimestamp'
+import GuildMemberWarnLog from '../components/logs/GuildMemberWarn'
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
@@ -72,7 +73,7 @@ const command: SlashCommand = {
         break
       }
       case 'push': {
-        await Warns.findOneAndUpdate(
+        const data = await Warns.findOneAndUpdate(
           { guildId: interaction.guildId, userId: member.id },
           { $push: { warns: { dateTimestamp: Date.now(), reason, modId: interaction.user.id } } },
           { new: true, upsert: true }
@@ -85,11 +86,13 @@ const command: SlashCommand = {
           .setFooter({
             text: t('warn.list.embed_footer', {
               lng,
-              value: (data?.warns.length as number) + 1 || 1,
+              value: data?.warns.length as number,
             }),
           })
 
         interaction.reply({ embeds: [embed], ephemeral: true })
+
+        await GuildMemberWarnLog(member, interaction.member as GuildMember, data.warns.length, reason)
         break
       }
       case 'clear': {

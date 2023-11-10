@@ -53,5 +53,9 @@
 
   "guildBanRemove": {
     "author": "User unbanned | {{user}}"
+  },
+
+  "guildMemberWarn": {
+    "author": "User warned | {{user}}"
   }
 }

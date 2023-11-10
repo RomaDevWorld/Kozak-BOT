@@ -12,6 +12,7 @@ export const logTypes = {
   guildBanRemove: { type: SchemaTypes.Boolean, default: false },
   guildBanAdd: { type: SchemaTypes.Boolean, default: false },
   guildMemberReport: { type: SchemaTypes.Boolean, default: false },
+  guildMemberWarn: { type: SchemaTypes.Boolean, default: false },
 }
 
 const ModulesSchema = new Schema({
