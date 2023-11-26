@@ -58,7 +58,9 @@ export const createPrivateChannel = async (member: GuildMember, lobbyChannel: Vo
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
       new ButtonBuilder(RestorePrivate.button.data).setLabel(t('privates.restore.buttonText', { lng }))
     )
-    channel.send({ content: `<@${member.id}>`, components: [row], embeds: [embed] })
+    channel
+      .send({ content: `<@${member.id}>`, components: [row], embeds: [embed] })
+      .catch((err: Error) => console.error(`Error while sending privates.restore message: ${err.message}`))
   }
 
   return channel
@@ -134,15 +136,17 @@ export const handlePrivateChannelTimeout = async (oldVoiceState: VoiceState, new
 export const restorePrivateChannel = async (member: GuildMember, channel: VoiceChannel) => {
   const savedChannel = await RestorePrivates.findOne({ guildId: member.guild.id, memberId: member.id })
   if (savedChannel) {
-    channel.edit({
-      name: savedChannel.name,
-      userLimit: savedChannel.limit,
-      permissionOverwrites: [
-        savedChannel.isPublic
-          ? { id: member.guild.id, allow: [PermissionFlagsBits.ViewChannel] }
-          : { id: member.guild.id, deny: [PermissionFlagsBits.ViewChannel] },
-      ],
-    })
+    channel
+      .edit({
+        name: savedChannel.name,
+        userLimit: savedChannel.limit,
+        permissionOverwrites: [
+          savedChannel.isPublic
+            ? { id: member.guild.id, allow: [PermissionFlagsBits.ViewChannel] }
+            : { id: member.guild.id, deny: [PermissionFlagsBits.ViewChannel] },
+        ],
+      })
+      .catch((err: Error) => console.error(`Error while restoring private channel: ${err.message}`))
 
     savedChannel.invited.push(member.id)
     if (savedChannel.invited.length > 0)

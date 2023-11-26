@@ -29,7 +29,7 @@ const cleanUp = async (client: Client) => {
     const channel = client.channels.cache.get(i.channelId)
     if (!channel) privatesToDelete.push(i.channelId)
     if (channel && channel.type === ChannelType.GuildVoice && channel.members.size === 0) {
-      channel.delete()
+      channel.delete().catch((err) => console.error(`Error while cleaning privates: ${err.message}`))
       privatesToDelete.push(channel.id)
     }
   })
