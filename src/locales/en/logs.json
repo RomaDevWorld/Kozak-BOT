@@ -11,9 +11,10 @@
   },
 
   "guildMemberRemove": {
-    "undefined_author": "Member left / was kicked",
+    "unknown_author": "Member left / was kicked",
     "kick_author": "Member was kicked",
-    "left_author": "Member left"
+    "left_author": "Member left",
+    "joinedAt": "Joined the server:"
   },
 
   "guildMemberAdd": {

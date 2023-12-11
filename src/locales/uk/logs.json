@@ -9,9 +9,10 @@
   },
 
   "guildMemberRemove": {
-    "undefined_author": "Учасник вийшов / був вигнаний",
+    "unknown_author": "Учасник вийшов / був вигнаний",
     "kick_author": "Учасник був вигнаний",
-    "left_author": "Учасник вийшов"
+    "left_author": "Учасник вийшов",
+    "joinedAt": "Приєднався до серверу:"
   },
 
   "guildMemberAdd": {
