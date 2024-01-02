@@ -4,7 +4,7 @@ import Modules from '../schemas/Modules'
 import StarboardMessages from '../schemas/StarboardMessages'
 
 export const handleStarReaction = async (reaction: MessageReaction, user: User) => {
-  if (!reaction || reaction.message.author?.bot || user.bot) return
+  if (!reaction || !user || reaction.message.author?.bot || user.bot) return
 
   const guild = reaction.message.guild
   if (!guild) return

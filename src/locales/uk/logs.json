@@ -1,5 +1,7 @@
 {
-  "messageDelete": { "author": "Повідомлення видалено | {{user}}" },
+  "messageDelete": {
+    "author": "Повідомлення видалено | {{user}}"
+  },
 
   "messageUpdate": {
     "author": "Повідомлення оновлено | {{user}}",
