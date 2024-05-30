@@ -1,4 +1,4 @@
-import { ActionRowBuilder, ButtonBuilder, ChannelType, EmbedBuilder, SlashCommandSubcommandBuilder } from 'discord.js'
+import { ActionRowBuilder, ButtonBuilder, ChannelType, EmbedBuilder, Role, SlashCommandSubcommandBuilder } from 'discord.js'
 import { SubCommand } from '../../@types/discord'
 import { t } from 'i18next'
 import TicketButton from '../buttons/Ticket'
@@ -56,7 +56,7 @@ const CreateTicketSubcommand: SubCommand = {
       .setDescription(interaction.options.getString('description') || t('config:ticket.defaultDesc', { lng }))
       .setColor('Green')
 
-    const msg = await interaction.channel?.send({ embeds: [embed], components: [row] }).catch((err) => {
+    const msg = await interaction.channel?.send({ embeds: [embed], components: [row] }).catch((err: Error) => {
       console.error(err)
     })
     if (!msg) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
@@ -67,7 +67,7 @@ const CreateTicketSubcommand: SubCommand = {
         messageId: msg.id,
         prefix: interaction.options.getString('prefix') || 'ticket',
         categoryId: interaction.options.getChannel('channel')?.id,
-        allowedRoles: interaction.options.resolved?.roles?.map((role) => role?.id),
+        allowedRoles: interaction.options.resolved.roles.map((role: Role) => role.id),
       },
       { upsert: true }
     )

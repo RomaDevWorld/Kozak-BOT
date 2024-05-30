@@ -26,7 +26,7 @@ const CreatePrivateSubcommand: SubCommand = {
     interaction.reply({ content: t('privates.channelCreated', { lng, channel: channel.toString() }), ephemeral: true })
 
     timeouts[channel.id] = setTimeout(() => {
-      interaction.followUp({ content: t('privates.channelExpired', { lng }), ephemeral: true }).catch((err) => console.error(err))
+      interaction.followUp({ content: t('privates.channelExpired', { lng }), ephemeral: true }).catch((err: Error) => console.error(err))
 
       removePrivateChannel(interaction.member as GuildMember)
       clearTimeout(timeouts[channel.id])

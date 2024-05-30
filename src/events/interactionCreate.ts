@@ -1,6 +1,6 @@
 import { Interaction } from 'discord.js'
 import { t } from 'i18next'
-import { BotEvent } from '../@types/discord'
+import { BotEvent, Button } from '../@types/discord'
 
 const event: BotEvent = {
   name: 'interactionCreate',
@@ -43,7 +43,7 @@ const event: BotEvent = {
     } else if (interaction.isButton()) {
       // Handle buttons
 
-      const allButtons = Array.from(interaction.client.buttons.values())
+      const allButtons: Button[] = Array.from(interaction.client.buttons.values())
 
       for (const i in allButtons) {
         if (interaction.customId.startsWith(allButtons[i].button.data.custom_id)) return allButtons[i].execute(interaction)

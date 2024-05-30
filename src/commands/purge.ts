@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, Message, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js'
+import { ChannelType, Collection, EmbedBuilder, Message, PartialMessage, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js'
 import { t } from 'i18next'
 import { SlashCommand } from '../@types/discord'
 
@@ -36,14 +36,14 @@ const command: SlashCommand = {
 
     if (interaction.channel?.type !== ChannelType.GuildText) return console.error('[Error] Purge has been executed in wrong channel')
 
-    let messages = await interaction.channel?.messages.fetch({
+    let messages: Collection<string, Message> = await interaction.channel?.messages.fetch({
       limit: amount,
     })
     if (user) messages = messages?.filter((m) => m.author.id === user.id)
 
     const agedMessages = messages?.filter((m) => m.createdTimestamp < Date.now() - 1000 * 60 * 60 * 24 * 14)
 
-    await interaction.channel?.bulkDelete(messages, true).then(async (messages) => {
+    await interaction.channel?.bulkDelete(messages, true).then(async (messages: Collection<string, PartialMessage>) => {
       const embed = new EmbedBuilder()
         .setColor('Green')
         .setTitle(t('purge.success_title', { lng: interaction.locale }))

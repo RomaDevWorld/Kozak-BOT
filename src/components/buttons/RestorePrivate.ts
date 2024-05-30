@@ -15,7 +15,7 @@ const RestorePrivate: Button = {
 
     restorePrivateChannel(interaction.member as GuildMember, interaction.channel as VoiceChannel)
 
-    interaction.message.edit({ components: [] }).catch((err) => console.error(err))
+    interaction.message.edit({ components: [] }).catch((err: Error) => console.error(err))
     interaction.reply({ content: t('privates.restore.success', { lng }), ephemeral: true })
   },
 }

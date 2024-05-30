@@ -135,35 +135,34 @@ export const handlePrivateChannelTimeout = async (oldVoiceState: VoiceState, new
 
 export const restorePrivateChannel = async (member: GuildMember, channel: VoiceChannel) => {
   const savedChannel = await RestorePrivates.findOne({ guildId: member.guild.id, memberId: member.id })
-  if (savedChannel) {
-    channel
-      .edit({
-        name: savedChannel.name,
-        userLimit: savedChannel.limit,
-        permissionOverwrites: [
-          savedChannel.isPublic
-            ? { id: member.guild.id, allow: [PermissionFlagsBits.ViewChannel] }
-            : { id: member.guild.id, deny: [PermissionFlagsBits.ViewChannel] },
-        ],
+  if (!savedChannel || !savedChannel.name || !savedChannel.limit) return
+  channel
+    .edit({
+      name: savedChannel.name,
+      userLimit: savedChannel.limit,
+      permissionOverwrites: [
+        savedChannel.isPublic
+          ? { id: member.guild.id, allow: [PermissionFlagsBits.ViewChannel] }
+          : { id: member.guild.id, deny: [PermissionFlagsBits.ViewChannel] },
+      ],
+    })
+    .catch((err: Error) => console.error(`Error while restoring private channel: ${err.message}`))
+
+  savedChannel.invited.push(member.id)
+  if (savedChannel.invited.length > 0)
+    savedChannel.invited
+      .filter((i) => i === savedChannel.memberId)
+      .forEach((id) => {
+        const user = member.guild.members.cache.get(id)
+        if (user) channel.permissionOverwrites.edit(user, { ViewChannel: true })
       })
-      .catch((err: Error) => console.error(`Error while restoring private channel: ${err.message}`))
+  if (savedChannel.kicked.length > 0)
+    savedChannel.kicked
+      .filter((i) => i === savedChannel.memberId)
+      .forEach((id) => {
+        const user = member.guild.members.cache.get(id)
+        if (user) channel.permissionOverwrites.edit(user, { ViewChannel: false })
+      })
 
-    savedChannel.invited.push(member.id)
-    if (savedChannel.invited.length > 0)
-      savedChannel.invited
-        .filter((i) => i === savedChannel.memberId)
-        .forEach((id) => {
-          const user = member.guild.members.cache.get(id)
-          if (user) channel.permissionOverwrites.edit(user, { ViewChannel: true })
-        })
-    if (savedChannel.kicked.length > 0)
-      savedChannel.kicked
-        .filter((i) => i === savedChannel.memberId)
-        .forEach((id) => {
-          const user = member.guild.members.cache.get(id)
-          if (user) channel.permissionOverwrites.edit(user, { ViewChannel: false })
-        })
-
-    await RestorePrivates.findOneAndRemove({ guildId: member.guild.id, memberId: member.id })
-  }
+  await RestorePrivates.findOneAndDelete({ guildId: member.guild.id, memberId: member.id })
 }

@@ -64,7 +64,7 @@ export const LevelingRankingRemoveSubcommand: SubCommand = {
     const role = interaction.options.getRole('role')
     if (!role) return interaction.reply({ content: t('error', { lng }) })
 
-    await ModulesRanking.findOneAndRemove({ guildId: interaction.guildId, roleId: role.id })
+    await ModulesRanking.findOneAndDelete({ guildId: interaction.guildId, roleId: role.id })
 
     interaction.reply({ content: t('config:xp.ranking.remove.success', { lng, role: role.name }), ephemeral: true })
   },

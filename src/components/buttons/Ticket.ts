@@ -1,4 +1,4 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, Collection, EmbedBuilder, TextChannel } from 'discord.js'
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType, Collection, EmbedBuilder, GuildBasedChannel, TextChannel } from 'discord.js'
 import { Button } from '../../@types/discord'
 import { t } from 'i18next'
 import CloseTicket from './CloseTicket'
@@ -20,7 +20,7 @@ const TicketButton: Button = {
     if (!category) return interaction.reply({ content: t('error', { lng }), ephemeral: true })
 
     const channelsWithPrefix = interaction.guild?.channels.cache.filter(
-      (channel) => channel.name.startsWith(ticketPrefix) && channel.type === ChannelType.GuildText
+      (channel: GuildBasedChannel) => channel.name.startsWith(ticketPrefix) && channel.type === ChannelType.GuildText
     ) as Collection<string, TextChannel> | undefined
 
     const existingTicketChannel = channelsWithPrefix?.find((channel) => channel.topic === interaction.user.toString())
@@ -57,7 +57,9 @@ const TicketButton: Button = {
       .setDescription(t('ticket.description', { lng: interaction.guild?.preferredLocale }))
       .setColor('Green')
 
-    const ticketMessage = await ticketChannel?.send({ content: '@here', embeds: [embed], components: [row] }).catch((err) => console.error(err))
+    const ticketMessage = await ticketChannel
+      ?.send({ content: '@here', embeds: [embed], components: [row] })
+      .catch((err: Error) => console.error(err))
     ticketMessage?.pin()
 
     interaction.reply({ content: `**${t('ticket.created', { lng })}** ${ticketChannel?.toString()}`, ephemeral: true })

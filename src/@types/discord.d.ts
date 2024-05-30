@@ -1,14 +1,4 @@
 /* eslint-disable no-unused-vars */
-import {
-  AutocompleteInteraction,
-  ButtonBuilder,
-  ButtonInteraction,
-  ChatInputCommandInteraction,
-  Collection,
-  ContextMenuCommandBuilder,
-  SlashCommandBuilder,
-  SlashCommandSubcommandGroupBuilder,
-} from 'discord.js'
 
 export interface BotEvent {
   name: string
@@ -34,7 +24,7 @@ export interface SlashCommand {
 
 export interface Button {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  button: ButtonBuilder | any // For some reason "ButtonBuilder" does not provide "custom_id"
+  button: any
   execute: (interaction: ButtonInteraction) => void
 }
 
