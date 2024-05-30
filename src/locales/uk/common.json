@@ -35,7 +35,8 @@
   "report_other": "Скарги",
   "yes": "Так",
   "no": "Ні",
-  "attachment": "Вкладення",
+  "attachment_one": "Вкладення",
+  "attachment_other": "Вкладення",
   "none": "Немає",
 
   "dog_success": "Випадковий пес!",
