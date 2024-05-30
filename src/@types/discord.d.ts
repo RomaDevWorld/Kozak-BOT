@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-
 export interface BotEvent {
   name: string
   once?: boolean | false
@@ -23,7 +21,6 @@ export interface SlashCommand {
 }
 
 export interface Button {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   button: any
   execute: (interaction: ButtonInteraction) => void
 }

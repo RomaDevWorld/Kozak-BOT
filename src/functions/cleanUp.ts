@@ -5,7 +5,7 @@ import Privates from '../schemas/Privates'
 import { ChannelType } from 'discord.js'
 
 const cleanUp = async (client: Client) => {
-  // eslint-disable-next-line no-console
+   
   console.time('Clean up')
 
   const guildModules = await Modules.find({})
@@ -38,7 +38,7 @@ const cleanUp = async (client: Client) => {
     .then((res) => console.warn(`Cleaned up ${res.deletedCount} privates`))
     .catch((err) => console.error(err))
 
-  // eslint-disable-next-line no-console
+   
   console.timeEnd('Clean up')
 }
 
