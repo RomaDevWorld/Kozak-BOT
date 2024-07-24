@@ -168,5 +168,7 @@
         "description": "You have reached **{{level}}** with **{{xp}}** xp"
       }
     }
-  }
+  },
+
+  "roll": "Rolling"
 }
