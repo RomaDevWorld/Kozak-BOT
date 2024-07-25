@@ -9,6 +9,10 @@ const command: SlashCommand = {
     fr: "Faire apparaitre un chien aléatoire"
   }),
   cooldown: 10,
+  install: {
+    integration_types: [0, 1],
+    contexts: [0, 1, 2]
+  },
   execute: async (interaction) => {
     await interaction.deferReply().catch((err: Error) => console.error(err))
 

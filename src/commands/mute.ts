@@ -20,6 +20,10 @@ const command: SlashCommand = {
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers),
   cooldown: 10,
+  install: {
+    integration_types: [0],
+    contexts: [0]
+  },
   execute: async (interaction) => {
     const lng = interaction.locale
 

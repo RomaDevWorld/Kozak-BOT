@@ -18,6 +18,10 @@ const command: SlashCommand = {
     }),
 
   cooldown: 10,
+  install: {
+    integration_types: [0],
+    contexts: [0]
+  },
   execute: async (interaction) => {
     switch (interaction.options.getSubcommandGroup()) {
       case 'manage':

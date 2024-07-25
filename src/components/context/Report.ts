@@ -12,6 +12,10 @@ const command: ContextMenuCommand = {
       uk: 'Поскаржитись на повідомлення',
     })
     .setType(ApplicationCommandType.Message),
+    install: {
+      integration_types: [0],
+      contexts: [0]
+    },
   execute: async (interaction: MessageContextMenuCommandInteraction) => {
     const lng = interaction.locale
 

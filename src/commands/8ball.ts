@@ -17,6 +17,10 @@ const ClearCommand: SlashCommand = {
       uk: 'Поставте запитання і ми начаклуємо відповідь',
       fr: 'Poser une question à la 8 boule magique',
     }),
+    install: {
+      integration_types: [0, 1],
+      contexts: [0, 1, 2]
+    },
   execute: async (interaction) => {
     await interaction.deferReply().catch((err: Error) => console.error(err))
 

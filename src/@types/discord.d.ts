@@ -17,6 +17,10 @@ export interface SlashCommand {
   command: SlashCommandBuilder
   execute: (interaction: ChatInputCommandInteraction) => void
   autocomplete?: (interaction: AutocompleteInteraction) => void
+  install?: {
+    integration_types: (0 | 1)[],
+    contexts: (0 | 1 | 2)[]
+  }
   cooldown?: number
 }
 
@@ -27,6 +31,10 @@ export interface Button {
 
 export interface ContextMenuCommand {
   command: ContextMenuCommandBuilder
+  install?: {
+    integration_types: (0 | 1)[],
+    contexts: (0 | 1 | 2)[]
+  }
   execute: (interaction: ContextMenuCommandInteraction) => void
 }
 

@@ -9,6 +9,10 @@ const command: SlashCommand = {
     fr: 'Crée une table de dés',
   }),
   cooldown: 10,
+  install: {
+    integration_types: [0, 1],
+    contexts: [0, 1, 2]
+  },
   execute: async (interaction) => {
     const embed = new EmbedBuilder()
       .setAuthor({ name: t('dice.embed_author', { lng: interaction.locale }) })

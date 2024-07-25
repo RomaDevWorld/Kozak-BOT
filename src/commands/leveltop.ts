@@ -12,6 +12,10 @@ const command: SlashCommand = {
       uk: 'Показати 10 людей з найбільшим рівнем досвіду',
     }),
   cooldown: 10,
+  install: {
+    integration_types: [0],
+    contexts: [0]
+  },
   execute: async (interaction) => {
     const lng = interaction.locale
 

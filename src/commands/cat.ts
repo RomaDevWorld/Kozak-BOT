@@ -8,6 +8,10 @@ const command: SlashCommand = {
     uk: 'Показати випадкового кота!',
     fr: 'Faire apparaitre un chat aléatoire',
   }),
+  install: {
+    integration_types: [0, 1],
+    contexts: [0, 1, 2]
+  },
   cooldown: 10,
   execute: async (interaction) => {
     await interaction.deferReply().catch((err: Error) => console.error(err))
