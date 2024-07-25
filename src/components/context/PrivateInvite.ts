@@ -10,6 +10,10 @@ const command: ContextMenuCommand = {
       uk: 'Запросити в приватний канал',
     })
     .setType(ApplicationCommandType.User),
+    install: {
+      integration_types: [0],
+      contexts: [0]
+    },
   execute: async (interaction: UserContextMenuCommandInteraction) => {
     const lng = interaction.locale
     const target = interaction.targetMember

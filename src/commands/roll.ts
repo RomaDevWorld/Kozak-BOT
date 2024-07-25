@@ -20,6 +20,10 @@ const command: SlashCommand = {
       })
     ),
   cooldown: 10,
+  install: {
+    integration_types: [0, 1],
+    contexts: [0, 1, 2]
+  },
   execute: async (interaction) => {
     let min: number = (await interaction.options.getInteger('min')) || 0
     let max: number = (await interaction.options.getInteger('max')) || 100

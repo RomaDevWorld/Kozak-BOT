@@ -15,13 +15,13 @@ module.exports = (client: Client) => {
 
   readdirSync(commandsDir).forEach((file) => {
     const command: SlashCommand = require(`${commandsDir}/${file}`).default
-    commands.push(command.command)
+    commands.push({...command.command.toJSON(), ...command.install})
     client.slashCommands.set(command.command.name, command)
   })
 
   readdirSync(contextDir).forEach((file) => {
     const command: ContextMenuCommand = require(`${contextDir}/${file}`).default
-    commands.push(command.command)
+    commands.push({...command.command.toJSON(), ...command.install})
     client.contextCommands.set(command.command.name, command)
   })
 
@@ -29,7 +29,7 @@ module.exports = (client: Client) => {
 
   rest
     .put(Routes.applicationCommands(process.env.DISCORD_CLIENT_ID as string), {
-      body: commands.map((command) => command.toJSON()),
+      body: commands,
     })
     .then((data: any) => {
       console.log(`[Commands] Successfully loaded ${data.length} commands`)

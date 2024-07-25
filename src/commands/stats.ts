@@ -7,6 +7,10 @@ const command: SlashCommand = {
     uk: 'Показати статистику бота',
   }),
   cooldown: 10,
+  install: {
+    integration_types: [0, 1],
+    contexts: [0, 1, 2]
+  },
   execute: async (interaction) => {
     const lng = interaction.locale
 

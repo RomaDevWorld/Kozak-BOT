@@ -23,6 +23,10 @@ const command: SlashCommand = {
     .setDescriptionLocalizations({
       uk: 'Налаштувати бота',
     }),
+    install: {
+      integration_types: [0],
+      contexts: [0]
+    },
   cooldown: 10,
   execute: async (interaction) => {
     switch (interaction.options.getSubcommandGroup()) {

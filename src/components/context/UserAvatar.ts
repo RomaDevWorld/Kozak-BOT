@@ -9,6 +9,10 @@ const command: ContextMenuCommand = {
       uk: 'Отримати аватар учасника',
     })
     .setType(ApplicationCommandType.User),
+    install: {
+      integration_types: [0, 1],
+      contexts: [0, 1, 2]
+    },
   execute: async (interaction: UserContextMenuCommandInteraction) => {
     try {
       const target = interaction.targetUser

@@ -8,6 +8,10 @@ const command: SlashCommand = {
     fr: 'Tester la latence du bot',
   }),
   cooldown: 10,
+  install: {
+    integration_types: [0, 1],
+    contexts: [0, 1, 2]
+  },
   execute: async (interaction) => {
     const start = await interaction.deferReply({ ephemeral: true })
 
