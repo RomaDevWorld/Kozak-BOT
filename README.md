@@ -1,6 +1,6 @@
 # Kozak - multi-language, multipurpose discord bot created using discord.js, typescript, MongoDB and i18next
 
-**This bot is up and running! [Add it to your server](https://discord.com/oauth2/authorize?client_id=797395030851059713&permissions=1495655312618&scope=bot%20applications.commands)**
+**This bot is up and running! [Try it!](https://discord.com/oauth2/authorize?client_id=797395030851059713)**
 
 ## Featuring:
 
@@ -66,7 +66,7 @@ src/
     <a href="https://git-scm.com/">Install Git</a>
   </li>
   <li>
-    Clone source code with <code>git clone git@github.com:RomaDevWorld/Cossack-BOT.git</code> or however you like it
+    Clone source code with <code>git clone git@github.com:RomaDevWorld/Kozak-BOT.git</code> or however you like it
   </li>
   <li>
     Open cloned directory in terminal, and run <code>yarn install</code> to install the dependencies 
@@ -110,13 +110,13 @@ If you prefer using Docker Compose, you can spin up both MongoDB and CossackBot 
 Clone the entire repo
 
 ```
-git clone git@github.com:RomaDevWorld/Cossack-BOT.git
+git clone git@github.com:RomaDevWorld/Kozak-BOT.git
 ```
 
 or just `docker-compose.yml`
 
 ```
-wget https://raw.githubusercontent.com/RomaDevWorld/Cossack-BOT/main/docker-compose.yml docker-compose.yml
+wget https://raw.githubusercontent.com/RomaDevWorld/Kozak-BOT/main/docker-compose.yml docker-compose.yml
 ```
 
 Open file in a text editor, and change `DISCORD_CLIENT_ID` and `DISCORD_TOKEN`
