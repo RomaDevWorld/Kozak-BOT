@@ -9,5 +9,11 @@ readdirSync(handlersDir).forEach((handler) => {
   require(`${handlersDir}/${handler}`)(client)
 })
 
+process.on('SIGTERM', () => {
+  console.log('Caught SIGTERM. Shutting down...')
+  mongoose.disconnect()
+  process.exit(0)
+})
+
 mongoose // Init mongoose
 i18next // Init i18next
